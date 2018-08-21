@@ -11,6 +11,8 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { ItemComponent } from './item/item.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchFormTagComponent } from './search-form-tag/search-form-tag.component';
+import { DetailComponent } from './detail/detail.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { SearchFormTagComponent } from './search-form-tag/search-form-tag.compon
     ItemListComponent,
     ItemComponent,
     SearchFormComponent,
-    SearchFormTagComponent
+    SearchFormTagComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
