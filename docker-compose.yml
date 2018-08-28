@@ -22,7 +22,7 @@ services:
     networks:
       - storeapp-network
   mysql:
-    image: mysql:latest
+    image: mysql:5.7
     volumes:
       - mysqldata:/var/lib/mysql
     environment:
