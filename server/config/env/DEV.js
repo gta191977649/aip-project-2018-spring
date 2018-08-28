@@ -19,7 +19,9 @@
  * https://sailsjs.com/docs/concepts/deployment
  */
 
-module.exports = {
+require('sails-mysql')
+
+ module.exports = {
 
 
   /**************************************************************************
@@ -58,7 +60,8 @@ module.exports = {
       //  sails_datastores__default__url=mysql://admin:myc00lpAssw2D@db.example.com:3306/my_prod_db
       //  ```
       //--------------------------------------------------------------------------
-
+      adapter: 'sails-mysql',
+      url: 'mysql://root:secret@mysql:3306/storeapp'
       /****************************************************************************
       *                                                                           *
       * More adapter-specific options                                             *

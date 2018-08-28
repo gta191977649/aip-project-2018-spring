@@ -1,18 +1,26 @@
-version: '2.1'
+version: '3'
 
 services:
   server:
     build: ./server
     ports:
-     - "1337:1337"
+     - 1337:1337
     environment:
       - "NODE_ENV=DEV"
       - "USE_DOCKER=yes"
     depends_on:
       - mysql
-    links: 
-        - mysql
-        # - redis
+    networks:
+      - storeapp-network
+  client:
+    build: ./client
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:443:443
+    depends_on:
+      - server
+    networks:
+      - storeapp-network
   mysql:
     image: mysql:latest
     volumes:
@@ -24,6 +32,22 @@ services:
       - "MYSQL_PASSWORD=homestead"
     ports:
       - "3306:3306"
+    networks:
+      - storeapp-network
+  # NOT NEEDED NOW BUT SAVING FOR LATER?
+  # nginx: 
+  #   image: nginx:latest
+  #   container_name: production_nginx
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   networks:
+  #     - storeapp-network
+  #   environment:
+  #     - ENV=development
+  #     - APPLICATION_URL=http://localhost
   # redis:
   #   image: redis:4.0-alpine
   #   command: redis-server --appendonly yes
@@ -31,3 +55,5 @@ services:
   #     - "6379:6379"
 volumes:
   mysqldata:
+networks:
+  storeapp-network:
