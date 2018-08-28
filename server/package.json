@@ -1,19 +1,24 @@
 {
-  "name": "aip-2018",
+  "name": "server",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "sails": "^1.0.2",
+    "@sailshq/connect-redis": "^3.2.1",
+    "@sailshq/lodash": "^3.10.3",
+    "@sailshq/socket.io-redis": "^5.2.0",
+    "async": "2.0.1",
+    "bcrypt-nodejs": "0.0.3",
     "grunt": "1.0.1",
+    "jsonwebtoken": "^8.3.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sails": "^1.0.2",
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
-    "@sailshq/connect-redis": "^3.2.1",
-    "@sailshq/socket.io-redis": "^5.2.0",
-    "@sailshq/lodash": "^3.10.3",
-    "async": "2.0.1"
+    "sails-mysql": "^1.0.0"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3"
@@ -27,11 +32,11 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/idris/aip-2018.git"
+    "url": "git://github.com/idris/server.git"
   },
   "author": "idris",
   "license": "",
   "engines": {
-    "node": ">=8.10"
+    "node": ">=8.11"
   }
 }

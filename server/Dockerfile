@@ -1,5 +1,3 @@
-#DOCKER FILE Copied from https://github.com/nixon1333/sailsjs-docker/blob/master/Dockerfile
-
 # Instructions from the app developer
 # - you should use the 'node' official image, with the alpine 6.x branch
 FROM node:latest
@@ -22,3 +20,5 @@ COPY . .
 # CMD ["forever", "start" ,"./app.js","--prod"]
 # CMD ["node","./app.js","--prod"]
 CMD ["node","./app.js"]
+
+# - in the end you should be using FROM, RUN, WORKDIR, COPY, EXPOSE, and CMD commands
