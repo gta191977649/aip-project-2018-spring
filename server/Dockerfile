@@ -19,6 +19,6 @@ COPY . .
 # - then it needs to start container with command 'tini -- node ./bin/www'
 # CMD ["forever", "start" ,"./app.js","--prod"]
 # CMD ["node","./app.js","--prod"]
-CMD ["node","./app.js","--drop"]
+CMD ["node","./app.js"]
 
 # - in the end you should be using FROM, RUN, WORKDIR, COPY, EXPOSE, and CMD commands
