@@ -61,12 +61,12 @@ require('sails-mysql')
       //  ```
       //--------------------------------------------------------------------------
       
-      //  Removed this because it's wierd
+      // Removed this because it's wierd
       // adapter: 'sails-mysql',
       // url: 'mysql://root:secret@mysql:3306/storeapp'
 
         adapter: 'sails-mysql',
-        host: 'localhost',
+        host: 'mysql',
         port: 3306,
         user: 'root',
         password: 'secret',
