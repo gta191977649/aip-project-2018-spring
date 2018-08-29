@@ -19,6 +19,9 @@ module.exports = {
     },
     price: {
       type: 'number'
+    },
+    views: {
+      type: 'number'
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
