@@ -60,8 +60,17 @@ require('sails-mysql')
       //  sails_datastores__default__url=mysql://admin:myc00lpAssw2D@db.example.com:3306/my_prod_db
       //  ```
       //--------------------------------------------------------------------------
-      adapter: 'sails-mysql',
-      url: 'mysql://root:secret@mysql:3306/storeapp'
+      
+      // Removed this because it's wierd
+      // adapter: 'sails-mysql',
+      // url: 'mysql://root:secret@mysql:3306/storeapp'
+
+        adapter: 'sails-mysql',
+        host: 'mysql',
+        port: 3306,
+        user: 'root',
+        password: 'secret',
+        database: 'storeapp'
       /****************************************************************************
       *                                                                           *
       * More adapter-specific options                                             *
