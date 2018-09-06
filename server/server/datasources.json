@@ -1,12 +1,12 @@
 {
   "db": {
     "host": "localhost",
-    "port": 27017,
+    "port": 3306,
     "url": "",
-    "database": "nodeapp",
-    "password": "",
-    "name": "db",
-    "user": "",
-    "connector": "mongodb"
+    "database": "storeapp",
+    "password": "secret",
+    "name": "mydb",
+    "user": "root",
+    "connector": "mysql"
   }
 }

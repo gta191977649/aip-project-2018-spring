@@ -5,9 +5,6 @@ services:
     build: ./server
     ports:
      - 1337:1337
-    environment:
-      - "NODE_ENV=DEV"
-      - "USE_DOCKER=yes"
     depends_on:
       - mysql
     networks:

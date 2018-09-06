@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
-import {Container,Row, Col} from 'mdbreact';
+import React from 'react';
 
-export class Home extends Component {
-  render() {
-    return (
-     <Container>
-        <Row>
-            <Col>
-                <h1 className="display-4 h1">StoreApp</h1>
-            </Col>
-        </Row>
-     </Container>
-    )
-  }
+import {Container, Row, Col} from 'mdbreact';
+
+export class Home extends React.Component {
+    render(){
+        return(
+            <Container>
+                <Row>
+                    <Col md="6" className="mx-auto">
+                        <h1 className="display-4 text-center">StoreApp</h1>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 export default Home

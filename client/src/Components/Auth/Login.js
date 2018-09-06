@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { Container, Row, Col, Input, Button } from 'mdbreact';
-
+import React, { Component } from 'react';
+import {Container, Col, Row, Input, Button} from 'mdbreact';
 export class Login extends Component {
 
     constructor(props){
@@ -10,7 +9,15 @@ export class Login extends Component {
             password:''
         }
     }
-  render() {
+
+    async handleClick(e){
+        
+    }
+
+    async doLogin(){
+
+    }
+    render() {
     return (
     <Container>
         <Row>

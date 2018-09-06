@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import {NavbarNav, NavItem} from 'mdbreact'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Dropdown} from 'mdbreact';
 
-export class User extends Component {
+export class User extends React.Component {
   render() {
     return (
-        <NavbarNav right>
-            <NavItem>
-           
-            </NavItem>
-        </NavbarNav>
+        <Dropdown> 
+
+        </Dropdown>
     )
   }
 }
