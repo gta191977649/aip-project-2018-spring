@@ -6,8 +6,8 @@ class Footer extends React.Component {
             <footer className="page-footer text-center font-small wow fadeIn">
                 <div className="footer-copyright">
                     © 2018 Copyright:
-                    <a href="TradeChat.gg">TradeChat.gg</a> | <a href="https://idrisdev.com">IdrisDev.com</a>
-                    ; All Images obtained from <a href="https://www.pexels.com/">Pexels</a>;
+                    <a href="/"> StoreApp </a>
+                    ; All Stock Images obtained from <a href="https://www.pexels.com/">Pexels</a>;
                 </div>
             </footer>
         );

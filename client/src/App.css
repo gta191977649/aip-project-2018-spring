@@ -20,3 +20,8 @@ footer {
   line-height: 55px; /* Vertically center the text there */
   background-color: #2196f3 !important;
 }
+
+[class$="-primary"],
+[class*="-primary "] {
+    background-color: #2196f3 !important;
+}

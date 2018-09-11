@@ -3,7 +3,7 @@ import {Switch,Route} from 'react-router-dom';
 
 //Components
 import Home from './Home';
-import About from './About';
+import About from './About/About';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 

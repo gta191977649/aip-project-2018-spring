@@ -29,10 +29,10 @@ export class Login extends Component {
                         <Input label="Type your password" icon="lock" group type="password" validate/>
                     </div>
                     <div className="text-center">
-                        <Button>Login</Button>
+                        <Button color="primary">Login</Button>
                     </div>
                     <div className="text-center">
-                        <Button></Button>
+                        <Button color="secondary">Register new Account</Button>
                     </div>
                 </form>
             </Col>
