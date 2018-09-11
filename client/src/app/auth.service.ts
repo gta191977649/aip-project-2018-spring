@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {error} from 'util';
 import {isDefined} from '@angular/compiler/src/util';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,15 +18,16 @@ export class AuthService {
   private loginAuthUri = 'http://localhost:3000/api/Users/login';
   private infoUri = 'http://localhost:3000/api/Users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   /* check for username or pwd is okey */
 
   OnLoginSeccuess(res) {
     if (isDefined(res)) {
       console.log(res, ' response from backend');
       alert('login success, access token =' + res.id);
-      this.setLoggedIn(true);
       localStorage.setItem('token', res.id);
+      //redirect user
+      this.router.navigate(['/dashboard']);
     } else {
       alert('undefine error');
     }
@@ -39,50 +41,17 @@ export class AuthService {
     }
   }
 
-  checkLogin(username, password) {
+  login(username, password) {
     return this.http.post(this.loginAuthUri, {'email': username, 'password': password}).subscribe(
       (res: Response) => this.OnLoginSeccuess(res),
       (res: Response) => this.OnLoginFail(res),
     );
   }
-  /*
-  checkLogin(username, password) {
-    return this.http.post(this.loginAuthUri, {'email': username, 'password': password}).subscribe(
-      data  => {
-        if (isDefined(data)) {
-          console.log(data, ' response from backend');
-          alert('login success, access token =' + data.id);
-          this.setLoggedIn(true);
-          localStorage.setItem('token', data.id);
-        } else {
-          alert('undefine error');
-        }
-      },
-      res => {
-        if(isDefined(res)) {
-          alert('Login fail: ' + res.error.error.message);
-        } else {
-          alert('Network error');
-        }
-      },
-    );
+  logout() {
+    localStorage.clear();
+    alert('you logged out');
   }
-  */
-  get isLogin() {
-    return JSON.parse(localStorage.getItem('islogin') || this.islogin.toString());
-  }
-  get getAccessToken(): String {
-    const token = localStorage.getItem('token');
-    if(this.islogin && isDefined(token)) {
-      return token;
-    }
-    return null;
-  }
-  get username() {
-    return this.http.get(this.infoUri + '?access_token=' + this.getAccessToken + '&filter=');
-  }
-  setLoggedIn(value: boolean) {
-    this.islogin = value;
-    localStorage.setItem('islogin', 'true');
+  loggedIn() {
+    return !!localStorage.getItem('token');
   }
 }

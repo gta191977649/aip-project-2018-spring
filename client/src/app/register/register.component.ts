@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +10,7 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private UsrServices : UserService) { }
+  constructor(private UsrServices: UserService, private auth: AuthService, private router: Router) { }
   register(event) {
     event.preventDefault();
     const target = event.target;
@@ -18,6 +20,9 @@ export class RegisterComponent implements OnInit {
 
   }
   ngOnInit() {
+    if (this.auth.loggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
 }
