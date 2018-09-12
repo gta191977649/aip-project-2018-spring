@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Container,
   Navbar,
@@ -9,10 +9,10 @@ import {
   NavItem,
   NavLink
 } from "mdbreact";
-import { BrowserRouter as Router } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import User from "./Auth/User";
 
-class Nav extends Component {
+class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,5 +56,4 @@ class Nav extends Component {
     );
   }
 }
-
 export default Nav;
