@@ -7,6 +7,7 @@
     "password": "",
     "name": "db",
     "user": "",
-    "connector": "mongodb"
+    "connector": "mongodb",
+    "useNewUrlParser": true
   }
 }
