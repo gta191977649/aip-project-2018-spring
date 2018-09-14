@@ -6,6 +6,7 @@ import Home from "./Home";
 import About from "./About/About";
 import Login from "./Auth/Login";
 import Register from "./Auth/Register";
+import Products from "./Products/Products";
 
 export class Main extends Component {
   render() {
@@ -16,6 +17,7 @@ export class Main extends Component {
           <Route path="/about" component={About} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/products" component={Products} />
         </Switch>
       </main>
     );

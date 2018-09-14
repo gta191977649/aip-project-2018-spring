@@ -46,6 +46,9 @@ class Nav extends React.Component {
                   <NavLink to="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
+                  <NavLink to="/products">Product</NavLink>
+                </NavItem>
+                <NavItem>
                   <NavLink to="/about">About</NavLink>
                 </NavItem>
               </NavbarNav>
