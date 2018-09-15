@@ -1,4 +1,4 @@
-import {FETCH_PRODUCTS, FETCH_PRODUCTS_ERROR, NEW_PRODUCT} from "../Actions/Types";
+import {FETCH_PRODUCTS, FETCH_PRODUCTS_ERROR} from "../Actions/Types";
 
 const initialState = {
     items: [],

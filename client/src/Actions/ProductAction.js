@@ -1,4 +1,4 @@
-import {FETCH_PRODUCTS, FETCH_PRODUCTS_ERROR, NEW_PRODUCT} from "./Types";
+import {FETCH_PRODUCTS, FETCH_PRODUCTS_ERROR} from "./Types";
 import axios from "axios";
 
 export const fetchProducts = () => dispatch =>{
