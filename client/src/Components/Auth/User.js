@@ -1,6 +1,6 @@
 import React from "react";
 import { NavbarNav, NavItem, NavLink } from "mdbreact";
-import { BrowserRouter as Router } from "react-router-dom";
+/*import { BrowserRouter as Router } from "react-router-dom";*/
 export class User extends React.Component {
   render() {
     return (
