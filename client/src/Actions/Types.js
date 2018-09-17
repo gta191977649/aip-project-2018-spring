@@ -1,2 +1,14 @@
+//PRODUCT ACTIONS
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const NEW_PRODUCT = 'NEW_PRODUCT';
+
+//USER ACTIONS
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_ALL_USERS = 'FETCH_ALL_USERS';
+
+//AUTH ACTIONS
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_REGISTER = 'USER_REGISTER';
+export const USER_VERIFY = 'USER_VERIFY';
+export const USER_EXISTS = 'USER_EXISTS';
+

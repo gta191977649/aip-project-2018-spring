@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const fetchProducts = () => dispatch =>{
     let poductRestURI = "http://localhost:3000/api/Products";
+    
     axios.get(poductRestURI).then(
         response => {
             dispatch({
