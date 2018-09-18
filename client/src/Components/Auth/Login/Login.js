@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Col, Row, Input, Button } from "mdbreact";
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userLogin } from '../../Actions/AuthActions';
+import { userLogin } from '../../../Actions/AuthActions';
 import validator from 'validator';
 
 

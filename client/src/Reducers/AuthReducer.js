@@ -1,7 +1,7 @@
 import { FETCH_USER,USER_LOGIN,USER_REGISTER, USER_VERIFY, USER_EXISTS } from'../Actions/Types';
 
 const initialState = {
-  auth: {}
+  user: {}
 }
 
 export default function(state = initialState, action){
