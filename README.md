@@ -1,4 +1,5 @@
 # StoreAPP - AIP2018
+[![Build Status](https://travis-ci.org/gta191977649/aip-project-2018-spring.svg?branch=master)](https://travis-ci.org/gta191977649/aip-project-2018-spring)
 A generic auction website built with NodeJS, Angular 6 and SailsJS.
 
 ## Requirements
