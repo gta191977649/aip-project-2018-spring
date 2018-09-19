@@ -1,29 +1,41 @@
-import React from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import {Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-const PrivateRouteComponent = (props) => (
-  <Route {...props.routeProps} render={() => (
-  props.isAuthenticated ? (
-      <div>{props.children}</div>
-      ) : (
-      <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-      }} /> )
-  )} />
-);
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-      logged_in: state.auth.logged_in,
-      location: ownProps.path,
-      routeProps: {
-          exact: ownProps.exact,
-          path: ownProps.path
-      }
+export class PrivateRoute extends Component {
+  static propTypes = {
+    auth: PropTypes.object.isRequired
   };
-};
 
-const PrivateRoute = connect(mapStateToProps, null)(PrivateRouteComponent);
-export default PrivateRoute
+  render() {
+    const { isLoggedIn, children, location, routeProps} = this.props.auth;
+    return (
+      <Route
+        {...routeProps}
+        render={() =>
+          isLoggedIn ? (
+            <div>{children}</div>
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PrivateRoute);

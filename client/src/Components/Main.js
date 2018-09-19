@@ -16,6 +16,7 @@ import FlashMessagesList from './Flash/FlashMessagesList';
 
 
 export class Main extends Component {
+  
   render() {
     return (
       <main id="main">

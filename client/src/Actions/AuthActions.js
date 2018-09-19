@@ -1,4 +1,4 @@
-import { FETCH_USER, USER_SET, USER_ERROR } from "./Types";
+import { FETCH_USER, USER_SET, USER_ERROR, USER_LOGOUT } from "./Types";
 import Axios from "axios";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
 import jwt from "jsonwebtoken";
@@ -78,7 +78,7 @@ export const userExists = user => {};
 
 export const userSet = user => {
   return dispatch => {
-    type: USER_SET, user;
+    USER_SET, user;
   };
 };
 
@@ -93,4 +93,23 @@ export const userVerify = auth => {
       }
     });
   };
+};
+
+export const userLogout = user => dispatch => {
+  Axios.post(API_URL + '/Users/logout').then(
+    res=>{
+      localStorage.removeItem("token");
+      localStorage.removeItem("session");
+      setAuthorizationToken();
+
+      return dispatch({
+        type: USER_LOGOUT,
+        payload: {}
+      });
+    },
+    err=>{
+      console.log("ERROR Contact admin!");
+    }
+  );
+  
 };

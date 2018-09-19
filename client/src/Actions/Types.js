@@ -13,6 +13,7 @@ export const USER_VERIFY = 'USER_VERIFY';
 export const USER_EXISTS = 'USER_EXISTS';
 export const USER_SET = 'USER_SET';
 export const USER_ERROR = 'USER_ERROR';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 //FLASH/ALERT ACTIONS
 

@@ -5,7 +5,8 @@ import {
   USER_VERIFY,
   USER_EXISTS,
   USER_SET,
-  USER_ERROR
+  USER_ERROR,
+  USER_LOGOUT
 } from "../Actions/Types";
 
 const initialState = {
@@ -52,6 +53,8 @@ export default function(state = initialState, action) {
         ...state,
         auth: action.payload
       };
+    case USER_LOGOUT:
+      return { ...state, isLoggedIn: false };
     case USER_SET:
       return {
         ...state,
