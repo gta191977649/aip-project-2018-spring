@@ -12,3 +12,8 @@ export const USER_REGISTER = 'USER_REGISTER';
 export const USER_VERIFY = 'USER_VERIFY';
 export const USER_EXISTS = 'USER_EXISTS';
 
+//FLASH/ALERT ACTIONS
+
+export const FLASH_ADD = "FLASH_ADD";
+export const FLASH_REMOVE = "FLASH_REMOVE";
+

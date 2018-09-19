@@ -2,17 +2,21 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "mdbreact";
 import RegisterForm from "./RegisterForm";
 import { userRegister } from "../../../Actions/AuthActions";
+import { addFlashMessage } from "../../../Actions/FlashActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 export class RegisterPage extends Component {
   render() {
-    const { userRegister } = this.props;
+    const { userRegister, addFlashMessage } = this.props;
     return (
       <Container>
         <Row>
           <Col md="6" className="mx-auto">
-            <RegisterForm userRegister={userRegister} />
+            <RegisterForm
+              userRegister={userRegister}
+              addFlashMessage={addFlashMessage}
+            />
           </Col>
         </Row>
       </Container>
@@ -21,7 +25,11 @@ export class RegisterPage extends Component {
 }
 
 RegisterPage.propTypes = {
-  userRegister: PropTypes.func.isRequired
+  userRegister: PropTypes.func.isRequired,
+  addFlashMessage: PropTypes.func.isRequired
 };
 
-export default connect(null,{ userRegister })(RegisterPage);
+export default connect(
+  null,
+  { userRegister, addFlashMessage }
+)(RegisterPage);

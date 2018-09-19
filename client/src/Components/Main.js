@@ -10,10 +10,12 @@ import Products from "./Products/Products";
 import PrivateRoute from "./Auth/PrivateRoute";
 import Dashboard from './Dashboard/DashboardPage';
 import VerifyPage from './Auth/Verify/VerifyPage';
+import FlashMessagesList from './Flash/FlashMessagesList';
 export class Main extends Component {
   render() {
     return (
       <main id="main">
+        <FlashMessagesList/>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />

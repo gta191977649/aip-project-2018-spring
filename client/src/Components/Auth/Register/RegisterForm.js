@@ -28,7 +28,13 @@ export class RegisterForm extends Component {
       this.props
         .userRegister(this.state)
         .then(
-          res => { this.props.history.push('/verify'); },
+          res => {
+            this.props.addFlashMessage({
+              type: 'success',
+              text: 'You have sucessfully signed up, now redirecting!'
+            }); 
+            this.props.history.push('/verify', { auth: res.data}); 
+          },
           err => { this.setState({ errors: {message: err.response.data.error.message}, isLoading: false }); }
         );
     }
@@ -128,6 +134,7 @@ export class RegisterForm extends Component {
 }
 
 RegisterForm.propTypes = {
-  userRegister: PropTypes.func.isRequired
+  userRegister: PropTypes.func.isRequired,
+  addFlashMessage: PropTypes.func.isRequired
 };
 export default withRouter(RegisterForm);

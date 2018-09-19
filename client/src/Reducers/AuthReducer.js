@@ -1,7 +1,8 @@
 import { FETCH_USER,USER_LOGIN,USER_REGISTER, USER_VERIFY, USER_EXISTS } from'../Actions/Types';
 
 const initialState = {
-  user: {}
+  user: {},
+  isLoggedIn: false
 }
 
 export default function(state = initialState, action){
@@ -30,7 +31,7 @@ export default function(state = initialState, action){
     
     case USER_EXISTS:
       return {
-        ... state,
+        ...state,
         auth: action.payload
       }
     default:
