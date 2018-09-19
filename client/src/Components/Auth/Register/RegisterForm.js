@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Input, Button } from "mdbreact";
 import { Link, withRouter } from "react-router-dom";
 import validator from "validator";
-import validateInput from '../../../Utils/InputValidator';
+import validateInput from '../../../Utils/RegisterInputValidator';
 import PropTypes from "prop-types";
 
 export class RegisterForm extends Component {

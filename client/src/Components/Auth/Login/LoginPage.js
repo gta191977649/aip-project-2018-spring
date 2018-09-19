@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "mdbreact";
-import RegisterForm from "./RegisterForm";
-import { userRegister } from "../../../Actions/AuthActions";
+import LoginForm from "./LoginForm";
+import { userLogin } from "../../../Actions/AuthActions";
 import { addFlashMessage } from "../../../Actions/FlashActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-export class RegisterPage extends Component {
+export class LoginPage extends Component {
   render() {
-    const { userRegister, addFlashMessage } = this.props;
+    const { userLogin, addFlashMessage } = this.props;
     return (
       <Container>
         <Row>
           <Col md="6" className="mx-auto">
-            <RegisterForm
-              userRegister={userRegister}
+            <LoginForm
+              userLogin={userLogin}
               addFlashMessage={addFlashMessage}
             />
           </Col>
@@ -24,19 +24,20 @@ export class RegisterPage extends Component {
   }
 }
 
-RegisterPage.propTypes = {
-  userRegister: PropTypes.func.isRequired,
+LoginPage.propTypes = {
+  userLogin: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired
 };
+
 const mapStateToProps = state => ({
   user:state.auth.user
 });
 const mapDispatchToProps = {
-  userRegister,
+  userLogin,
   addFlashMessage
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterPage);
+)(LoginPage);
