@@ -1,4 +1,4 @@
-import {FLASH_ADD, FLASH_REMOVE} from '../Actions/Types';
+import {FLASH_ADD, FLASH_REMOVE, FLASH_REMOVE_ALL} from '../Actions/Types';
 import shortid from 'shortid';
 
 
@@ -7,7 +7,6 @@ export default function(state = [], action){
 
     case FLASH_ADD:
       return [
-        ...state,
         {
           id: shortid.generate(),
           type: action.message.type,
@@ -15,10 +14,17 @@ export default function(state = [], action){
         }
       ];
     case FLASH_REMOVE:
-      return {
-        ...state,
-        flash: action.payload
+    const index = state.indexOf(action.id);
+      if(index >=0){
+        state.splice(index,1);
+        console.log(index);
       }
+      return [
+        ...state
+      ];
+    case FLASH_REMOVE_ALL:
+      return [];
+      
     default:
       return state;
   }

@@ -16,4 +16,5 @@ export const USER_EXISTS = 'USER_EXISTS';
 
 export const FLASH_ADD = "FLASH_ADD";
 export const FLASH_REMOVE = "FLASH_REMOVE";
+export const FLASH_REMOVE_ALL = "FLASH_REMOVE_ALL";
 

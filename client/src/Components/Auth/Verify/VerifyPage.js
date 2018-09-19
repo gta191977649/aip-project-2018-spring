@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { userVerify } from "../../../Actions/AuthActions";
 import { addFlashMessage } from "../../../Actions/FlashActions";
 import { Container, Col, Row } from "mdbreact";
