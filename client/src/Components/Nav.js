@@ -9,7 +9,7 @@ import {
   NavItem,
   NavLink
 } from "mdbreact";
-import { withRouter } from 'react-router-dom';
+/*import { withRouter } from 'react-router-dom';*/
 import User from "./Auth/User";
 
 class Nav extends React.Component {

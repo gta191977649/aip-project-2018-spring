@@ -8,12 +8,26 @@ class Products extends Component {
     this.props.fetchProducts();
   }
   render() {
+    const error = this.props.error;
+    const errorMsg = this.props.errorMsg;
+
     const productItems = this.props.products.map(item => (
         <div key={item.id}>
           <h3>{item.name}</h3>
           <p>{item.description}</p>
         </div>
     ));
+    if(error) {
+      return(
+        <Container>
+          <Row>
+            <div>
+              Products fetch faild: {errorMsg}
+            </div>
+          </Row>
+        </Container>
+      )
+    }
     return (
         <Container>
             <Row>
@@ -28,6 +42,8 @@ class Products extends Component {
 }
 
 const mapStateToProps = state => ({
-    products:state.products.items
+    products:state.products.items,
+    error:state.products.error,
+    errorMsg:state.products.errorMsg
 })
 export default connect(mapStateToProps,{fetchProducts})(Products);
