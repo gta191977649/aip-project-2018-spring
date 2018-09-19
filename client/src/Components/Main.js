@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 //Components
 import Home from "./Home";
@@ -33,4 +35,4 @@ export class Main extends Component {
   }
 }
 
-export default Main;
+export default (Main)

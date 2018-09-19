@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 export class RegisterPage extends Component {
   render() {
-    const { userRegister, addFlashMessage } = this.props;
+    const { userRegister, addFlashMessage, auth } = this.props;
     return (
       <Container>
         <Row>
@@ -16,6 +16,7 @@ export class RegisterPage extends Component {
             <RegisterForm
               userRegister={userRegister}
               addFlashMessage={addFlashMessage}
+              auth={auth}
             />
           </Col>
         </Row>
@@ -28,8 +29,9 @@ RegisterPage.propTypes = {
   userRegister: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired
 };
+
 const mapStateToProps = state => ({
-  user:state.auth.user
+  auth:state.auth
 });
 const mapDispatchToProps = {
   userRegister,

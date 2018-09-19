@@ -23,16 +23,16 @@ export class LoginForm extends Component {
     event.preventDefault();
     if(this.isValid()){
       this.setState({ errors: {}, isLoading: true });
-      this.props.userLogin(this.state).then(
-        (res)=>{
-          this.props.addFlashMessage({
-            type: 'success',
-            text: 'Logged in!'
-          }); 
-          this.props.history.push('/');
-        },
-        (err)=>{this.setState({ errors: {message: err.response.data.error.message}, isLoading: false });}
-      );
+
+      this.props.userLogin(this.state);
+      // this.setState({ errors: {message: err.response.data.error.message}, isLoading: false });
+
+      console.log(this.props.auth);
+
+      this.props.addFlashMessage({
+        type: 'success',
+        text: 'Logged in!'
+      });
     }
   }
 
@@ -54,9 +54,13 @@ export class LoginForm extends Component {
     const { errors, email, password } = this.state;
     const emailErrorClass = errors.email ? "invalid" : "";
     const passErrorClass = errors.password ? "invalid" : "";
+    const alertError = errors.message ? "alert alert-danger" : "hidden";
     return (
       <form className="needs-validation" onSubmit={this.submitHandler}>
         <p className="display-4 h5 text-center mb-4">Sign in</p>
+        <div className={alertError} role="alert">
+          {errors.message} - Invalid Credentials
+        </div>
         <div className="grey-text">
           <Input
             label="Type your email"
@@ -103,7 +107,8 @@ export class LoginForm extends Component {
 
 LoginForm.propTypes = {
   userLogin: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
+  addFlashMessage: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 export default withRouter(LoginForm);

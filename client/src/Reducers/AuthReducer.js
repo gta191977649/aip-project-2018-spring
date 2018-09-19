@@ -1,4 +1,4 @@
-import { FETCH_USER,USER_LOGIN,USER_REGISTER, USER_VERIFY, USER_EXISTS } from'../Actions/Types';
+import { FETCH_USER,USER_LOGIN,USER_REGISTER, USER_VERIFY, USER_EXISTS, USER_SET } from'../Actions/Types';
 
 const initialState = {
   user: {},
@@ -8,13 +8,15 @@ const initialState = {
 export default function(state = initialState, action){
   switch(action.type){
     case FETCH_USER:
-    break;
+      return {
+        ...state,
+        users: action.payload
+      }
     
     case USER_LOGIN:
       return {
         ...state,
         user: action.payload,
-        isLoggedIn: true
       } 
     
 
@@ -34,6 +36,11 @@ export default function(state = initialState, action){
       return {
         ...state,
         auth: action.payload
+      }
+    case USER_SET:
+      return{
+        user: action.user,
+        isLoggedIn: true
       }
     default:
       return state;

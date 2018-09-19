@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import TestComponent from "./TestComponent";
+import { fetchUser } from "../Actions/AuthActions";
+import { Container, Col, Row } from "mdbreact";
 
-import {Container, Row, Col} from 'mdbreact';
+export class Home extends Component {
+  static propTypes = {
+    fetchUser: PropTypes.func.isRequired
+  };
 
-export class Home extends React.Component {
-    render(){
-        return(
-            <Container>
-                <Row>
-                    <Col md="6" className="mx-auto">
-                        <h1 className="display-4 text-center">StoreApp</h1>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+  render() {
+    return (
+      <Container>
+        <Row>
+          <Col md="6" className="mx-auto">
+            <h1>Welcome to StoreApp</h1>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
-export default Home
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  fetchUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

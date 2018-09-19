@@ -11,6 +11,7 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const USER_REGISTER = 'USER_REGISTER';
 export const USER_VERIFY = 'USER_VERIFY';
 export const USER_EXISTS = 'USER_EXISTS';
+export const USER_SET = 'USER_SET';
 
 //FLASH/ALERT ACTIONS
 
