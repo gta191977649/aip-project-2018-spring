@@ -25,10 +25,8 @@ export class LoginForm extends Component {
       this.setState({ errors: {}, isLoading: true });
 
       this.props.userLogin(this.state);
-      // this.setState({ errors: {message: err.response.data.error.message}, isLoading: false });
-
-      console.log(this.props.auth);
-
+      this.setState({isLoading: false });
+      this.props.history.push('/'); 
       this.props.addFlashMessage({
         type: 'success',
         text: 'Logged in!'

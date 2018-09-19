@@ -3,6 +3,8 @@ import thunk from "redux-thunk";
 import rootReducer from "./Reducers";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import setAuthorizationToken from "./Utils/AuthorizationToken";
+import jwt from 'jsonwebtoken';
+import {userSet} from './Actions/AuthActions';
 
 const initialState = {};
 const middleWare = [thunk];
@@ -15,5 +17,8 @@ const store = createStore(
   )
 );
 
-setAuthorizationToken(localStorage.jwtToken);
+if(localStorage.token){
+  setAuthorizationToken(localStorage.token);
+  store.dispatch(userSet(jwt.decode(localStorage.session)));
+}
 export default store;

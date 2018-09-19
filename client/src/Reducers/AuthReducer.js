@@ -1,47 +1,63 @@
-import { FETCH_USER,USER_LOGIN,USER_REGISTER, USER_VERIFY, USER_EXISTS, USER_SET } from'../Actions/Types';
+import {
+  FETCH_USER,
+  USER_LOGIN,
+  USER_REGISTER,
+  USER_VERIFY,
+  USER_EXISTS,
+  USER_SET,
+  USER_ERROR
+} from "../Actions/Types";
 
 const initialState = {
   user: {},
-  isLoggedIn: false
-}
+  isLoggedIn: false,
+  isErrored: false
+};
 
-export default function(state = initialState, action){
-  switch(action.type){
+export default function(state = initialState, action) {
+  switch (action.type) {
     case FETCH_USER:
       return {
         ...state,
         users: action.payload
-      }
-    
+      };
+
     case USER_LOGIN:
       return {
         ...state,
-        user: action.payload,
-      } 
-    
+        user: action.payload
+      };
+
+    case USER_ERROR:
+      return {
+        ...state,
+        errors: action.errors,
+        isErrored: true
+      };
 
     case USER_REGISTER:
       return {
         ...state,
         auth: action.payload
-      }
-    
+      };
+
     case USER_VERIFY:
       return {
         ...state,
         auth: action.payload
-      }
-    
+      };
+
     case USER_EXISTS:
       return {
         ...state,
         auth: action.payload
-      }
+      };
     case USER_SET:
-      return{
+      return {
+        ...state,
         user: action.user,
         isLoggedIn: true
-      }
+      };
     default:
       return state;
   }
