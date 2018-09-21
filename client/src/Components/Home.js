@@ -1,19 +1,52 @@
-import React from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import TestComponent from "./TestComponent";
+import { fetchUser } from "../Actions/AuthActions";
+import { Container, Col, Row } from "mdbreact";
+import SearchPage from './Search/SearchPage';
+import {SearchForm} from "./Search/SearchForm";
+import  './style.css';
 
-import {Container, Row, Col} from 'mdbreact';
+export class Home extends Component {
+  static propTypes = {
+    fetchUser: PropTypes.func.isRequired
+  };
 
-export class Home extends React.Component {
-    render(){
-        return(
-            <Container>
-                <Row>
-                    <Col md="6" className="mx-auto">
-                        <h1 className="display-4 text-center">StoreApp</h1>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+  render() {
+    return (
+        <div className="container-fluid" id="background">
+          <Container>
+          <div className="searchArea">
+          <Row>
+            <Col md="12">
+              <h1 className="text-center">Welcome to StoreApp</h1>
+                <div className="row">
+                <div className="col-md-1"></div>
+                <div className="col-md-10 text-center">
+                <SearchForm/>
+                </div>
+                <div className="col-md-1"></div>
+                </div>
+            </Col>
+          </Row>
+          </div>
+          </Container>
+        </div>
+    );
+  }
 }
 
-export default Home
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  fetchUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
