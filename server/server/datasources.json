@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "localhost",
+    "host": "mongodb",
     "port": 27017,
     "url": "",
     "database": "nodeapp",

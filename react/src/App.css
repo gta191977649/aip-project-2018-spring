@@ -1,0 +1,31 @@
+/* Required height of parents of the Full Page Intro and Intro itself */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 55px; /* Margin bottom by footer height */
+}
+#main{
+  /* margin-top: 76px; */
+}
+#nav{
+  margin-bottom: 3rem;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 55px; /* Set the fixed height of the footer here */
+  line-height: 55px; /* Vertically center the text there */
+  background-color: #2196f3 !important;
+}
+
+[class$="-primary"],
+[class*="-primary "] {
+    background-color: #2196f3 !important;
+}
+
+.hidden{
+  display: none;
+}
