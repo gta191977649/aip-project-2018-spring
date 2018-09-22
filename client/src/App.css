@@ -25,3 +25,7 @@ footer {
 [class*="-primary "] {
     background-color: #2196f3 !important;
 }
+
+.hidden{
+  display: none;
+}

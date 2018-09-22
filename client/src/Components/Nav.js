@@ -52,7 +52,7 @@ class Nav extends React.Component {
                   <NavLink to="/about">About</NavLink>
                 </NavItem>
               </NavbarNav>
-              <User user={user} />
+              <User />
             </Collapse>
           </Container>
         </Navbar>
