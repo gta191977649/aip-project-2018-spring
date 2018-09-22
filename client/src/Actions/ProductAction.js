@@ -1,16 +1,17 @@
 import {FETCH_PRODUCTS, FETCH_PRODUCTS_ERROR,SEARCH_PRODUCTS} from "./Types";
+
 import axios from "axios";
 
 export const fetchProducts = () => dispatch =>{
-    let poductRestURI = "http://localhost:3000/api/Products";
-    
-    axios.get(poductRestURI).then(
-        response => {
-            dispatch({
-                type:FETCH_PRODUCTS,
-                payload: response.data
-            })
-        }
+  let poductRestURI = "http://localhost:3000/api/Products";
+  axios.get(poductRestURI)
+    .then(
+      response => {
+        dispatch({
+          type:FETCH_PRODUCTS,
+          payload: response.data
+        })
+      },
     )
     .catch(error=>{
       dispatch({
@@ -19,6 +20,7 @@ export const fetchProducts = () => dispatch =>{
       })
     })
 }
+
 export const searchProducts = (filter) => dispatch =>{
     let poductRestURI = "http://localhost:3000/api/Products";
     console.log("Recieved filter:" ,filter);
@@ -37,3 +39,4 @@ export const searchProducts = (filter) => dispatch =>{
       })
     })
 }
+
