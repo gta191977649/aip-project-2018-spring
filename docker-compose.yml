@@ -1,40 +1,49 @@
 version: '3'
 services:
   ####################
-  # React/Client
-  ####################
-  client:
-    image         : node:carbon
-    container_name: Client
-    build         : ./react
-  ####################
-  # Server
+  # NODE
   ####################
   server:
     image         : node:carbon
-    container_name: Server
+    container_name: API_StoreApp
     build         : ./server
+    links         :
+      - mongodb
+    volumes:
+      - .:/app
   #####################
   # NGINX
   #####################
-  nginx:
-    image         : nginx:stable
-    container_name: Nginx
-    build         : ./nginx
-    links         :
-      - server
-      - client
-    ports:
-      - "80:80"
-      - "443:443"
+  # nginx:
+  #   image         : nginx:stable
+  #   container_name: Nginx_StoreApp
+  #   build         : ./nginx
+  #   links         :
+  #     - client
+  #     - server
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
   ####################
   # MONGO
   ####################
   mongodb:
     image         : mongo:latest
-    container_name: Database
+    container_name: Database_StoreApp
     build         : ./mongo
     ports:
       - "27017:27017"
+  ####################
+  # React
+  ####################
+  client:
+    image         : node:carbon
+    container_name: Client_StoreApp
+    build         : ./client
     links         :
       - server
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/app

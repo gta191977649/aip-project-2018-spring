@@ -4,9 +4,9 @@
     "port": 27017,
     "url": "",
     "database": "nodeapp",
-    "password": "",
+    "password": "restapiuser",
     "name": "db",
-    "user": "",
+    "user": "r3sT4pIp4ssw0rd",
     "connector": "mongodb",
     "useNewUrlParser": true
   }

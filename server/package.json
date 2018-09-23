@@ -24,13 +24,13 @@
     "loopback-connector-mongodb": "^3.6.0",
     "loopback-connector-mysql": "^2.4.1",
     "loopback-jwt-advanced": "^1.1.0",
-    "nodemon": "^1.18.4",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^3.17.1",
-    "eslint-config-loopback": "^8.0.0"
+    "eslint-config-loopback": "^8.0.0",
+    "nodemon": "^1.18.4"
   },
   "repository": {
     "type": "",
