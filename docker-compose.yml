@@ -1,50 +1,39 @@
 version: '3'
-
 services:
-  server:
-    build: ./server
-    ports:
-     - 3000:3000
-    environment:
-      - "NODE_ENV=DEV"
-      - "USE_DOCKER=yes"
-    depends_on:
-      - mongodb
-    networks:
-      - storeapp-network
+  ####################
+  # React/Client
+  ####################
   client:
-    build: ./react
-    ports:
-      - 3001:3001
-    depends_on:
-      - server
-    environment:
-      - "PORT=3001"
-    networks:
-      - storeapp-network
-  nginx: 
-    build: ./nginx
-    depends_on:
+    image         : node:carbon
+    container_name: Client
+    build         : ./react
+  ####################
+  # Server
+  ####################
+  server:
+    image         : node:carbon
+    container_name: Server
+    build         : ./server
+  #####################
+  # NGINX
+  #####################
+  nginx:
+    image         : nginx:stable
+    container_name: Nginx
+    build         : ./nginx
+    links         :
       - client
-  mongodb:
-    image: mongo:latest
-    container_name: "mongodb"
-    environment:
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
-    volumes:
-      - ./data/db:/data/db
     ports:
-      - 27017:27017
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
-    networks:
-      - storeapp-network
-  # redis:
-  #   image: redis:4.0-alpine
-  #   command: redis-server --appendonly yes
-  #   ports:
-  #     - "6379:6379"
-volumes:
-  mysqldata:
-networks:
-  storeapp-network:
+      - "80:80"
+      - "443:443"
+  ####################
+  # MONGO
+  ####################
+  mongodb:
+    image         : mongo:latest
+    container_name: Database
+    build         : ./mongo
+    ports:
+      - "27017:27017"
+    links         :
+      - server
