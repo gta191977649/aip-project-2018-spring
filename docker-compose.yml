@@ -22,6 +22,7 @@ services:
     container_name: Nginx
     build         : ./nginx
     links         :
+      - server
       - client
     ports:
       - "80:80"
