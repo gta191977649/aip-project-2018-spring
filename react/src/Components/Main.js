@@ -13,6 +13,7 @@ import PrivateRoute from "./Auth/PrivateRoute";
 import Dashboard from './Dashboard/DashboardPage';
 import VerifyPage from './Auth/Verify/VerifyPage';
 import FlashMessagesList from './Flash/FlashMessagesList';
+import SearchPage from './Search/SearchPage';
 
 
 export class Main extends Component {
@@ -28,6 +29,7 @@ export class Main extends Component {
           <Route path="/register" component={RegisterPage} />
           <Route path="/products" component={Products} />
           <Route path="/verify" component={VerifyPage} />
+          <Route path="/search" component={SearchPage} />
           {/* Custom Private Route */}
           <PrivateRoute path="/dashboard" component={Dashboard}/>
         </Switch>

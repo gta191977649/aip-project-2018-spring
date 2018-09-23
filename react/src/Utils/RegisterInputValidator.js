@@ -9,7 +9,7 @@ export default function validateInput(data) {
   });
   let emailIsValid = validator.isEmail(data.confirm);
   let isEmailSame = validator.equals(data.confirm, data.email) && emailIsValid;
-  let isNameValid = validator.isAlphanumeric(data.name);
+  /*let isNameValid = validator.isAlphanumeric(data.name);*/
   let isNameEmpty = validator.isEmpty(data.name);
 
   if (!isValidEmail) {

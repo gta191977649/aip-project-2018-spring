@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import TestComponent from "./TestComponent";
 import { fetchUser } from "../Actions/AuthActions";
 import { Container, Col, Row } from "mdbreact";
+import SearchPage from './Search/SearchPage';
+import  './style.css';
 
 export class Home extends Component {
   static propTypes = {
@@ -15,13 +16,24 @@ export class Home extends Component {
   }
   render() {
     return (
-      <Container>
-        <Row>
-          <Col md="6" className="mx-auto">
-            <h1>Welcome to StoreApp</h1>
-          </Col>
-        </Row>
-      </Container>
+        <div className="container-fluid" id="background">
+          <Container>
+          <div className="searchArea">
+          <Row>
+            <Col md="12">
+              <h1 className="text-center">Welcome to StoreApp</h1>
+                <div className="row">
+                <div className="col-md-1"></div>
+                <div className="col-md-10">
+                <SearchPage/>
+                </div>
+                <div className="col-md-1"></div>
+                </div>
+            </Col>
+          </Row>
+          </div>
+          </Container>
+        </div>
     );
   }
 }
