@@ -4,7 +4,7 @@ export class AddProduct extends Component {
   render() {
     return (
       <div>
-        DASHBOARD
+        Add Product
       </div>
     )
   }

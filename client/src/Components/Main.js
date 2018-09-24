@@ -10,7 +10,7 @@ import RegisterPage from "./Auth/Register/RegisterPage";
 import LoginPage from './Auth/Login/LoginPage'
 import Products from "./Products/Products";
 import PrivateRoute from "./Auth/PrivateRoute";
-import Dashboard from './Dashboard/DashboardPage';
+import DashboardPage from './Dashboard/DashboardPage';
 import VerifyPage from './Auth/Verify/VerifyPage';
 import FlashMessagesList from './Flash/FlashMessagesList';
 import SearchPage from './Search/SearchPage';
@@ -30,8 +30,9 @@ export class Main extends Component {
           <Route path="/products" component={Products} />
           <Route path="/verify" component={VerifyPage} />
           <Route path="/search" component={SearchPage} />
+          <Route path="/dashboard" component={DashboardPage} />
           {/* Custom Private Route */}
-          <PrivateRoute path="/dashboard" component={Dashboard}/>
+          {/*<PrivateRoute path="/dashboard" component={DashboardPage}/>*/}
         </Switch>
       </main>
     );
