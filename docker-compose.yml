@@ -9,21 +9,6 @@ services:
     build         : ./server
     links         :
       - mongodb
-    volumes:
-      - .:/app
-  #####################
-  # NGINX
-  #####################
-  # nginx:
-  #   image         : nginx:stable
-  #   container_name: Nginx_StoreApp
-  #   build         : ./nginx
-  #   links         :
-  #     - client
-  #     - server
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
   ####################
   # MONGO
   ####################
@@ -40,10 +25,15 @@ services:
     image         : node:carbon
     container_name: Client_StoreApp
     build         : ./client
+  #####################
+  # NGINX
+  #####################
+  nginx:
+    image         : nginx:stable
+    container_name: Nginx_StoreApp
     links         :
+      - client
       - server
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - .:/app
