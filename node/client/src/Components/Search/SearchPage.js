@@ -2,7 +2,6 @@ import SearchForm from "./SearchForm";
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import  {searchProducts} from "../../Actions/ProductAction";
-import  "./style.css"
 
 export class SearchPage extends Component {
     componentWillMount() {
