@@ -21,8 +21,8 @@
     "validator": "^10.7.1"
   },
   "scripts": {
-    "start": "set PORT=1337 && react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "build": "export CI=false && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
