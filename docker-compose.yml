@@ -1,25 +1,14 @@
 version: '3'
 services:
   ####################
-  # React
-  ####################
-  client:
-    image         : node:carbon
-    container_name: Client_StoreApp
-    build         : ./client
-    ports:
-      - "5000:5000"
-  ####################
   # NODE
   ####################
-  server:
+  node:
     image         : node:carbon
-    container_name: API_StoreApp
-    build         : ./server
+    container_name: StoreApp
+    build         : ./node
     links         :
       - mongodb
-    ports:
-      - "3000:3000"
   ####################
   # MONGO
   ####################
@@ -36,8 +25,7 @@ services:
     image         : nginx:stable
     container_name: Nginx_StoreApp
     links         :
-      - client
-      - server
+      - node
     ports:
       - "80:80"
       - "443:443"
