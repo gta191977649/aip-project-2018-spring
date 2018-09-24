@@ -7,6 +7,8 @@ services:
     image         : node:carbon
     container_name: Client_StoreApp
     build         : ./client
+    ports:
+      - "5000:5000"
   ####################
   # NODE
   ####################
@@ -16,6 +18,8 @@ services:
     build         : ./server
     links         :
       - mongodb
+    ports:
+      - "3000:3000"
   ####################
   # MONGO
   ####################
