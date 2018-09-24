@@ -13,7 +13,7 @@ class Products extends Component {
         const errorMsg = this.props.errorMsg;
 
         const productItems = this.props.products.map(item => (
-            <ProductItem id={item.id} data={item} />
+            <ProductItem id={item.id} data={item} key={item.id}/>
         ));
         /*
         if (error) {
