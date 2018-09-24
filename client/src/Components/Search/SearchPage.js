@@ -6,7 +6,7 @@ import  "./style.css"
 
 export class SearchPage extends Component {
     componentWillMount() {
-
+        
     }
     render() {
       let productItems = this.props.products.map(item => (
