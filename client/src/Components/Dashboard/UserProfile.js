@@ -9,11 +9,20 @@ export class UserProfile extends Component {
         return (
             <div>
                 <h1>My Profile</h1>
-                <hr/>
-                <h3>Name</h3>
-                {this.props.userName}
-                <h3>E-mail</h3>
-                {this.props.userEmail}
+                    <hr/>
+                <div className="card">
+                    <div className="card-body">
+                        <h3 class="card-title">Name</h3>
+                        <div className="card-text"> {this.props.userName}</div>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <h3 class="card-title">E-mail</h3>
+                        <div className="card-text">{this.props.userEmail}</div>
+                    </div>
+                </div>
+
             </div>
         )
     };
