@@ -4,13 +4,15 @@ import {connect} from 'react-redux';
 import {fetchProducts} from "../../Actions/ProductAction";
 import {addFlashMessage} from "../../Actions/FlashActions";
 
+
 export class UserProfile extends Component {
     render () {
         return (
             <div>
                 <h1>My Profile</h1>
                     <hr/>
-                <div className="card">
+                <div className="card ">
+
                     <div className="card-body">
                         <h3 class="card-title">Name</h3>
                         <div className="card-text"> {this.props.userName}</div>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { ListGroup, ListGroupItem } from 'mdbreact'
 /* compoments */
 import UserProfile from './UserProfile';
+import UserProducts from './Products/UserProducts';
+
 export class DashboardPage extends Component {
 
     constructor(props) {
@@ -19,6 +21,9 @@ export class DashboardPage extends Component {
         switch (id) {
             case 0:
                 this.setState({renderCompoment:<UserProfile/>})
+                break;
+            case 1:
+                this.setState({renderCompoment:<UserProducts/>})
                 break;
         }
     }
