@@ -1,7 +1,6 @@
 import React from "react";
 import {Component} from "react";
 import UserProductItem from './UserProductItem';
-
 class UserProducts extends Component{
     constructor(props) {
         super(props);

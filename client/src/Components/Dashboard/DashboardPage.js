@@ -14,7 +14,7 @@ export class DashboardPage extends Component {
         }
     }
     componentWillMount() {
-        this.onNavClick(1);
+        this.onNavClick(0);
     }
     onNavClick(id) {
         console.log("clicked ",id)
