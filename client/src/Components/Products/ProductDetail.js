@@ -11,7 +11,6 @@ class ProductDetail extends Component{
             id : null
         }
     }
-
     componentWillMount () {
         this.setState({id : this.props.match.params});
         this.props.fetchProductById(this.props.match.params);
