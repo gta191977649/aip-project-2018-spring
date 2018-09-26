@@ -2,12 +2,14 @@
 html {
   position: relative;
   min-height: 100%;
+  background: yellow;
 }
 body {
   margin-bottom: 55px; /* Margin bottom by footer height */
 }
 #main{
   /* margin-top: 76px; */
+  background: yellow;
 }
 #nav{
   margin-bottom: 3rem;
@@ -36,3 +38,5 @@ footer {
 #background {
   /*height: 647px;*/
 }
+
+
