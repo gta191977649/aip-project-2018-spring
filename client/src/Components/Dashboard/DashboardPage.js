@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from 'mdbreact'
 /* compoments */
 import UserProfile from './UserProfile';
 import UserProducts from './Products/UserProducts';
-
+import UserOrder from './UserOrders';
 export class DashboardPage extends Component {
 
     constructor(props) {
@@ -25,6 +25,8 @@ export class DashboardPage extends Component {
             case 1:
                 this.setState({renderCompoment:<UserProducts/>})
                 break;
+            case 2:
+                this.setState({renderCompoment:<UserOrder/>})
         }
     }
     render() {
