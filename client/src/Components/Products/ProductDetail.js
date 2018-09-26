@@ -22,7 +22,7 @@ class ProductDetail extends Component{
         let noImg = null;
         if(img) {
           productImgs = img.map((im, index) => (
-            <CarouselItem itemId={index} key={index}>
+            <CarouselItem itemId={index+1} key={index}>
               <img className="d-block w-100" src={im} alt="First slide"/>
             </CarouselItem>
           ));
