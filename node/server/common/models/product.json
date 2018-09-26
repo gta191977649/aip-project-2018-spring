@@ -10,6 +10,14 @@
       "type": "string",
       "required": true
     },
+	"price": {
+      "type": "number",
+      "required": true
+    },
+	"img": {
+      "type": "array",
+      "required": true
+    },
     "description": {
       "type": "string"
     }

@@ -1,6 +1,12 @@
 {
   "db": {
-    "url": "mongodb://storeapp_root:test123@ds115193.mlab.com:15193/storeapp_aip",
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "nodeapp",
+    "password": "",
+    "name": "db",
+    "user": "",
     "connector": "mongodb",
     "useNewUrlParser": true
   }

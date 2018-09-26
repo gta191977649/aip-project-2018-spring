@@ -13,6 +13,11 @@ export default function (state = initialState,action) {
           ...state,
           items: action.payload
         }
+      case Type.FETCH_PRODUCT_ID:
+        return {
+          ...state,
+          productItem: action.payload
+        }
       case Type.SEARCH_PRODUCTS:
         return {
           ...state,
