@@ -34,13 +34,7 @@ export class Main extends Component {
           <Route path="/verify" component={VerifyPage} />
           <Route path="/search" component={SearchPage} />
           {/* Custom Private Route */}
-          <Route path="/dashboard" component={Dashboard} />
-
-          {
-            /*
-              <PrivateRoute path="/dashboard" component={Dashboard}/>
-            */
-          }
+          <PrivateRoute path="/dashboard" component={Dashboard}/>
         </Switch>
       </main>
     );

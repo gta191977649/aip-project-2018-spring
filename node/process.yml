@@ -3,15 +3,15 @@
 apps:
   - name     : 'client'
     script   : 'render.js'
-    cwd      : '/srv/www/frontend'
+    cwd      : '/srv/www/client'
     exec_mode: 'cluster'
     instance : 'max'
     env      :
       NODE_ENV: production
 
-  - name     : 'api'
+  - name     : 'server'
     script   : 'server/server.js'
-    cwd      : '/srv/www/api'
+    cwd      : '/srv/www/server'
     exec_mode: 'cluster'
     instance : 'max'
     env      :

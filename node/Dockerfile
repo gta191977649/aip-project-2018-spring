@@ -13,12 +13,12 @@ FROM node:carbon
 ENV NPM_CONFIG_LOGLEVEL warn
 
 # Add package.json to cache the file
-ADD client/package.json /tmp/frontend/
-ADD server/package.json /tmp/api/
+ADD client/package.json /tmp/client/
+ADD server/package.json /tmp/server/
 
 # Copy package json files for services
-COPY client/package.json /srv/www/frontend/
-COPY server/package.json /srv/www/api/
+COPY client/package.json /srv/www/client/
+COPY server/package.json /srv/www/server/
 
 # Set working dir
 WORKDIR /srv/www
@@ -29,11 +29,11 @@ COPY . ./
 # To mitigate issues with npm saturating the network interface we limit the number of concurrent connections
 RUN npm config set maxsockets 5 && npm config set progress false
 
-# CD into Frontend run npm install and then build
-RUN cd frontend && npm install && npm run build 
+# CD into client run npm install and then build
+RUN cd client && npm install && npm run build 
 
-# CD into API directory and NPM install
-RUN cd frontend && npm install 
+# CD into server directory and NPM install
+RUN cd server && npm install 
 
 # Install pm2
 RUN npm install -g pm2
@@ -42,4 +42,4 @@ CMD ["pm2", "start", "process.yml", "--no-daemon"]
 
 # Expose ports
 EXPOSE 5000
-EXPOSE 8080
+EXPOSE 3000

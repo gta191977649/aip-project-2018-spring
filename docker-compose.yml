@@ -4,26 +4,23 @@ services:
   # NODE
   ####################
   node:
-    image         : node:carbon
     container_name: StoreApp
     build         : ./node
-    links         :
-      - mongodb
   ####################
   # MONGO
   ####################
-  mongodb:
-    image         : mongo:latest
-    container_name: Database_StoreApp
-    build         : ./mongo
-    ports:
-      - "27017:27017"
+  # mongodb:
+  #   image         : mongo:latest
+  #   container_name: Database_StoreApp
+  #   build         : ./mongo
+  #   ports:
+  #     - "27017:27017"
   #####################
   # NGINX
   #####################
   nginx:
-    image         : nginx:stable
     container_name: Nginx_StoreApp
+    build         : ./nginx
     links         :
       - node
     ports:
