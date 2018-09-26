@@ -1,25 +1,29 @@
 # StoreAPP - AIP2018
 [![Build Status](https://travis-ci.org/gta191977649/aip-project-2018-spring.svg?branch=master)](https://travis-ci.org/gta191977649/aip-project-2018-spring)
-A generic auction website built with NodeJS, Angular 6 and SailsJS.
+React FrontEnd with Loopback server on Generic Auction Site.
 
-## Requirements
- - Node Route:
-    - npm v8+
- - Docker Route:
-    - Docker
-    - Docker-Compose
+## To Run
+### Docker Compose? 
+No problem just run `docker-compose up -d` in the `/` (root) directory
+
+### linux/macos
+
+- `cd /node/`
+- `sudo chmod +x run.sh`
+- `./run.sh`
 
 
-## How to Install
- - Node Route
-    1. run `npm i -g sails @angular/cli nodemon` - nodemon optional 
-    2. run `npm install` in the server and client directory
-    3. open the client directory in a terminal and run `ng serve`
-    4. open the server directory in a terminal and run `sails lift --prod`
-    5. browse `http://localhost:4200` and application should be visible
-- Docker Route
-    1. Change to the root directory `aip-project-2018-spring/`
-    2. type `sudo docker-compose up --build` you can optionally type `sudo docker-compose up --build -d` and this will build the containers and run them in the background, without the `-d` the docker-compose file will run the containers in the currently opened terminal. 
+### Windows
+You will need a bash client to run npm I recommend (git-bash)[https://gitforwindows.org/]
 
-## ISSUES
-Please report any issues you find.
+Server First:
+- Navigate to `/node/server`
+- Open Git-Bash Terminal here
+- `npm install && npm start`
+- Wait for bootup then start client
+
+Client Second:
+- Navigate to `/node/client`
+- Open Git-Bash Terminal here
+- `set PORT=1337 && npm install && npm run start`
+- This should start React on `http://localhost:1337`

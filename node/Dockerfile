@@ -30,10 +30,10 @@ COPY . ./
 RUN npm config set maxsockets 5 && npm config set progress false
 
 # CD into Frontend run npm install and then build
-RUN cd /srv/www/frontend && npm install && npm run build 
+RUN cd frontend && npm install && npm run build 
 
 # CD into API directory and NPM install
-RUN cd /srv/www/api && npm install 
+RUN cd frontend && npm install 
 
 # Install pm2
 RUN npm install -g pm2
