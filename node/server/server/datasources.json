@@ -1,12 +1,6 @@
 {
   "db": {
-    "host": "mongodb",
-    "port": 27017,
-    "url": "",
-    "database": "nodeapp",
-    "password": "restapiuser",
-    "name": "db",
-    "user": "r3sT4pIp4ssw0rd",
+    "url": "mongodb://storeapp_root:test123@ds115193.mlab.com:15193/storeapp_aip",
     "connector": "mongodb",
     "useNewUrlParser": true
   }
