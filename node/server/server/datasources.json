@@ -1,12 +1,12 @@
 {
   "db": {
-    "host": "ds115193.mlab.com",
-    "port": 15193,
+    "host": "127.0.0.1",
+    "port": 27017,
     "url": "",
-    "database": "storeapp_aip",
-    "password": "test123",
+    "database": "nodeapp",
+    "password": "",
     "name": "db",
-    "user": "storeapp_root",
+    "user": "",
     "connector": "mongodb",
     "useNewUrlParser": true
   }
