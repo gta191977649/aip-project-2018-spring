@@ -8,13 +8,13 @@ export class PrivateRoute extends Component {
   };
 
   render() {
-    const { isLoggedIn, children, location, routeProps} = this.props.auth;
+    const { auth, location, routeProps, children, component} = this.props;
     return (
       <Route
         {...routeProps}
         render={() =>
-          isLoggedIn ? (
-            <div>{children}</div>
+          auth.isLoggedIn ? (
+            <div>{component}</div>
           ) : (
             <Redirect
               to={{
