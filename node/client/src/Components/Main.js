@@ -16,12 +16,14 @@ import VerifyPage from './Auth/Verify/VerifyPage';
 import FlashMessagesList from './Flash/FlashMessagesList';
 import SearchPage from './Search/SearchPage';
 
-
 export class Main extends Component {
+    static propTypes = {
+      prop: PropTypes
+    }
   
-  render() {
-    return (
-      <main id="main">
+    render() {
+      return (
+        <main id="main">
         <FlashMessagesList/>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -37,8 +39,16 @@ export class Main extends Component {
           <PrivateRoute path="/dashboard" component={Dashboard}/>
         </Switch>
       </main>
-    );
+      )
+    }
   }
-}
-
-export default (Main)
+  
+  const mapStateToProps = (state) => ({
+    
+  })
+  
+  const mapDispatchToProps = {
+    
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Main)
