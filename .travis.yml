@@ -10,3 +10,6 @@ script:
   - cd ./node/client
   - npm install
   - npm test
+  - cd ./node/server
+  - npm install
+  - npm test
