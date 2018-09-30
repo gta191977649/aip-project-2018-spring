@@ -1,9 +1,10 @@
 # StoreAPP - AIP2018
-[![Build Status](https://travis-ci.org/gta191977649/aip-project-2018-spring.svg?branch=master)](https://travis-ci.org/gta191977649/aip-project-2018-spring)
-React FrontEnd with Loopback server on Generic Auction Site.
+React FrontEnd
 
 ## To Run
+
 ### Docker Compose? 
+
 No problem just run `docker-compose up -d` in the `/` (root) directory
 
 ### linux/macos

@@ -1,0 +1,18 @@
+## Doesn't work yet
+
+apps:
+  - name     : 'client'
+    script   : 'render.js'
+    cwd      : '/srv/www/client'
+    exec_mode: 'cluster'
+    instance : 'max'
+    env      :
+      NODE_ENV: production
+
+  - name     : 'server'
+    script   : 'server/server.js'
+    cwd      : '/srv/www/server'
+    exec_mode: 'cluster'
+    instance : 'max'
+    env      :
+      NODE_ENV: production
