@@ -7,7 +7,7 @@ cache:
   directories:
   - node_modules
 script:
-  - cd ./client
+  - cd ./node/client
   - npm install
   - npm run build
 deploy:
