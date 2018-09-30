@@ -18,9 +18,9 @@ import Footer from "./Components/Footer";
 import AuthComponent from "./Utils/AuthComponent";
 
 class App extends Component {
-  static propTypes = {
-    store: PropTypes.object.isRequired
-  }
+//   static propTypes = {
+//     store: PropTypes.object.isRequired
+//   }
 
   render() {
     const {store, persistor } = configureStore();
