@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -18,7 +18,7 @@ import SearchPage from './Search/SearchPage';
 
 export class Main extends Component {
     static propTypes = {
-      prop: PropTypes
+      auth: PropTypes.object.isRequired
     }
   
     render() {
@@ -36,7 +36,7 @@ export class Main extends Component {
           <Route path="/verify" component={VerifyPage} />
           <Route path="/search" component={SearchPage} />
           {/* Custom Private Route */}
-          <PrivateRoute path="/dashboard" component={Dashboard}/>
+          {/* <PrivateRoute path="/dashboard" component={Dashboard}/> */}
         </Switch>
       </main>
       )
@@ -51,4 +51,4 @@ export class Main extends Component {
     
   }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Main)
+  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))

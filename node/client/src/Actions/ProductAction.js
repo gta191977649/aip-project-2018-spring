@@ -1,7 +1,7 @@
 import {FETCH_PRODUCTS, FETCH_PRODUCTS_ERROR,SEARCH_PRODUCTS,FETCH_PRODUCT_ID} from "./Types";
 
 import axios from "axios";
-const productRestURI = "http://api.localhost/api/Products";
+const productRestURI = "http://localhost:3000/api/Products";
 export const fetchProducts = () => dispatch =>{
   
   axios.get(productRestURI)
