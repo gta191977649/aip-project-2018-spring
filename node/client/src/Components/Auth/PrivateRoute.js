@@ -5,7 +5,7 @@ const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route
     {...rest}
     render={props => (
-      isLoggedIn==true
+      isLoggedIn===true
         ? <Component {...props} />
         : <Redirect to='/login'/>
     )}
