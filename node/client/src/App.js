@@ -5,10 +5,10 @@ import configureStore from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 
 //MDB
-import "font-awesome/css/font-awesome.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
-import "./App.css";
+import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import './App.css';
 
 //Components
 import Nav from "./Components/Nav";
