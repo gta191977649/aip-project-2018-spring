@@ -76,9 +76,9 @@ export const userRegister = auth => {
 
 export const userExists = user => {};
 
-export const userSet = user => {
+export const userSet = user => dispatch => {
   return dispatch => {
-    USER_SET, user;
+    USER_SET, {user};
   };
 };
 

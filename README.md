@@ -1,5 +1,6 @@
 # StoreAPP - AIP2018
-[![Build Status](https://travis-ci.org/gta191977649/aip-project-2018-spring.svg?branch=master)](https://travis-ci.org/gta191977649/aip-project-2018-spring)
+MASTER: [![Build Status](https://travis-ci.com/gta191977649/aip-project-2018-spring.svg?branch=master)](https://travis-ci.com/gta191977649/aip-project-2018-spring)
+DEVELOP: [![Build Status](https://travis-ci.com/gta191977649/aip-project-2018-spring.svg?branch=develop)](https://travis-ci.com/gta191977649/aip-project-2018-spring)
 React FrontEnd with Loopback server on Generic Auction Site.
 
 ## To Run
