@@ -16,7 +16,7 @@ class UserProductItem extends Component{
             </CarouselItem>
         ));
         return(
-            <div class="card">
+            <div className="card">
                 <Carousel
                     activeItem={1}
                     length={imgItems.length}
@@ -27,10 +27,10 @@ class UserProductItem extends Component{
                         {imgItems}
                     </CarouselInner>
                 </Carousel>
-                    <div class="card-body">
-                        <h4 class="card-title"><a>{this.props.data.name}</a></h4>
-                        <p class="card-text">{this.props.data.description}</p>
-                        <a href="#" class="btn btn-primary float-right">Manage</a>
+                    <div className="card-body">
+                        <h4 className="card-title"><a>{this.props.data.name}</a></h4>
+                        <p className="card-text">{this.props.data.description}</p>
+                        <a href="#" className="btn btn-primary float-right">Manage</a>
                     </div>
             </div>
         );

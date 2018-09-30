@@ -14,20 +14,20 @@ export class UserProfile extends Component {
                 <div className="card ">
 
                     <div className="card-body">
-                        <h3 class="card-title">Name</h3>
+                        <h3 className="card-title">Name</h3>
                         <div className="card-text"> {this.props.userName}</div>
                     </div>
                 </div>
                 <div className="card">
                     <div className="card-body">
-                        <h3 class="card-title">E-mail</h3>
+                        <h3 className="card-title">E-mail</h3>
                         <div className="card-text">{this.props.userEmail}</div>
                     </div>
                 </div>
 
             </div>
         )
-    };
+    }
 }
 const mapStateToProps = state => ({
     userName:state.auth.user.userName,

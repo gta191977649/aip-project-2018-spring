@@ -38,7 +38,7 @@ export class RegisterForm extends Component {
           err => { this.setState({ errors: {message: err.response.data.error.message}, isLoading: false }); }
         );
     }
-  };
+  }
 
   updateDetails(event) {
     this.setState({
