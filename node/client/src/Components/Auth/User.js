@@ -30,7 +30,7 @@ export class User extends Component {
     const userLinks = (
       <NavbarNav right>
         <NavItem>
-          <NavLink to="/Dashboard">Dashboard</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/logout" onClick={this.logout.bind(this)}>Logout</NavLink>

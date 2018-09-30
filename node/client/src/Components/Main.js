@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -15,6 +15,7 @@ import Dashboard from './Dashboard/DashboardPage';
 import VerifyPage from './Auth/Verify/VerifyPage';
 import FlashMessagesList from './Flash/FlashMessagesList';
 import SearchPage from './Search/SearchPage';
+import ErrorCodeComponent from './ErrorCodeComponent';
 
 export class Main extends Component {
     static propTypes = {
@@ -22,6 +23,7 @@ export class Main extends Component {
     }
   
     render() {
+      const { isLoggedIn } = this.props.auth;
       return (
         <main id="main">
         <FlashMessagesList/>
@@ -35,8 +37,13 @@ export class Main extends Component {
           <Route path="/products" component={Products} />
           <Route path="/verify" component={VerifyPage} />
           <Route path="/search" component={SearchPage} />
-          {/* Custom Private Route */}
-          {/* <PrivateRoute path="/dashboard" component={Dashboard}/> */}
+          <PrivateRoute path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
+
+
+
+
+          {/* This is an error component for 404s :) */}
+          <Route path='*' exact={true} component={ErrorCodeComponent} />
         </Switch>
       </main>
       )
@@ -44,7 +51,7 @@ export class Main extends Component {
   }
   
   const mapStateToProps = (state) => ({
-    
+    auth:state.auth
   })
   
   const mapDispatchToProps = {
