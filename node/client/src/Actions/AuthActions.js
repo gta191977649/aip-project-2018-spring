@@ -3,7 +3,7 @@ import Axios from "axios";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
 import jwt from "jsonwebtoken";
 
-const API_URL = "http://api.localhost/api";
+const API_URL = "http://127.0.0.1:3000/api";
 
 export const fetchUser = () => dispatch => {
   Axios.get(API_URL + "/Users").then(response => {

@@ -23,6 +23,16 @@ export default function (state = initialState,action) {
           ...state,
           items:action.payload
         }
+      case Type.FETCH_PRODUCT_USER_ID:
+        return{
+          ...state,
+          userItems:action.payload
+        }
+      case Type.ADD_PRUDUCT:
+        return{
+          ...state,
+          addResponse:action.payload
+        }
       case Type.FETCH_PRODUCTS_ERROR:
         return{
           ...state,

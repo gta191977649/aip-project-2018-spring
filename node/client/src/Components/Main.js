@@ -15,6 +15,7 @@ import Dashboard from './Dashboard/DashboardPage';
 import VerifyPage from './Auth/Verify/VerifyPage';
 import FlashMessagesList from './Flash/FlashMessagesList';
 import SearchPage from './Search/SearchPage';
+import AddProduct from "./Dashboard/Products/AddProduct";
 
 
 export class Main extends Component {
@@ -34,7 +35,8 @@ export class Main extends Component {
           <Route path="/verify" component={VerifyPage} />
           <Route path="/search" component={SearchPage} />
           {/* Custom Private Route */}
-          <PrivateRoute path="/dashboard" component={Dashboard}/>
+          <Route path="/dashboard" component={Dashboard}/>
+		  <Route path="/product/add" component={AddProduct}/>
         </Switch>
       </main>
     );
