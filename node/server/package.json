@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint .",
     "start": "nodemon .",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "fix": "eslint . --fix"
   },
   "dependencies": {
     "compression": "^1.0.3",
