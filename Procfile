@@ -1,2 +1,1 @@
-web: cd client && npm install && npm run build
-server: cd server && npm install
+web: honcho -f ProcfileHocho start
