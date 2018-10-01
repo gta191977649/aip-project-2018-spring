@@ -77,9 +77,10 @@ export const userRegister = auth => {
 export const userExists = user => {};
 
 export const userSet = user => dispatch => {
-  return dispatch => {
-    USER_SET, {user};
-  };
+  dispatch({
+    type: FETCH_USER,
+    payload: user
+  });
 };
 
 export const userVerify = auth => {
