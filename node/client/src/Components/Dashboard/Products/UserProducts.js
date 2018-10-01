@@ -4,6 +4,8 @@ import UserProductItem from './UserProductItem';
 import {fetchProductByUserId} from "../../../Actions/ProductAction";
 import connect from "react-redux/es/connect/connect";
 import {Link} from 'react-router-dom';
+import { Button } from 'mdbreact'
+
 class UserProducts extends Component{
     constructor(props) {
         super(props);
@@ -30,16 +32,13 @@ class UserProducts extends Component{
     componentDidMount() {
         //Set fake data
         //console.log(this.state.products);
-        fetchProductByUserId();
-
-    }
-    componentWillMount() {
         console.log(this.props.userID);
         this.props.fetchProductByUserId(this.props.userID);
 
     }
-    componentWillReceiveProps() {
-        this.setState({products:this.props.userProducts});
+
+    componentWillReceiveProps(newProps) {
+        this.setState({products: newProps.userProducts > this.state.products ? newProps.userProducts : this.state.products});
     }
 
     render () {
@@ -53,8 +52,8 @@ class UserProducts extends Component{
            noItemAlert = <div>No Item</div>;
         return(
             <div>
+                <Link className="btn btn-primary float-right" to="/product/add">Add Product</Link>
                 <h1>My Products <small className="text-info">{this.state.products.length}</small></h1>
-                <button><Link to="/product/add">Add Product</Link></button>
                 <hr/>
                 {noItemAlert}
                 <div className="row">

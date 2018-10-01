@@ -3,7 +3,8 @@ import connect from "react-redux/es/connect/connect";
 import {addProduct} from "../../../Actions/ProductAction";
 import {Link} from 'react-router-dom';
 import validator from "validator";
-
+import {Input, Button} from 'mdbreact';
+import Redirect from "react-router-dom/es/Redirect";
 export class AddProduct extends Component {
 	constructor(props) {
 		super(props);
@@ -23,7 +24,8 @@ export class AddProduct extends Component {
 		});
 	}
 
-	handleSubmit() {
+	handleSubmit(event) {
+	    event.preventDefault();
 		const product = {
 			"name": this.state.name,
 			"price" : this.state.price,
@@ -32,24 +34,41 @@ export class AddProduct extends Component {
 			"userId":this.props.userID
 		}
 		this.props.addProduct(product)
+        console.log("Server OK, redirect user");
+        return this.props.history.push('/dashboard');
 	}
+	/*
+	componentWillReceiveProps(newProps) {
+	    if(newProps.addResponse) {
+	        console.log("Server OK, redirect user");
+            return this.props.history.push('/dashboard');
+
+        } else {
+	        alert("Error on creating new product! ");
+        }
+    }
+    */
 	render() {
 		const { name,price,description,img } = this.state;
 
 		return (
-			<div>
+			<div className="container mt-4">
 				<h1>Add Product</h1>
 				<hr/>
 				<form onSubmit={this.handleSubmit}>
-					<label>name:</label>
-					<input name="name" value={name} onChange={this.updateDetails}></input>
-					<label>price:</label>
-					<input name="price" value={price} onChange={this.updateDetails}></input>
-					<label>description:</label>
-					<input name="description" value={description} onChange={this.updateDetails}></input>
-					<label>img:</label>
-					<input name="img" value={img} onChange={this.updateDetails}></input>
-					<button type="submit">add</button>
+                    <div className="md-form">
+                        <Input label="Product Name" class="form-control" name="name" value={name} onChange={this.updateDetails}/>
+                    </div>
+                    <div className="md-form">
+					    <Input label="Price" class="form-control" name="price" value={price} onChange={this.updateDetails}/>
+                    </div>
+                    <div className="md-form">
+					    <Input label="description" class="form-control" name="description" value={description} onChange={this.updateDetails}/>
+                    </div>
+                    <div className="md-form">
+					    <Input label="Img" class="form-control" name="img" value={img} onChange={this.updateDetails}/>
+                    </div>
+					<Button className="btn btn-indigo float-right" type="submit">add</Button>
 				</form>
 		  	</div>
 		)
