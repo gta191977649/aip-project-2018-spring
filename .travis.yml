@@ -13,3 +13,7 @@ script:
   - cd ../server
   - npm install
   - npm test
+branches:
+  only:
+  - master
+  - develop
