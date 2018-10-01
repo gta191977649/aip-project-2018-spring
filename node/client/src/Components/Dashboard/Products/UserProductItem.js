@@ -10,7 +10,7 @@ class UserProductItem extends Component{
     }
     deleteProduct(id) {
         this.props.deleteProduct(id);
-        this.props.parentReflash();
+        this.props.parentRemove(id);
     }
     render() {
         console.log(this.props.data.img);
@@ -46,6 +46,7 @@ class UserProductItem extends Component{
 }
 const mapStateToProps = state => ({
     deleteResponse:state.products.delResponse,
+    userID:state.auth.user.id
 });
 
 export default connect(mapStateToProps,{deleteProduct})(UserProductItem);

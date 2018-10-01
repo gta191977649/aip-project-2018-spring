@@ -16,7 +16,7 @@ class UserProducts extends Component{
                     "name": "My sell product 1",
                     "price" : 21.5,
                     "description": "This is an test decsription #1",
-                    "img":["https://api.th9.bid/random","https://archive.sparrow.moe/tools/api/php-random-img"]
+                    "img":["https://api.th9.bid/random","https://archive.sparrow.moe/tools/apifetchProductByUserId/php-random-img"]
                 },
                 {
                     "name": "My sell product 2",
@@ -26,26 +26,35 @@ class UserProducts extends Component{
                 },
             ],
             */
-            products: []
+            products: [],
         }
+        this.removeData = this.removeData.bind(this);
     }
+
     componentDidMount() {
         //Set fake data
         //console.log(this.state.products);
-        this.fetchProductData();
+        this.fetchProductData(this.props.userID);
     }
-    fetchProductData() {
-        console.log(this.props.userID);
-        this.props.fetchProductByUserId(this.props.userID);
+
+    fetchProductData(userId) {
+        this.props.fetchProductByUserId(userId);
+    }
+    removeData(id) {
+        this.setState({
+          products:this.state.products.filter(item => item.id !== id)
+        });
+
     }
     componentWillReceiveProps(newProps) {
-        this.setState({products: newProps.userProducts > this.state.products ? newProps.userProducts : this.state.products});
+        this.setState({products: newProps.userProducts});
+        this.setState({reflash: false});
     }
 
     render () {
         const productItems = this.state.products.map((item,idx) =>(
             <div className="col-md-5" key={idx}>
-                <UserProductItem data={item} parentReflash={this.fetchProductData}/>
+                <UserProductItem data={item} parentRemove={this.removeData}/>
             </div>
         ));
         let noItemAlert;
