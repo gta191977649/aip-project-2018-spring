@@ -1,6 +1,6 @@
 {
   "db": {
-    "connector": "memory",
-    "useNewUrlParser": true
+    "name": "db",
+    "connector": "memory"
   }
 }
