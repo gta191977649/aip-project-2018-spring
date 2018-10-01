@@ -1,4 +1,5 @@
 import * as Type from "../Actions/Types";
+import {UPDATE_PRUDUCT} from "../Actions/Types";
 const initialState = {
     items: [],
     item: {},
@@ -33,11 +34,16 @@ export default function (state = initialState,action) {
           ...state,
           addResponse:action.payload
         }
-        case Type.DELETE_PRODUCT:
-        return{
-          ...state,
-          delResponse:action.payload
-        }
+      case Type.DELETE_PRODUCT:
+      return{
+        ...state,
+        delResponse:action.payload
+      }
+      case Type.UPDATE_PRUDUCT:
+      return{
+        ...state,
+        updateResponse:action.payload
+      }
       case Type.FETCH_PRODUCTS_ERROR:
         return{
           ...state,

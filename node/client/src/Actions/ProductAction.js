@@ -5,7 +5,7 @@ import {
   FETCH_PRODUCT_ID,
   FETCH_PRODUCT_USER_ID,
   ADD_PRUDUCT,
-    DELETE_PRODUCT
+  DELETE_PRODUCT, UPDATE_PRUDUCT
 } from "./Types";
 
 import axios from "axios";
@@ -99,6 +99,24 @@ export const deleteProduct = (productId) => dispatch =>{
     .catch(error=>{
         dispatch({
             type: DELETE_PRODUCT,
+            payload: false
+        })
+    })
+}
+export const updateProduct = (productId,newData) => dispatch =>{
+    console.log("id",productId);
+    console.log("data",newData);
+    axios.put(productRestURI+'/'+productId,newData).then(
+        response => {
+            dispatch({
+                type:UPDATE_PRUDUCT,
+                payload: response.status
+            })
+        }
+    )
+    .catch(error=>{
+        dispatch({
+            type: UPDATE_PRUDUCT,
             payload: false
         })
     })
