@@ -4,13 +4,14 @@ import {
   SEARCH_PRODUCTS,
   FETCH_PRODUCT_ID,
   FETCH_PRODUCT_USER_ID,
-  ADD_PRUDUCT
+  ADD_PRUDUCT,
+    DELETE_PRODUCT
 } from "./Types";
 
 import axios from "axios";
 const productRestURI = "http://127.0.0.1:3000/api/Products";
 export const fetchProducts = () => dispatch =>{
-  
+
   axios.get(productRestURI)
     .then(
       response => {
@@ -29,7 +30,7 @@ export const fetchProducts = () => dispatch =>{
 }
 
 export const fetchProductById = (id) => dispatch =>{
-    
+
     axios.get(productRestURI+id)
         .then(
             response => {
@@ -40,7 +41,7 @@ export const fetchProductById = (id) => dispatch =>{
             },
         )
         .catch(error=>{
-            
+
             dispatch({
                 type: FETCH_PRODUCTS_ERROR,
                 payload: error.message
@@ -84,7 +85,24 @@ export const fetchProductByUserId = (userid) => dispatch =>{
       })
     })
 }
+export const deleteProduct = (productId) => dispatch =>{
+    console.log("item for delete= ",productId);
 
+    axios.delete(productRestURI+'/'+productId).then(
+        response => {
+            dispatch({
+                type:DELETE_PRODUCT,
+                payload: true
+            })
+        }
+    )
+    .catch(error=>{
+        dispatch({
+            type: DELETE_PRODUCT,
+            payload: false
+        })
+    })
+}
 export const addProduct = (productData) => dispatch =>{
     console.log("Recieved filter:" ,productData);
     axios.post(productRestURI, productData).then(
@@ -97,7 +115,7 @@ export const addProduct = (productData) => dispatch =>{
     )
     .catch(error=>{
       dispatch({
-        type: FETCH_PRODUCTS_ERROR,
+        type: ADD_PRUDUCT,
         payload: false
       })
     })

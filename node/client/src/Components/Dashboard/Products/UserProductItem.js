@@ -1,10 +1,16 @@
 import  React from 'react';
 import {Component} from "react";
 import  { Carousel, CarouselInner, CarouselItem, View, Container } from 'mdbreact';
+import connect from "react-redux/es/connect/connect";
+import {deleteProduct} from "../../../Actions/ProductAction";
 
 class UserProductItem extends Component{
     constructor(props) {
         super(props);
+    }
+    deleteProduct(id) {
+        this.props.deleteProduct(id);
+        this.props.parentReflash();
     }
     render() {
         console.log(this.props.data.img);
@@ -30,11 +36,16 @@ class UserProductItem extends Component{
                     <div className="card-body">
                         <h4 className="card-title"><a>{this.props.data.name}</a></h4>
                         <p className="card-text">{this.props.data.description}</p>
-                        <a className="btn btn-primary float-right">Manage</a>
+                        <a className="btn btn-sm btn-primary float-right">Manage</a>
+                        <a className="btn btn-sm btn-danger float-right" onClick={()=>{this.deleteProduct(this.props.data.id)}}>Delete</a>
                     </div>
             </div>
         );
     }
 
 }
-export default UserProductItem;
+const mapStateToProps = state => ({
+    deleteResponse:state.products.delResponse,
+});
+
+export default connect(mapStateToProps,{deleteProduct})(UserProductItem);

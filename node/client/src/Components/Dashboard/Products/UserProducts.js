@@ -32,11 +32,12 @@ class UserProducts extends Component{
     componentDidMount() {
         //Set fake data
         //console.log(this.state.products);
+        this.fetchProductData();
+    }
+    fetchProductData() {
         console.log(this.props.userID);
         this.props.fetchProductByUserId(this.props.userID);
-
     }
-
     componentWillReceiveProps(newProps) {
         this.setState({products: newProps.userProducts > this.state.products ? newProps.userProducts : this.state.products});
     }
@@ -44,7 +45,7 @@ class UserProducts extends Component{
     render () {
         const productItems = this.state.products.map((item,idx) =>(
             <div className="col-md-5" key={idx}>
-                <UserProductItem data={item}/>
+                <UserProductItem data={item} parentReflash={this.fetchProductData}/>
             </div>
         ));
         let noItemAlert;
