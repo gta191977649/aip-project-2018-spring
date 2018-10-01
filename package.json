@@ -1,0 +1,15 @@
+{
+  "name": "aipauctions",
+  "version": "1.0.0",
+  "description": "Temp Description",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gta191977649/aip-project-2018-spring.git"
+  },
+  "author": "Idris, Le Cai and Wenze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gta191977649/aip-project-2018-spring/issues"
+  },
+  "homepage": "https://github.com/gta191977649/aip-project-2018-spring#readme"
+}
