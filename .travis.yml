@@ -7,9 +7,9 @@ cache:
   directories:
   - node_modules
 script:
-  - cd ./node/client
+  - cd ./client
   - npm install
   - npm test
-  - cd ../server
+  - cd ./server
   - npm install
   - npm test
