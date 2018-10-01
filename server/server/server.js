@@ -4,6 +4,7 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var app = (module.exports = loopback());
 var session = require('express-session');
+require('dotenv').config();
 
 app.start = function() {
   // start the web server

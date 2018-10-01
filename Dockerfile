@@ -1,12 +1,3 @@
-# # Install dependencies
-# FROM ubuntu:16.04
-# # Clean and update
-# RUN apt-get clean && apt-get update
-# RUN apt-get -y install curl && \
-#     apt-get -y install wget && \
-#     apt-get -y install apt-utils && \
-#     apt-get autoremove -y
-
 # Node app
 FROM node:carbon
 # The base node image sets a very verbose log level.
