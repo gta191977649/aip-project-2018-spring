@@ -1,6 +1,8 @@
 {
   "db": {
     "name": "db",
-    "connector": "memory"
+    "connector": "memory",
+    "url": "mongodb://localhost:27017/nodeapp",
+    "useNewUrlParser": true
   }
 }
