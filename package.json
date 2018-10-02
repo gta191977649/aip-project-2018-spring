@@ -1,0 +1,19 @@
+{
+  "name": "aip_auctions",
+  "version": "0.0.1",
+  "description": "AIP Auction API Server built on Express",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Idris",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "dotenv-extended": "^2.3.0",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "mongoose": "^5.3.0",
+    "nodemon": "^1.18.4"
+  }
+}
