@@ -9,7 +9,7 @@ import {
 } from "./Types";
 
 import axios from "axios";
-const productRestURI = "http://127.0.0.1:3000/api/Products";
+const productRestURI = process.env.API + "Products";
 export const fetchProducts = () => dispatch => {
 
   axios.get(productRestURI)
