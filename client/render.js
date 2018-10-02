@@ -1,7 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
+require('dotenv').config();
 
 app.disable('x-powered-by');
 app.use(express.static(path.join(__dirname, 'build')));
@@ -14,8 +14,8 @@ app.get('*', function (req, res) {
 });
 
 app.listen(
-    process.env.PORT || 80,
+    process.env.PORT || 1337,
     function () {
-        console.log(`Frontend start on http://localhost:80`)
+        console.log(`Frontend start on http://localhost:1337`)
     }
 );
