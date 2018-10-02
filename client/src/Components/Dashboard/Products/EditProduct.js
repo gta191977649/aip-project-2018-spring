@@ -2,7 +2,7 @@ import {Component} from "react";
 import React from "react";
 import {Input, Button} from 'mdbreact';
 import {updateProduct} from "../../../Actions/ProductAction";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {addFlashMessage} from "../../../Actions/FlashActions";
 
 class EditProduct extends Component {
@@ -18,8 +18,9 @@ class EditProduct extends Component {
     this.updateDetails = this.updateDetails.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentWillMount(){
-    if(this.props.itemData != undefined) {
+
+  UNSAFE_componentWillMount(){
+    if(this.props.itemData !== undefined) {
       console.log("data")
       this.setState({
         name: this.props.itemData.name,
@@ -57,7 +58,7 @@ class EditProduct extends Component {
   redirectBack() {
     this.props.cancelHanlder();
   }
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     console.log("new props",newProps.updateServerState)
     if(newProps.updateServerState ) {
       console.log("SERVER OK")

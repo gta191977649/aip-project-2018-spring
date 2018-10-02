@@ -2,30 +2,13 @@ import React from "react";
 import {Component} from "react";
 import UserProductItem from './UserProductItem';
 import {fetchProductByUserId} from "../../../Actions/ProductAction";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
-import { Button } from 'mdbreact'
 import EditProduct from "./EditProduct";
 class UserProducts extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            /*
-            products : [
-                {
-                    "name": "My sell product 1",
-                    "price" : 21.5,
-                    "description": "This is an test decsription #1",
-                    "img":["https://api.th9.bid/random","https://archive.sparrow.moe/tools/apifetchProductByUserId/php-random-img"]
-                },
-                {
-                    "name": "My sell product 2",
-                    "price" : 10.5,
-                    "description": "This is an test decsription #2",
-                    "img":["https://archive.sparrow.moe/tools/api/php-random-img"]
-                },
-            ],
-            */
             products: [],
             isEdit: false,
             targetEditItemData:null,
@@ -63,7 +46,9 @@ class UserProducts extends Component{
           products:this.state.products.filter(item => item.id !== id)
         });
     }
-    componentWillReceiveProps(newProps) {
+
+    //TODO: Replace this with better redux
+    USAFE_componentWillReceiveProps(newProps) {
         this.setState({products: newProps.userProducts});
         this.setState({reflash: false});
     }

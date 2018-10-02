@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import connect from "react-redux/es/connect/connect";
+import {connect } from "react-redux";
 import {addProduct} from "../../../Actions/ProductAction";
-import {Link} from 'react-router-dom';
-import validator from "validator";
 import {Input, Button} from 'mdbreact';
-import Redirect from "react-router-dom/es/Redirect";
 export class AddProduct extends Component {
 	constructor(props) {
 		super(props);
@@ -37,17 +34,6 @@ export class AddProduct extends Component {
         console.log("Server OK, redirect user");
         return this.props.history.push('/dashboard');
 	}
-	/*
-	componentWillReceiveProps(newProps) {
-	    if(newProps.addResponse) {
-	        console.log("Server OK, redirect user");
-            return this.props.history.push('/dashboard');
-
-        } else {
-	        alert("Error on creating new product! ");
-        }
-    }
-    */
 	render() {
 		const { name,price,description,img } = this.state;
 
