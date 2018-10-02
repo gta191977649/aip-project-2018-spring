@@ -10,11 +10,11 @@
       "type": "string",
       "required": true
     },
-	"price": {
+    "price": {
       "type": "number",
       "required": true
     },
-	"img": {
+    "img": {
       "type": "array",
       "required": true
     },
@@ -23,7 +23,37 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "userId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "property": "create",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "property": "create",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }
