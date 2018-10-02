@@ -2,6 +2,10 @@ import {Component} from "react";
 import  React from 'react';
 
 class UserOrderItem extends Component {
+    constructor(props) {
+        super(props);
+
+    }
     render() {
         return(
             <div className="card ">
