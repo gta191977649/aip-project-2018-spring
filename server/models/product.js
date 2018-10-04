@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
-var productSchema = new Schema({
+let productSchema = new Schema({
   name: {
-    type: "string",
-    required: true
+    type: 'string',
+    required: true,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   img: {
     type: Array,
-    required: true
+    required: true,
   },
   description: {
-    type: "string"
+    type: 'string',
   },
 });
 
-exports.default = Product = mongoose.model('product', prodSchema);
+// eslint-disable-next-line no-undef
+module.exports.default = Product = mongoose.model('product', productSchema);

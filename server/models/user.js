@@ -1,19 +1,50 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
-var userSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        require: true,
-    },
-    password: {
-        type: String,
-        required: true
-    },
+const jwt = require('jsonwebtoken');
+const keys = require('../config/keys');
+let userSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    require: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  avatar: {
+    type: String,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-exports.default = User = mongoose.model('user', userSchema);
+userSchema.methods.generateJWT = function() {
+  const today = new Date();
+  const expirationDate = new Date(today);
+  expirationDate.setDate(today.getDate() + 7);
+  const payload = {
+    id: this._id,
+    name: this.name,
+    avatar: this.avatar,
+  };
+  return jwt.sign(payload, keys.secret, {
+    expiresIn: parseInt(expirationDate.getTime() / 1000, 10),
+  });
+};
+
+userSchema.methods.toAuthJSON = function() {
+  return {
+    _id: this._id,
+    avatar: this.avatar,
+    date: this.date,
+    token: this.generateJWT(),
+  };
+};
+// eslint-disable-next-line no-undef
+module.exports = User = mongoose.model('User', userSchema);

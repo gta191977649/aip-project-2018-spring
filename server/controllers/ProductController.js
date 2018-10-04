@@ -1,18 +1,19 @@
-var Product = require('../models/product');
+let Product = require('../models/Product');
 
-exports.products_list = async function (req, res) {
-  //Return product
-}
+// eslint-disable-next-line no-unused-vars
+module.exports.products_list = async (req, res) => {
+  // Return product
+};
 
-exports.product_info = function (req, res) {
+// eslint-disable-next-line no-unused-vars
+module.exports.product_info = async (req, res) => {
 
-}
+};
 
-exports.product_new = async (req, res) => {
+module.exports.product_new = async (req, res) => {
   const newProduct = new Product({
-    name: req.body.name
+    name: req.body.name,
   });
- let res = await newProduct.save();
- res.json(item);
-}
-
+  let item = await newProduct.save();
+  res.json(item);
+};

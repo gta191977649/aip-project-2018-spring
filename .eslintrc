@@ -1,0 +1,11 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "google", "plugin:node/recommended"],
+  "rules": {
+    "node/exports-style": ["error", "module.exports"],
+    "node/no-deprecated-api": ["warn"],
+    "linebreak-style": 0,
+    "no-console": 0,
+    "new-cap": 0
+  }
+}
