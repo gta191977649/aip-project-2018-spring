@@ -8,16 +8,20 @@ class ProductDetail extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            id : null
+            id : null,
+            selectProduct:{},
         }
     }
     componentWillMount () {
-        this.setState({id : this.props.match.params});
-        this.props.fetchProductById(this.props.match.params);
-        console.log("Send Request");
+        this.setState({id : this.props.match.params.id});
+        this.props.fetchProductById(this.props.match.params.id);
+        console.log("Send Request ",this.props.match.params.id);
+    }
+    componentWillReceiveProps(newProps) {
+        this.setState({selectProduct:newProps.selectProduct});
     }
     render() {
-        const {name,description,price,img} = this.props.selectProduct;
+        const {name,description,price,img} = this.state.selectProduct;
         let productImgs = null;
         let noImg = null;
         if(img) {
