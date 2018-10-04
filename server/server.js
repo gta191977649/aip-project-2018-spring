@@ -16,7 +16,10 @@ global.Promise = Promise;
 app.use(helmet());
 app.disable('x-powered-by');
 app.set('trust proxy', 1); // trust first proxy
-app.use(cors());
+let corsOptions = {
+  origin: 'http://localhost:1337', // Allow from localhost:1337
+};
+app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({extended: false}));
