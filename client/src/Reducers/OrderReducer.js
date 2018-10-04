@@ -8,7 +8,7 @@ const initialState = {
 };
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case Type.FETCH_ORDER:
+		case Type.FETCH_ORDERS:
 			return {
 				...state,
 				orders: action.payload
@@ -38,7 +38,7 @@ export default function (state = initialState, action) {
 				...state,
 				updateResponse: action.payload
 			};
-		case Type.FETCH_ORDER_ERROR:
+		case Type.FETCH_ORDERS_ERROR:
 			return {
 				...state,
 				error:true,

@@ -1,16 +1,18 @@
 import React from "react";
-import {Carousel, CarouselInner, CarouselItem, Container,Card,CardImage,CardBody,CardTitle,CardText,Button  } from 'mdbreact';
+import {Carousel, CarouselInner, CarouselItem, Container,Card,CardImage,CardBody,CardTitle,CardText,Button,Input  } from 'mdbreact';
 import {Component} from "react";
 import {fetchProductById} from "../../Actions/ProductAction";
 import {connect} from 'react-redux';
-
+import OrderPage from '../Order/OrderPage'
 class ProductDetail extends Component{
     constructor(props) {
         super(props);
         this.state = {
             id : null,
             selectProduct:{},
+            ischeckout: false,
         }
+        this.onBuyClicked = this.onBuyClicked.bind(this);
     }
     componentWillMount () {
         this.setState({id : this.props.match.params.id});
@@ -19,6 +21,9 @@ class ProductDetail extends Component{
     }
     componentWillReceiveProps(newProps) {
         this.setState({selectProduct:newProps.selectProduct});
+    }
+    onBuyClicked() {
+      this.setState({ischeckout:true})
     }
     render() {
         const {name,description,price,img} = this.state.selectProduct;
@@ -33,8 +38,8 @@ class ProductDetail extends Component{
         } else {
           noImg = <h1>No img avaiable</h1>;
         }
-
-        return(
+        if(!this.state.ischeckout) {
+          return (
             <div className="container">
               <div className="row mt-4">
                 <div className="col-md-4">
@@ -53,13 +58,15 @@ class ProductDetail extends Component{
 
                 </div>
                 <div className="col-md-8">
-                  <h1>{name}<hr/></h1>
+                  <h1>{name}
+                    <hr/>
+                  </h1>
                   <p>{description}</p>
 
                   <Card cascade>
                     <CardBody cascade>
-                      <p>Price: <strong><span style={{fontSize:25}}>${price}</span></strong></p>
-                      <Button className="float-right" href="#">Buy now</Button>
+                      <p>Price: <strong><span style={{fontSize: 25}}>${price}</span></strong></p>
+                      <Button className="float-right" href="#" onClick={this.onBuyClicked}>Buy now</Button>
                     </CardBody>
                   </Card>
 
@@ -68,7 +75,12 @@ class ProductDetail extends Component{
 
               </div>
             </div>
-        );
+          );
+        }else {
+          return(
+            <OrderPage item={this.state.selectProduct}/>
+          )
+        }
     }
 }
 const mapStateToProps = state => ({
