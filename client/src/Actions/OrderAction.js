@@ -72,12 +72,12 @@ export const fetchOrderByUserId = (userid) => dispatch => {
 			})
 		}
 	)
-		.catch(error => {
-			dispatch({
-				type: FETCH_ORDERS_ERROR,
-				payload: error.message
-			})
-		})
+    .catch(error => {
+        dispatch({
+            type: FETCH_ORDERS_ERROR,
+            payload: error.message
+        })
+    })
 };
 export const updateOrder = (orderId, newData) => dispatch => {
 	console.log("id", orderId);

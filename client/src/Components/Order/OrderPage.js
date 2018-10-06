@@ -3,6 +3,7 @@ import {Input, Button} from 'mdbreact';
 import {Component} from "react";
 import {addOrder} from "../../Actions/OrderAction";
 import connect from "react-redux/es/connect/connect";
+import { withRouter} from 'react-router-dom';
 
 class OrderPage extends Component {
 	constructor(props) {
@@ -37,7 +38,7 @@ class OrderPage extends Component {
 			}
 		};
 		this.props.addOrder(submitOrder);
-		return this.props.history.push('/dashboard');
+		this.props.history.push('/dashboard');
 	}
 	componentDidMount(){
 		this.setState({buyItem : this.props.item});
@@ -68,4 +69,4 @@ const mapStateToProps = state => ({
 	userID:state.auth.user.id,
 	addResponse:state.products.addResponse
 })
-export default connect(mapStateToProps,{addOrder})(OrderPage);
+export default withRouter(connect(mapStateToProps,{addOrder})(OrderPage));
