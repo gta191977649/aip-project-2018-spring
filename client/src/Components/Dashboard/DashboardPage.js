@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from 'mdbreact'
 /* compoments */
 import UserProfile from './UserProfile';
 import UserProducts from './Products/UserProducts';
-import UserOrder from './UserOrders';
+import UserOrder from './Orders/UserOrders';
 export class DashboardPage extends Component {
 
     constructor(props) {

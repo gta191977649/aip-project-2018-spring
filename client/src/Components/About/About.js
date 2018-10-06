@@ -5,16 +5,15 @@ import {
   Col,
 } from 'mdbreact'
 
-
-
 export default class About extends Component {
   render() {
     return (
       <Container>
         <Row>
-          <Col md="6" className="mx-auto">
-            <h1 className="display-4 text-center">About Us</h1>
-          </Col>
+          <div className="container">
+            <h1 className="display-4 text-center">About</h1>
+              <hr/>
+          </div>
         </Row>
       </Container>
     );
