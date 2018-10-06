@@ -29,6 +29,7 @@ class OrderPage extends Component {
 			"isCompleted": false,
 			"time": "2018-10-04T08:18:09.171Z",
 			"userId": this.props.userID,
+			"productId": this.state.buyItem.id,
 			"product": {
 				"name": this.state.buyItem.name,
 				"price": this.state.buyItem.price,

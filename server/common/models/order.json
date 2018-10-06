@@ -28,6 +28,11 @@
       "model": "User",
       "foreignKey": ""
     },
+    "product": {
+      "type": "belongsTo",
+      "model": "Product",
+      "foreignKey": "productId"
+    },
     "products": {
       "type": "embedsOne",
       "model": "Product",

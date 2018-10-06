@@ -19,7 +19,6 @@ class UserOrderItem extends Component {
             <div className="card ">
 
                 <div className="card-body">
-
                     <h3 className="card-title">{this.props.data.product.name}</h3>
                     <div className="card-text">QTY: {this.props.data.qty}</div>
                     <Collapse isOpen={this.state.openMore}>
