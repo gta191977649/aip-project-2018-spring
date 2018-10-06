@@ -48,9 +48,12 @@ class UserProducts extends Component{
     }
 
     //TODO: Replace this with better redux
-    USAFE_componentWillReceiveProps(newProps) {
-        this.setState({products: newProps.userProducts});
-        this.setState({reflash: false});
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            products: newProps.userProducts,
+            reflash: false
+        })
+
     }
 
     render () {

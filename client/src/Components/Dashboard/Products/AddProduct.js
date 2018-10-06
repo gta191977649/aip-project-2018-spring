@@ -10,7 +10,7 @@ export class AddProduct extends Component {
 			price:"",
 			description:"",
 			img:""
-		}
+		};
 		this.updateDetails = this.updateDetails.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -42,18 +42,18 @@ export class AddProduct extends Component {
 				<h1>Add Product</h1>
 				<hr/>
 				<form onSubmit={this.handleSubmit}>
-                    <div className="md-form">
-                        <Input label="Product Name" class="form-control" name="name" value={name} onChange={this.updateDetails}/>
-                    </div>
-                    <div className="md-form">
-					    <Input label="Price" class="form-control" name="price" value={price} onChange={this.updateDetails}/>
-                    </div>
-                    <div className="md-form">
-					    <Input label="description" class="form-control" name="description" value={description} onChange={this.updateDetails}/>
-                    </div>
-                    <div className="md-form">
-					    <Input label="Img" class="form-control" name="img" value={img} onChange={this.updateDetails}/>
-                    </div>
+          <div className="md-form">
+              <Input label="Product Name" class="form-control" name="name" value={name} onChange={this.updateDetails}/>
+          </div>
+          <div className="md-form">
+            <Input label="Price" class="form-control" name="price" value={price} onChange={this.updateDetails}/>
+          </div>
+          <div className="md-form">
+            <Input label="description" class="form-control" name="description" value={description} onChange={this.updateDetails}/>
+          </div>
+          <div className="md-form">
+            <Input label="Img" class="form-control" name="img" value={img} onChange={this.updateDetails}/>
+          </div>
 					<Button className="btn btn-indigo float-right" type="submit">add</Button>
 				</form>
 		  	</div>
