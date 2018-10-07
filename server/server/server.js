@@ -1,31 +1,50 @@
-'use strict';
-
-var loopback = require('loopback');
-var boot = require('loopback-boot');
-var app = (module.exports = loopback());
-var session = require('express-session');
+const express = require('express');
+const apiRouter = require('./routes/api');
+const helmet = require('helmet');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const Promise = require('bluebird');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const mongourl = require('./config/keys').mongo;
+const app = express();
 require('dotenv').config();
+// Redefine promise to bluebird for performance increase?
+global.Promise = Promise;
 
-app.start = function() {
-  // start the web server
-  return app.listen(function() {
-    app.emit('started');
-    var baseUrl = app.get('url').replace(/\/$/, '');
-    console.log('Web server listening at: %s', baseUrl);
-    if (app.get('loopback-component-explorer')) {
-      var explorerPath = app.get('loopback-component-explorer').mountPath;
-      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
-    }
-  });
+// Security Protocols
+app.use(helmet());
+app.disable('x-powered-by');
+app.set('trust proxy', 1); // trust first proxy
+let corsOptions = {
+  origin: 'http://localhost:1337', // Allow from localhost:1337
 };
+app.use(cors(corsOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
-app.middleware('auth', loopback.token());
+// Passport JWT Strategy
+require('./config/passport')(passport);
 
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err;
+// Database connection
+mongoose
+    .connect(
+        mongourl,
+        {useNewUrlParser: true}
+    )
+    .then(() => console.log('Mongo Connected...'))
+    .catch((err) => console.log(err));
+// Set Mongoose Promise engine to Bluebird!
+mongoose.Promise = Promise;
 
-  // start the server if `$ node server.js`
-  if (require.main === module) app.start();
+// Setup Routes
+app.use('/api', apiRouter);
+app.use(function(req, res) {
+  res.status(404).send('Sorry can\'t find that!');
 });
+
+// Setup and Run listening server
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server is listening on port ${port} :)`));
