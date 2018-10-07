@@ -6,7 +6,8 @@ import {
 	FETCH_ORDERS_ERROR,
 	FETCH_ORDER_ID,
 	SEARCH_ORDERS,
-	FETCH_ORDER_USER_ID
+	FETCH_ORDER_USER_ID,
+  FETCH_ORDER_SELLER_ID
 } from "./Types";
 const orderRestURI = "http://127.0.0.1:3000/api/orders";
 
@@ -79,6 +80,23 @@ export const fetchOrderByUserId = (userid) => dispatch => {
         })
     })
 };
+export const fetchOrderBySellerId = (sellerId) => dispatch => {
+  const filter = { "where": { "product.userId": sellerId } };
+  axios.get(orderRestURI, { params: { filter: filter } } ).then(
+    response => {
+      dispatch({
+        type: FETCH_ORDER_SELLER_ID,
+        payload: response.data
+      })
+    }
+  )
+    .catch(error => {
+      dispatch({
+        type: FETCH_ORDERS_ERROR,
+        payload: error.message
+      })
+    })
+}
 export const updateOrder = (orderId, newData) => dispatch => {
 	console.log("id", orderId);
 	console.log("data", newData);
@@ -114,3 +132,5 @@ export const addOrder = (orderData) => dispatch => {
 			})
 		})
 };
+
+

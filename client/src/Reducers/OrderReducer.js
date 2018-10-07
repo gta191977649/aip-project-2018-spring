@@ -28,6 +28,11 @@ export default function (state = initialState, action) {
 				...state,
 				userOrders: action.payload
 			};
+		case Type.FETCH_ORDER_SELLER_ID:
+			return {
+				...state,
+				sellerOrders: action.payload
+			};
 		case Type.ADD_ORDER:
 			return {
 				...state,
