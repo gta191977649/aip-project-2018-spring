@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
-let userSchema = new Schema({
+let UserSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -24,7 +24,7 @@ let userSchema = new Schema({
   },
 });
 
-userSchema.methods.generateJWT = function() {
+UserSchema.methods.generateJWT = function() {
   const today = new Date();
   const expirationDate = new Date(today);
   expirationDate.setDate(today.getDate() + 7);
@@ -38,7 +38,7 @@ userSchema.methods.generateJWT = function() {
   });
 };
 
-userSchema.methods.toAuthJSON = function() {
+UserSchema.methods.toAuthJSON = function() {
   return {
     _id: this._id,
     avatar: this.avatar,
@@ -47,4 +47,4 @@ userSchema.methods.toAuthJSON = function() {
   };
 };
 // eslint-disable-next-line no-undef
-module.exports = User = mongoose.model('User', userSchema);
+module.exports = User = mongoose.model('User', UserSchema);
