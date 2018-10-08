@@ -34,6 +34,8 @@ export const USER_EXISTS = 'USER_EXISTS';
 export const USER_SET = 'USER_SET';
 export const USER_ERROR = 'USER_ERROR';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const FETCH_USER_ID = 'FETCH_USER_ID';
+export const FETCH_USERS_ERROR = 'FETCH_USERS_ERROR';
 
 //FLASH/ALERT ACTIONS
 
