@@ -37,7 +37,10 @@ class UserOrders extends Component{
     //Set fake data
     //console.log(this.state.products);
     this.fetchOrderData(this.props.userID);
-    this.fetchSellerProfile(this.props.userID);
+    /*
+    this.fetchSellerProfile(this.state.orders.userOrders.product.userId);
+    */
+    console.log("id, ",this.props.userOrders[0].product.userId);
   }
   fetchSellerProfile(userId){
     console.log("userid ",userId);
