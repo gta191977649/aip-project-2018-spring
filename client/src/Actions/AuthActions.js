@@ -1,12 +1,13 @@
-import { FETCH_USER, USER_SET, USER_ERROR, USER_LOGOUT } from "./Types";
+import {FETCH_USER, USER_SET, USER_ERROR, USER_LOGOUT, FETCH_USER_ID, FETCH_USERS_ERROR} from "./Types";
 import Axios from "axios";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
 import jwt from "jsonwebtoken";
 
 const API_URL = "http://127.0.0.1:3000/api";
+const userRestURI = "http://localhost:3000/api/CustomUsers";
 
 export const fetchUser = () => dispatch => {
-  Axios.get(API_URL + "/Users").then(response => {
+  Axios.get(API_URL + "/CustomUsers").then(response => {
     dispatch({
       type: FETCH_USER,
       payload: response.data
@@ -19,7 +20,7 @@ export const userLogin = auth => dispatch => {
   let email = auth.email;
   let password = auth.password;
 
-  return Axios.post(API_URL + "/Users/login", {
+  return Axios.post(API_URL + "/CustomUsers/login", {
     email,
     password
   })
@@ -34,7 +35,7 @@ export const userLogin = auth => dispatch => {
       setAuthorizationToken(token);
 
       //Create JWT for later :)
-      Axios.get(API_URL + "/Users/" + res.data.userId).then(res => {
+      Axios.get(API_URL + "/CustomUsers/" + res.data.userId).then(res => {
         jwtToken = jwt.sign(
           {
             exp: ttl,
@@ -64,7 +65,7 @@ export const userRegister = auth => {
   let password = auth.password;
 
   return dispatch => {
-    return Axios.post(API_URL + "/Users", {
+    return Axios.post(API_URL + "/CustomUsers", {
       userName,
       email,
       password,
@@ -83,11 +84,31 @@ export const userSet = user => dispatch => {
   });
 };
 
+export const fetchProfileByUserId = (id) => dispatch => {
+  console.log("fetchProfileByUserId: ",id);
+  Axios.get(userRestURI +"/" +id)
+    .then(
+      response => {
+        dispatch({
+          type: FETCH_USER_ID,
+          payload: response.data
+        })
+      },
+    )
+    .catch(error => {
+
+      dispatch({
+        type: FETCH_USERS_ERROR,
+        payload: error.message
+      })
+    })
+};
+
 export const userVerify = auth => {
   let id = auth.id;
   let token = "testtoken";
   return dispatch => {
-    return Axios.get(API_URL + "/Users/confirm", {
+    return Axios.get(API_URL + "/CustomUsers/confirm", {
       params: {
         uid: id,
         token: token
@@ -97,7 +118,7 @@ export const userVerify = auth => {
 };
 
 export const userLogout = user => dispatch => {
-  Axios.post(API_URL + '/Users/logout').then(
+  Axios.post(API_URL + '/CustomUsers/logout').then(
     res=>{
       localStorage.removeItem("token");
       localStorage.removeItem("session");

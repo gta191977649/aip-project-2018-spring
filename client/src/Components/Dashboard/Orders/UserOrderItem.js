@@ -1,6 +1,9 @@
 import {Component} from "react";
 import  React from 'react';
 import { Button,Collapse } from 'mdbreact'
+import connect from "react-redux/es/connect/connect";
+import {addProduct} from "../../../Actions/ProductAction";
+import {fetchProfileByUserId} from "../../../Actions/AuthActions";
 
 class UserOrderItem extends Component {
     constructor(props) {
@@ -9,8 +12,15 @@ class UserOrderItem extends Component {
         this.state = {
             openMore:false,
         }
+        this.fetchSellerProfile = this.fetchSellerProfile.bind(this);
     }
-
+	componentDidMount() {
+    	this.fetchSellerProfile(this.props.data.product.userId);
+    	console.log("abc ",this.props.data.product.userId);
+	}
+	fetchSellerProfile(userId){
+	   	this.props.fetchProfileByUserId(userId);
+	}
     learnMore() {
         this.setState({openMore:!this.state.openMore});
     }
@@ -22,7 +32,7 @@ class UserOrderItem extends Component {
                     <h3 className="card-title">{this.props.data.product.name}</h3>
                     <div className="card-text">QTY: {this.props.data.qty}</div>
                     <Collapse isOpen={this.state.openMore}>
-                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                        <p>Seller name: {this.props.data.qty}</p>
                     </Collapse>
                     <button className="btn btn-primary float-right" onClick={this.learnMore}>Detail</button>
                 </div>
@@ -30,4 +40,7 @@ class UserOrderItem extends Component {
         );
     }
 }
-export default UserOrderItem;
+const mapStateToProps = state => ({
+	user:state.auth.requesedUserInfo
+});
+export default connect(mapStateToProps, {fetchProfileByUserId})(UserOrderItem);
