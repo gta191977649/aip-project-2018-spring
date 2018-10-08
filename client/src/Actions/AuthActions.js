@@ -96,7 +96,6 @@ export const fetchProfileByUserId = (id) => dispatch => {
       },
     )
     .catch(error => {
-
       dispatch({
         type: FETCH_USERS_ERROR,
         payload: error.message

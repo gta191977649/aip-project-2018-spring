@@ -40,8 +40,9 @@ class UserOrders extends Component{
     /*
     this.fetchSellerProfile(this.state.orders.userOrders.product.userId);
     */
-    console.log("id, ",this.props.userOrders[0].product.userId);
+
   }
+
   fetchSellerProfile(userId){
     console.log("userid ",userId);
     this.props.fetchProfileByUserId(userId);
@@ -62,11 +63,9 @@ class UserOrders extends Component{
   render () {
 
     const orderItems = this.state.orders.map((item,idx) =>(
-      <div className="col-md-12" key={idx}>
 
-        <UserOrderItem data={item}  parentRemove={this.removeData}/>
+        <UserOrderItem data={item}  parentRemove={this.removeData}  key={idx}/>
 
-      </div>
     ));
     return(
       <div className="div">
@@ -85,4 +84,4 @@ const mapStateToProps = state => ({
     errorMsg: state.products.errorMsg,
     seller:state.auth.requesedUserInfo
 });
-export default connect(mapStateToProps, {fetchOrderByUserId,addOrder,fetchProfileByUserId})(UserOrders);
+export default connect(mapStateToProps, {fetchOrderByUserId,addOrder})(UserOrders);
