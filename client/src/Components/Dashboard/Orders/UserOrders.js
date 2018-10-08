@@ -5,6 +5,7 @@ import {fetchOrderByUserId} from "../../../Actions/OrderAction";
 import {addOrder} from "../../../Actions/OrderAction";
 import connect from "react-redux/es/connect/connect";
 import { Button,Collapse } from 'mdbreact'
+import {fetchProfileByUserId} from "../../../Actions/AuthActions";
 
 class UserOrders extends Component{
   constructor(props) {
@@ -12,6 +13,7 @@ class UserOrders extends Component{
     this.state = {
       orders : [],
     };
+    this.fetchSellerProfile = this.fetchSellerProfile.bind(this);
     this.removeData = this.removeData.bind(this);
     this.toogleEdit = this.toogleEdit.bind(this);
     this.fetchOrderData = this.fetchOrderData.bind(this);
@@ -35,8 +37,12 @@ class UserOrders extends Component{
     //Set fake data
     //console.log(this.state.products);
     this.fetchOrderData(this.props.userID);
+    this.fetchSellerProfile(this.props.userID);
   }
-
+  fetchSellerProfile(userId){
+    console.log("userid ",userId);
+    this.props.fetchProfileByUserId(userId);
+  }
   fetchOrderData(userId) {
     this.props.fetchOrderByUserId(userId);
   }
@@ -73,6 +79,7 @@ const mapStateToProps = state => ({
     userOrders: state.orders.userOrders,
     userID:state.auth.user.id,
     error: state.products.error,
-    errorMsg: state.products.errorMsg
+    errorMsg: state.products.errorMsg,
+    seller:state.auth.requesedUserInfo
 });
-export default connect(mapStateToProps, {fetchOrderByUserId,addOrder})(UserOrders);
+export default connect(mapStateToProps, {fetchOrderByUserId,addOrder,fetchProfileByUserId})(UserOrders);

@@ -12,15 +12,14 @@ class UserOrderItem extends Component {
         this.state = {
             openMore:false,
         }
-        this.fetchSellerProfile = this.fetchSellerProfile.bind(this);
     }
 	componentDidMount() {
-    	this.fetchSellerProfile(this.props.data.product.userId);
-    	console.log("abc ",this.props.data.product.userId);
+
 	}
-	fetchSellerProfile(userId){
-	   	this.props.fetchProfileByUserId(userId);
-	}
+	componentWillReceiveProps(newprops) {
+      console.log("fetched user:",newprops.seller);
+  }
+
     learnMore() {
         this.setState({openMore:!this.state.openMore});
     }
@@ -32,7 +31,7 @@ class UserOrderItem extends Component {
                     <h3 className="card-title">{this.props.data.product.name}</h3>
                     <div className="card-text">QTY: {this.props.data.qty}</div>
                     <Collapse isOpen={this.state.openMore}>
-                        <p>Seller name: {this.props.data.qty}</p>
+                        <p>Seller name: {this.props.data.product.userId}</p>
                     </Collapse>
                     <button className="btn btn-primary float-right" onClick={this.learnMore}>Detail</button>
                 </div>
@@ -40,7 +39,4 @@ class UserOrderItem extends Component {
         );
     }
 }
-const mapStateToProps = state => ({
-	user:state.auth.requesedUserInfo
-});
-export default connect(mapStateToProps, {fetchProfileByUserId})(UserOrderItem);
+export default UserOrderItem;
