@@ -29,7 +29,7 @@ export const fetchOrders = () => dispatch => {
 		})
 };
 export const fetchOrderById = (id) => dispatch => {
-	axios.get(orderRestURI + id)
+	axios.get(orderRestURI+"/" + id)
 		.then(
 			response => {
 				dispatch({

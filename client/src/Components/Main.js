@@ -17,6 +17,7 @@ import FlashMessagesList from './Flash/FlashMessagesList';
 import SearchPage from './Search/SearchPage';
 import ErrorCodeComponent from './ErrorCodeComponent';
 import AddProduct from './Dashboard/Products/AddProduct'
+import UserOrderDetails from "./Dashboard/Orders/UserOrderDetails";
 export class Main extends Component {
     static propTypes = {
       auth: PropTypes.object.isRequired
@@ -38,7 +39,8 @@ export class Main extends Component {
           <Route path="/verify" component={VerifyPage} />
           <Route path="/search" component={SearchPage} />
           <PrivateRoute path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
-            <PrivateRoute path="/product/add" component={AddProduct} isLoggedIn={isLoggedIn}/>
+          <PrivateRoute path="/product/add" component={AddProduct} isLoggedIn={isLoggedIn}/>
+          <PrivateRoute path="/order/detail/:id" component={UserOrderDetails} isLoggedIn={isLoggedIn}/>
 
 
             {/* This is an error component for 404s :) */}
