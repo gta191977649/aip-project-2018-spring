@@ -1,22 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Col, Row } from "mdbreact";
-export class DashboardPage extends Component {
+import { CATEGORIES } from "../../Utils/Constants";
+export class CategoriesPage extends Component {
   static propTypes = {
     prop: PropTypes
   };
 
   render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="10" className="mx-auto">
-            Dashboard Panel Contents
-          </Col>
-        </Row>
-      </Container>
-    );
+    let categories = CATEGORIES.map(name => (
+      <a href={"/categories/" + name} className="mr-5">
+        {name}
+      </a>
+    ));
+    return <div>{categories}</div>;
   }
 }
 
@@ -27,4 +24,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardPage);
+)(CategoriesPage);

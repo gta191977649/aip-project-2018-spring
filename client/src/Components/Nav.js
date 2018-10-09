@@ -7,10 +7,15 @@ import {
   NavbarToggler,
   Collapse,
   NavItem,
-  NavLink
+  NavLink,
+  Fa,
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu
 } from "mdbreact";
+import { Link } from "react-router-dom";
 import User from "./Auth/User";
-import SearchNavForm from "./Search/SearchNavForm";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -32,7 +37,7 @@ class Nav extends React.Component {
   render() {
     return (
       <Navbar color="br-primary" expand="lg" fixed="top" dark scrolling>
-        <Container>
+        <Container fluid>
           <NavbarBrand href="/">
             <strong className="px-2">AIP Auctions</strong>
           </NavbarBrand>
@@ -40,17 +45,48 @@ class Nav extends React.Component {
           <Collapse isOpen={this.state.collapse} navbar>
             <NavbarNav left>
               <NavItem>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/">
+                  <Fa icon="home" className="mr-1" />
+                  Home
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/categories">Product Categories</NavLink>
+                <Dropdown>
+                  <DropdownToggle nav caret>
+                    <Fa icon="list" className="mr-1" />
+                    Products
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem href="#">
+                      <Fa icon="list" className="mr-1" /> All Products
+                    </DropdownItem>
+
+                    <DropdownItem href="#">
+                      <Fa icon="tags" className="mr-1" /> Clothes
+                    </DropdownItem>
+
+                    <DropdownItem href="#">
+                      <Fa icon="television" className="mr-1" /> Electronics
+                    </DropdownItem>
+
+                    <DropdownItem href="#">
+                      <Fa icon="gears" className="mr-1" /> Software
+                    </DropdownItem>
+
+                    <DropdownItem href="#">
+                      <Fa icon="soccer-ball-o" className="mr-1" /> Toys
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </NavItem>
               <NavItem>
-                <NavLink to="/about">About</NavLink>
+                <NavLink to="/about">
+                  <Fa icon="info-circle" className="mr-1" />
+                  About
+                </NavLink>
               </NavItem>
             </NavbarNav>
             <NavbarNav right>
-              <SearchNavForm />
               <User />
             </NavbarNav>
           </Collapse>

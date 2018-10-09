@@ -10,7 +10,7 @@ import {
   FETCH_USER_ID,
   FETCH_USERS_ERROR
 } from "../Actions/Types";
-
+import { isEmpty } from "../Utils/UtilMethods";
 const initialState = {
   user: {},
   isLoggedIn: false,
@@ -24,12 +24,6 @@ export default function(state = initialState, action) {
         ...state,
         requesedUserInfo: action.payload
       };
-    case FETCH_USER:
-      return {
-        ...state,
-        users: action.payload
-      };
-
     case USER_LOGIN:
       return {
         ...state,
@@ -53,13 +47,11 @@ export default function(state = initialState, action) {
         ...state,
         auth: action.payload
       };
-    case USER_LOGOUT:
-      return { ...state, isLoggedIn: false, user: action.payload };
     case USER_SET:
       return {
         ...state,
-        user: action.user,
-        isLoggedIn: true
+        isLoggedIn: !isEmpty(action.payload),
+        user: action.payload
       };
     default:
       return state;

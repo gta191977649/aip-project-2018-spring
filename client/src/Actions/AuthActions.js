@@ -1,8 +1,5 @@
 import {
-  FETCH_USER,
   USER_SET,
-  USER_ERROR,
-  USER_LOGOUT,
   FETCH_USER_ID,
   FETCH_USERS_ERROR,
   GET_ERRORS
@@ -11,16 +8,8 @@ import { API_URL } from "../Utils/Constants";
 import Axios from "axios";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
 import { addFlashMessage } from "./FlashActions";
+import { isEmpty } from "../Utils/UtilMethods";
 import jwt from "jsonwebtoken";
-
-export const fetchUser = () => dispatch => {
-  Axios.get(API_URL + "/auth/current").then(response => {
-    dispatch({
-      type: FETCH_USER,
-      payload: response.data
-    });
-  });
-};
 
 //TODO: Need to update for login.
 export const userLogin = (auth, history) => dispatch => {
@@ -34,6 +23,7 @@ export const userLogin = (auth, history) => dispatch => {
   })
     .then(res => {
       let token = res.data.token;
+
       //Set User Token For Axios
       localStorage.setItem("token", token);
       setAuthorizationToken(token);
@@ -93,7 +83,8 @@ export const createProfile = profile => {
 };
 
 export const userSet = token => dispatch => {
-  let decoded = jwt.decode(token);
+  //If token is not empty decode token else empty string :)
+  let decoded = !isEmpty(token) ? jwt.decode(token) : "";
 
   return dispatch({
     type: USER_SET,
@@ -134,11 +125,13 @@ export const userVerify = auth => {
 export const userLogout = (user, history) => dispatch => {
   Axios.post(API_URL + "/auth/logout").then(
     res => {
+      //Remove token for logout
       localStorage.removeItem("token");
+      // set blank token to auth
       setAuthorizationToken();
 
       dispatch({
-        type: USER_LOGOUT,
+        type: USER_SET,
         payload: {}
       });
       history.push("/login");

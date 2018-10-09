@@ -7,7 +7,6 @@ import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import validator from "validator";
 import { isEmpty } from "../../../Utils/UtilMethods";
-import validateInput from "../../../Utils/RegisterInputValidator";
 
 export class RegisterPage extends Component {
   constructor(props) {

@@ -1,8 +1,15 @@
 import React from "react";
-import { Col, Container, Row, Footer } from "mdbreact";
-
+import { Col, Container, Row, Footer, Fa } from "mdbreact";
+import { CATEGORIES } from "../Utils/Constants";
 class FooterComponent extends React.Component {
   render() {
+    let categories = CATEGORIES.map(name => (
+      <p>
+        <a href="#!">
+          <Fa icon="arrow-right" className="mr-1" /> {name}
+        </a>
+      </p>
+    ));
     return (
       <Footer className="font-small pt-4 mt-4">
         <Container className="text-center text-md-left">
@@ -21,18 +28,7 @@ class FooterComponent extends React.Component {
               <h6 className="text-uppercase mb-4 font-weight-bold">
                 Categories
               </h6>
-              <p>
-                <a href="#!">Clothes</a>
-              </p>
-              <p>
-                <a href="#!">Electronics</a>
-              </p>
-              <p>
-                <a href="#!">Software</a>
-              </p>
-              <p>
-                <a href="#!">More...</a>
-              </p>
+              {categories}
             </Col>
             <hr className="w-100 clearfix d-md-none" />
             <Col md="3" lg="2" xl="2" className="mx-auto mt-3">
@@ -40,16 +36,28 @@ class FooterComponent extends React.Component {
                 Useful links
               </h6>
               <p>
-                <a href="#!">Your Account</a>
+                <a href="#!">
+                  <Fa icon="user" className="mr-1" />
+                  Your Account
+                </a>
               </p>
               <p>
-                <a href="#!">See your orders</a>
+                <a href="#!">
+                  <Fa icon="list" className="mr-1" />
+                  See your orders
+                </a>
               </p>
               <p>
-                <a href="#!">Change Password</a>
+                <a href="#!">
+                  <Fa icon="cog" className="mr-1" />
+                  Change Password
+                </a>
               </p>
               <p>
-                <a href="#!">Help</a>
+                <a href="#!">
+                  <Fa icon="exclamation-triangle" className="mr-1" />
+                  Help
+                </a>
               </p>
             </Col>
             <hr className="w-100 clearfix d-md-none" />

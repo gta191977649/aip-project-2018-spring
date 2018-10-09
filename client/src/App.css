@@ -8,7 +8,6 @@ body {
 }
 
 #main {
-  margin-top: 5rem;
   min-height: 100vh;
 }
 
@@ -50,4 +49,56 @@ footer {
 
 .nav-search::placeholder {
   color: white;
+}
+
+.user-avatar {
+  height: 30px;
+}
+
+#classicformpage .landing-allproducts {
+  background-image: url('');
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+#classicformpage .landing-clothes {
+  background-image: url('https://i.imgur.com/2Q0ajmo.jpg');
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+#classicformpage .landing-electronics {
+  background-image: url('https://i.imgur.com/4KYa2Dp.jpg');
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+#classicformpage .landingview {
+  background: url('https://i.imgur.com/HvcCJC3.jpg');
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+}
+
+#classicformpage .gradient {}
+
+#classicformpage .card {
+  background-color: rgba(126, 123, 215, 0.2);
+}
+
+#classicformpage h6 {
+  line-height: 1.7;
+}
+
+
+@media (max-width: 768px) {
+  #classicformpage .navbar:not(.top-nav-collapse) {
+    background: #424f95 !important;
+  }
+}
+
+#classicformpage label {
+  color: #fff !important;
 }

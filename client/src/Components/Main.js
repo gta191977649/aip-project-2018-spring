@@ -18,6 +18,7 @@ import SearchPage from "./Search/SearchPage";
 import ErrorCodeComponent from "./ErrorCodeComponent";
 import AddProduct from "./Dashboard/Products/AddProduct";
 import UserOrderDetails from "./Dashboard/Orders/UserOrderDetails";
+import CategoriesPage from "./Products/CategoriesPage";
 export class Main extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired
@@ -34,7 +35,7 @@ export class Main extends Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/products/:id" component={ProductDetail} />
-
+          <Route path="/categories/:name" component={CategoriesPage} />
           <Route path="/products" component={Products} />
           <Route path="/search" component={SearchPage} />
           <PrivateRoute
