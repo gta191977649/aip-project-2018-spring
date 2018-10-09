@@ -62,7 +62,6 @@ module.exports.user_register = async (req, res) => {
             .then((user) =>
               res.json({
                 success: true,
-                token: user.generateJWT(),
               })
             )
             .catch((err) => console.log(err));

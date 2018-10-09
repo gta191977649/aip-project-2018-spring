@@ -35,7 +35,11 @@ export class RegisterPage extends Component {
   submitHandler(event) {
     event.preventDefault();
     this.setState({ errors: {}, isLoading: true });
-    this.props.userRegister(this.state);
+    this.props.userRegister(this.state).then(res => {
+      if (res.data.success) {
+        this.props.history.push("/login");
+      }
+    });
     this.setState({ isLoading: false });
   }
 
