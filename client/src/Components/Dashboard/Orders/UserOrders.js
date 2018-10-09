@@ -61,18 +61,25 @@ class UserOrders extends Component{
   }
 
   render () {
-
+    let noOrderAlert = null;
     const orderItems = this.state.orders.map((item,idx) =>(
-
         <UserOrderItem data={item}  parentRemove={this.removeData}  key={idx}/>
-
     ));
+    if(this.state.orders.length === 0) {
+      noOrderAlert = <div className="card ">
+      <div className="card-body">
+          <h3 className="card-title">No Order found</h3>
+          <div className="card-text">You don't have any order yet.</div>
+      </div>
+  </div>
+  }
     return(
       <div className="div">
           <h1>My orders <small className="text-info">{this.state.orders.length}</small></h1>
           <hr/>
 
       {orderItems}
+      {noOrderAlert}
       </div>
     );
   }

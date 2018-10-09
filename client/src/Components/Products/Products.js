@@ -9,13 +9,14 @@ class Products extends Component {
         this.props.fetchProducts();
     }
     render() {
-        const error = this.props.error;
-        const errorMsg = this.props.errorMsg;
+       
 
         const productItems = this.props.products.map(item => (
             <ProductItem id={item.id} data={item} key={item.id}/>
         ));
         /*
+        const error = this.props.error;
+        const errorMsg = this.props.errorMsg;
         if (error) {
             return (
                 <Container>

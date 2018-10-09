@@ -9,7 +9,7 @@ export class UserProfile extends Component {
     render () {
         return (
             <div>
-                <h1>My Profile</h1>
+                <h1>Welcome, <small className="text-info">{this.props.userName}</small></h1>
                     <hr/>
                 <div className="card ">
 

@@ -1,4 +1,4 @@
-import {FLASH_ADD, FLASH_REMOVE, FLASH_REMOVE_ALL} from './Types';
+import {FLASH_ADD, FLASH_REMOVE_ALL} from './Types';
 
 export function addFlashMessage(message){
   return {

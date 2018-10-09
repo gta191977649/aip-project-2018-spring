@@ -29,8 +29,9 @@ class Nav extends React.Component {
     });
   }
   render() {
+    /*
     let user = this.state.user;
-
+    */
     return (
         <Navbar color="blue" dark expand="lg">
           <Container>

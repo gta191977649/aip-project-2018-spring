@@ -43,7 +43,7 @@ export class SearchForm extends Component {
                             <Input name="keyword" className="form-control w-100" value={keyword} onChange={this.updateStates}/>
                         </div>
                         <div className="col-sm-2">
-                            <Button type="submit" className="w-100">Search</Button>
+                            <Button type="submit" className="btn btn-primary w-100">Search</Button>
                         </div>
 
                 </FormInline>

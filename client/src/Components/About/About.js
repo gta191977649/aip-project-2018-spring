@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Container,
   Row,
-  Col,
 } from 'mdbreact'
 
 export default class About extends Component {
@@ -13,6 +12,7 @@ export default class About extends Component {
           <div className="container">
             <h1 className="display-4 text-center">About</h1>
               <hr/>
+              
           </div>
         </Row>
       </Container>
