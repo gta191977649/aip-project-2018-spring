@@ -45,6 +45,11 @@ export class RegisterPage extends Component {
     });
   }
 
+  componentDidMount() {
+    if (this.props.auth.isLoggedIn) {
+      this.props.history.push("/dashboard");
+    }
+  }
   render() {
     //Get the vars from the state
     const {

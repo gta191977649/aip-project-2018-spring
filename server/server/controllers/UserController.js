@@ -102,7 +102,7 @@ module.exports.user_login = async (req, res) => {
 };
 
 module.exports.user_logout = async (req, res) => {
-  res.send('NYI');
+  res.status(200).json({success: true});
 };
 
 module.exports.user_reset_password = async (req, res) => {

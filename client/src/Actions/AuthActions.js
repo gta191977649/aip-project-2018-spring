@@ -10,6 +10,8 @@ import {
 import { API_URL } from "../Utils/Constants";
 import Axios from "axios";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
+import { addFlashMessage } from "./FlashActions";
+import jwt from "jsonwebtoken";
 
 export const fetchUser = () => dispatch => {
   Axios.get(API_URL + "/auth/current").then(response => {
@@ -21,7 +23,7 @@ export const fetchUser = () => dispatch => {
 };
 
 //TODO: Need to update for login.
-export const userLogin = auth => dispatch => {
+export const userLogin = (auth, history) => dispatch => {
   //doLogin
   let email = auth.email;
   let password = auth.password;
@@ -31,15 +33,24 @@ export const userLogin = auth => dispatch => {
     password
   })
     .then(res => {
-      let token = res.data.id;
+      let token = res.data.token;
       //Set User Token For Axios
       localStorage.setItem("token", token);
       setAuthorizationToken(token);
+      dispatch(userSet(token));
+      dispatch(
+        addFlashMessage({
+          type: "success",
+          text: "Logged in!"
+        })
+      );
+
+      history.push("/");
     })
     .catch(err => {
       dispatch({
         type: GET_ERRORS,
-        errors: err.response.data
+        payload: err.response.data.errors
       });
     });
 };
@@ -80,12 +91,13 @@ export const userRegister = (user, history) => {
 export const createProfile = profile => {
   //Setup and post a profile creation;
 };
-export const userExists = user => {};
 
-export const userSet = user => dispatch => {
-  dispatch({
-    type: FETCH_USER,
-    payload: user
+export const userSet = token => dispatch => {
+  let decoded = jwt.decode(token);
+
+  return dispatch({
+    type: USER_SET,
+    payload: decoded
   });
 };
 
@@ -119,17 +131,17 @@ export const userVerify = auth => {
   };
 };
 
-export const userLogout = user => dispatch => {
-  Axios.post(API_URL + "/CustomUsers/logout").then(
+export const userLogout = (user, history) => dispatch => {
+  Axios.post(API_URL + "/auth/logout").then(
     res => {
       localStorage.removeItem("token");
-      localStorage.removeItem("session");
       setAuthorizationToken();
 
-      return dispatch({
+      dispatch({
         type: USER_LOGOUT,
         payload: {}
       });
+      history.push("/login");
     },
     err => {
       console.log("ERROR Contact admin!");

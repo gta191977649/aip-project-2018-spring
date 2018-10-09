@@ -22,13 +22,7 @@ export default function(state = initialState, action) {
     case FETCH_USER_ID:
       return {
         ...state,
-        requesedUserInfo: action.payload,
-      };
-    case FETCH_USERS_ERROR:
-      return {
-        ...state,
-        error: true,
-        errorMsg: action.payload
+        requesedUserInfo: action.payload
       };
     case FETCH_USER:
       return {
@@ -40,13 +34,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         user: action.payload
-      };
-
-    case USER_ERROR:
-      return {
-        ...state,
-        errors: action.errors,
-        isErrored: true
       };
 
     case USER_REGISTER:
@@ -67,7 +54,7 @@ export default function(state = initialState, action) {
         auth: action.payload
       };
     case USER_LOGOUT:
-      return { ...state, isLoggedIn: false };
+      return { ...state, isLoggedIn: false, user: action.payload };
     case USER_SET:
       return {
         ...state,

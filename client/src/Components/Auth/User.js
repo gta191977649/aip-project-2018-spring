@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { NavbarNav, NavLink, NavItem } from "mdbreact";
+import { NavLink, NavItem } from "mdbreact";
 import { withRouter } from "react-router-dom";
 import { userLogout } from "../../Actions/AuthActions";
 import { addFlashMessage } from "../../Actions/FlashActions";
@@ -16,12 +16,7 @@ export class User extends Component {
   logout(event) {
     event.preventDefault();
     console.log("LOGO");
-    this.props.userLogout(this.props.auth.user);
-    this.props.history.push("/login");
-    this.props.addFlashMessage({
-      type: "error",
-      text: "Logged out!"
-    });
+    this.props.userLogout(this.props.auth.user, this.props.history);
   }
 
   render() {
@@ -63,7 +58,9 @@ const mapDispatchToProps = {
   addFlashMessage
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(User);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(User)
+);
