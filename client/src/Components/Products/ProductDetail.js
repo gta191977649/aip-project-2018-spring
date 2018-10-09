@@ -20,16 +20,21 @@ class ProductDetail extends Component{
         console.log("Send Request ",this.props.match.params.id);
     }
     componentWillReceiveProps(newProps) {
-        this.setState({selectProduct:newProps.selectProduct});
+        const data = newProps.selectProduct
+        this.setState({selectProduct:data});
     }
+ 
     onBuyClicked() {
       this.setState({ischeckout:true})
     }
     render() {
-        const {name,description,price,img} = this.state.selectProduct;
+      if(this.props.selectProduct !== undefined) {
+        const {name,description,price,img} = this.props.selectProduct;
+       
         let productImgs = null;
         let noImg = null;
-        if(img) {
+
+        if(img[0].length) {
           productImgs = img.map((im, index) => (
             <CarouselItem itemId={index+1} key={index}>
               <img className="d-block w-100" src={im} alt="First slide"/>
@@ -82,6 +87,7 @@ class ProductDetail extends Component{
           )
         }
     }
+  }
 }
 const mapStateToProps = state => ({
     selectProduct:state.products.productItem

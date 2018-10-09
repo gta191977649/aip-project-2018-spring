@@ -58,7 +58,7 @@ class OrderPage extends Component {
 						<a>Item details</a>
 
 					</h4>
-					<div class="card-body">
+					<div className="card-body">
 
 						<div className="card-text">
 							<p>
@@ -71,9 +71,9 @@ class OrderPage extends Component {
 						</div>
 					</div>
 				</div>
-				<div class="card">
-					<h4 class="card-header primary-color white-text">Order Amount</h4>
-					<div class="card-body">
+				<div className="card">
+					<h4 className="card-header primary-color white-text">Order Amount</h4>
+					<div className="card-body">
 						<form onSubmit={this.handleSubmit} className="md-form">
 							<input
 								className="form-control"

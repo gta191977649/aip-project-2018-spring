@@ -34,14 +34,14 @@ class UserSellDetail extends Component {
   }
 
   render() {
-    if (this.props.order && this.props.seller) {
+    if (this.props.order !== undefined && this.props.seller !== undefined) {
       const { name, description, price, img } = this.props.order.product;
       const { qty, time, id } = this.props.order;
       let productImgs = null;
       let noImg = null;
       let sellerInfo;
       let orderInfo;
-      if (img) {
+      if (img[0].length > 0) {
         productImgs = img.map((im, index) => (
           <CarouselItem itemId={index + 1} key={index}>
             <img className="d-block w-100" src={im} alt="First slide" />
