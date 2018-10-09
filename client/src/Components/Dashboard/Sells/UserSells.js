@@ -3,7 +3,7 @@ import { Component } from "react";
 import UserSellItem from './UserSellItem';
 import {fetchOrderBySellerId } from "../../../Actions/OrderAction";
 import { addOrder } from "../../../Actions/OrderAction";
-import connect from "react-redux/es/connect/connect";
+import {connect} from 'react-redux';
 class UserSells extends Component {
   constructor(props) {
     super(props);

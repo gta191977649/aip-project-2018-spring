@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "mdbreact";
 import { Component } from "react";
 import { addOrder } from "../../Actions/OrderAction";
-import connect from "react-redux/es/connect/connect";
+import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { fetchProfileByUserId } from "../../Actions/AuthActions";
 

@@ -3,7 +3,7 @@ import {Component} from "react";
 import UserOrderItem from './UserOrderItem';
 import {fetchOrderByUserId} from "../../../Actions/OrderAction";
 import {addOrder} from "../../../Actions/OrderAction";
-import connect from "react-redux/es/connect/connect";
+import {connect} from 'react-redux';
 
 class UserOrders extends Component{
   constructor(props) {
