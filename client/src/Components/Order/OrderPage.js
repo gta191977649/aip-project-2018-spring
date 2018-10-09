@@ -4,6 +4,7 @@ import {Component} from "react";
 import {addOrder} from "../../Actions/OrderAction";
 import connect from "react-redux/es/connect/connect";
 import { withRouter} from 'react-router-dom';
+import {fetchProfileByUserId} from "../../Actions/AuthActions";
 
 class OrderPage extends Component {
 	constructor(props) {
@@ -35,7 +36,7 @@ class OrderPage extends Component {
 				"price": this.state.buyItem.price,
 				"img": this.state.buyItem.img,
 				"description": this.state.buyItem.description,
-				"userId": this.state.buyItem.userId
+				"userId": this.state.buyItem.userId,
 			}
 		};
 		this.props.addOrder(submitOrder);
@@ -67,7 +68,9 @@ class OrderPage extends Component {
   	}
 }
 const mapStateToProps = state => ({
+  userInfo:state.auth.user,
 	userID:state.auth.user.id,
-	addResponse:state.products.addResponse
+	addResponse:state.products.addResponse,
+  sellerInfo:state.auth.requesedUserInfo
 })
-export default withRouter(connect(mapStateToProps,{addOrder})(OrderPage));
+export default withRouter(connect(mapStateToProps,{addOrder,fetchProfileByUserId})(OrderPage));

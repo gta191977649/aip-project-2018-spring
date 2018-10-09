@@ -1,10 +1,11 @@
 import React from "react";
 import {Component} from "react";
 import UserOrderItem from './UserOrderItem';
-import {fetchOrderByUserId, fetchOrderBySellerId} from "../../../Actions/OrderAction";
+import {fetchOrderByUserId} from "../../../Actions/OrderAction";
 import {addOrder} from "../../../Actions/OrderAction";
 import connect from "react-redux/es/connect/connect";
 import { Button,Collapse } from 'mdbreact'
+import {fetchProfileByUserId} from "../../../Actions/AuthActions";
 
 class UserOrders extends Component{
   constructor(props) {
@@ -12,10 +13,10 @@ class UserOrders extends Component{
     this.state = {
       orders : [],
     };
+    this.fetchSellerProfile = this.fetchSellerProfile.bind(this);
     this.removeData = this.removeData.bind(this);
     this.toogleEdit = this.toogleEdit.bind(this);
     this.fetchOrderData = this.fetchOrderData.bind(this);
-    this.fetchOrderSellerData = this.fetchOrderSellerData.bind(this);
   }
   toogleEdit(itemData=null) {
     if(itemData!=null) {
@@ -36,13 +37,16 @@ class UserOrders extends Component{
     //Set fake data
     //console.log(this.state.products);
     this.fetchOrderData(this.props.userID);
-    this.fetchOrderSellerData(this.props.userID);
+    /*
+    this.fetchSellerProfile(this.state.orders.userOrders.product.userId);
+    */
+
   }
 
-  fetchOrderSellerData(sellerId){
-  	this.props.fetchOrderBySellerId(sellerId);
+  fetchSellerProfile(userId){
+    console.log("userid ",userId);
+    this.props.fetchProfileByUserId(userId);
   }
-
   fetchOrderData(userId) {
     this.props.fetchOrderByUserId(userId);
   }
@@ -54,17 +58,14 @@ class UserOrders extends Component{
   componentWillReceiveProps(newProps) {
       //console.log(newProps.userOrders);
     this.setState({orders: newProps.userOrders});
-    this.setState({orders: newProps.sellerOrders});
   }
 
   render () {
 
     const orderItems = this.state.orders.map((item,idx) =>(
-      <div className="col-md-12" key={idx}>
 
-        <UserOrderItem data={item}  parentRemove={this.removeData}/>
+        <UserOrderItem data={item}  parentRemove={this.removeData}  key={idx}/>
 
-      </div>
     ));
     return(
       <div className="div">
@@ -78,9 +79,9 @@ class UserOrders extends Component{
 }
 const mapStateToProps = state => ({
     userOrders: state.orders.userOrders,
-	sellerOrders: state.orders.sellerOrders,
     userID:state.auth.user.id,
     error: state.products.error,
-    errorMsg: state.products.errorMsg
-})
-export default connect(mapStateToProps, {fetchOrderByUserId,fetchOrderBySellerId,addOrder})(UserOrders);
+    errorMsg: state.products.errorMsg,
+    seller:state.auth.requesedUserInfo
+});
+export default connect(mapStateToProps, {fetchOrderByUserId,addOrder})(UserOrders);

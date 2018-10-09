@@ -6,7 +6,9 @@ import {
   USER_EXISTS,
   USER_SET,
   USER_ERROR,
-  USER_LOGOUT
+  USER_LOGOUT,
+  FETCH_USER_ID,
+  FETCH_USERS_ERROR
 } from "../Actions/Types";
 
 const initialState = {
@@ -17,6 +19,17 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case FETCH_USER_ID:
+      return {
+        ...state,
+        requesedUserInfo: action.payload,
+      };
+    case FETCH_USERS_ERROR:
+      return {
+        ...state,
+        error: true,
+        errorMsg: action.payload
+      };
     case FETCH_USER:
       return {
         ...state,
