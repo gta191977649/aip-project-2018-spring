@@ -10,7 +10,7 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { fetchOrderById } from "../../../Actions/OrderAction";
 import { fetchProfileByUserId } from "../../../Actions/AuthActions";
-class ProductDetail extends Component {
+class UserSellDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +25,7 @@ class ProductDetail extends Component {
   }
   componentWillReceiveProps(newProps) {
     if (newProps.order.product.userId != null && !this.state.isRequested) {
-      this.props.fetchProfileByUserId(newProps.order.product.userId);
+      this.props.fetchProfileByUserId(newProps.order.userId);
       this.setState({ isRequested: true });
     }
   }
@@ -39,8 +39,8 @@ class ProductDetail extends Component {
       const { qty, time, id } = this.props.order;
       let productImgs = null;
       let noImg = null;
-      let sellerInfo = null;
-      let orderInfo = null;
+      let sellerInfo;
+      let orderInfo;
       if (img) {
         productImgs = img.map((im, index) => (
           <CarouselItem itemId={index + 1} key={index}>
@@ -79,7 +79,7 @@ class ProductDetail extends Component {
       sellerInfo = (
         <Card cascade>
           <CardBody cascade>
-            <h4 className="card-title">Selller information</h4>
+            <h4 className="card-title">Customer information</h4>
             <hr />
             <p>
               UserName: <strong>{this.props.seller.userName}</strong>
@@ -137,4 +137,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { fetchOrderById, fetchProfileByUserId }
-)(ProductDetail);
+)(UserSellDetail);

@@ -63,7 +63,7 @@ class UserProducts extends Component{
             </div>
         ));
         let noItemAlert;
-        if(this.state.products.length == 0) noItemAlert = <div>No Item</div>;
+        if(this.state.products.length === 0) noItemAlert = <div>No Item</div>;
            if(this.state.isEdit){
               return(
                 <EditProduct itemData={this.state.targetEditItemData} cancelHanlder={this.toogleEdit} reflashHandle={this.fetchProductData}/>

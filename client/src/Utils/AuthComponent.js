@@ -11,9 +11,10 @@ export class AuthComponent extends Component {
   }
 
   componentWillMount(){
+    /*
     let token = localStorage.token;
     let session = localStorage.session;
-
+    */
     if(localStorage.token){
       console.log("SETUP User")
       setAuthorizationToken(localStorage.token);

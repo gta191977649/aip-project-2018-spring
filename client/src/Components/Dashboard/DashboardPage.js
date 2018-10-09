@@ -32,6 +32,10 @@ export class DashboardPage extends Component {
             case 3:
                 this.setState({renderCompoment:<UserSell/>});
                 break;
+            default:
+                this.setState({renderCompoment:<UserProfile/>});
+                break;
+
         }
     }
     render() {

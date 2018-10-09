@@ -1,8 +1,6 @@
 import {Component} from "react";
 import React from 'react';
-import {Button, Collapse} from 'mdbreact'
-import connect from "react-redux/es/connect/connect";
-import {addProduct} from "../../../Actions/ProductAction";
+import {connect} from 'react-redux';
 import {fetchProfileByUserId} from "../../../Actions/AuthActions";
 import {Link} from "react-router-dom";
 

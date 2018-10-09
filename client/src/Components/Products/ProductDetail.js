@@ -1,5 +1,5 @@
 import React from "react";
-import {Carousel, CarouselInner, CarouselItem, Container,Card,CardImage,CardBody,CardTitle,CardText,Button,Input  } from 'mdbreact';
+import {Carousel, CarouselInner, CarouselItem,Card,CardBody,Button  } from 'mdbreact';
 import {Component} from "react";
 import {fetchProductById} from "../../Actions/ProductAction";
 import {connect} from 'react-redux';
@@ -66,7 +66,7 @@ class ProductDetail extends Component{
                   <Card cascade>
                     <CardBody cascade>
                       <p>Price: <strong><span style={{fontSize: 25}}>${price}</span></strong></p>
-                      <Button className="float-right" href="#" onClick={this.onBuyClicked}>Buy now</Button>
+                      <Button className="btn btn-primary float-right" href="#" onClick={this.onBuyClicked}>Buy now</Button>
                     </CardBody>
                   </Card>
 

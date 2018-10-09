@@ -1,17 +1,17 @@
 import React from "react";
-import {Input, Button} from 'mdbreact';
-import {Component} from "react";
-import {addOrder} from "../../Actions/OrderAction";
-import connect from "react-redux/es/connect/connect";
-import { withRouter} from 'react-router-dom';
-import {fetchProfileByUserId} from "../../Actions/AuthActions";
+import { Button } from "mdbreact";
+import { Component } from "react";
+import { addOrder } from "../../Actions/OrderAction";
+import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
+import { fetchProfileByUserId } from "../../Actions/AuthActions";
 
 class OrderPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			buyItem : {},
-			qty:1,
+			buyItem: {},
+			qty: 1
 		};
 		this.updateDetails = this.updateDetails.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,51 +26,79 @@ class OrderPage extends Component {
 		event.preventDefault();
 
 		let submitOrder = {
-			"qty": this.state.qty,
-			"isCompleted": false,
-			"time": "2018-10-04T08:18:09.171Z",
-			"userId": this.props.userID,
-			"productId": this.state.buyItem.id,
-			"product": {
-				"name": this.state.buyItem.name,
-				"price": this.state.buyItem.price,
-				"img": this.state.buyItem.img,
-				"description": this.state.buyItem.description,
-				"userId": this.state.buyItem.userId,
+			qty: this.state.qty,
+			isCompleted: false,
+			time: "2018-10-04T08:18:09.171Z",
+			userId: this.props.userID,
+			productId: this.state.buyItem.id,
+			product: {
+				name: this.state.buyItem.name,
+				price: this.state.buyItem.price,
+				img: this.state.buyItem.img,
+				description: this.state.buyItem.description,
+				userId: this.state.buyItem.userId
 			}
 		};
 		this.props.addOrder(submitOrder);
-		this.props.history.push('/dashboard');
+		this.props.history.push("/dashboard");
 	}
-	componentDidMount(){
-		this.setState({buyItem : this.props.item});
+	componentDidMount() {
+		this.setState({ buyItem: this.props.item });
 	}
 
 	render() {
 		const { qty } = this.state;
 		return (
-      	<div>
-			<div>
-				<h1>Your Order</h1>
-				<p>item name:</p>
-				<p>{this.state.buyItem.name}</p>
-				<p>item price:</p>
-				<p>{this.state.buyItem.price}</p>
-				<p>item des:</p>
-				<p>{this.state.buyItem.description}</p>
-				<form onSubmit={this.handleSubmit}>
-					<input type="number"  name="qty" value={qty} onChange={this.updateDetails}></input>
-					<Button type="submit">order</Button>
-				</form>
+			<div className="container mt-4">
+				<h1>
+					Comfirm Order <small className="text-info">{this.state.buyItem.name}</small>
+				</h1>
+				<div className="card">
+					<h4 className="card-header primary-color white-text">
+						<a>Item details</a>
+
+					</h4>
+					<div class="card-body">
+
+						<div className="card-text">
+							<p>
+								Name: <strong>{this.state.buyItem.name}</strong>
+							</p>
+
+							<p>Price: ${this.state.buyItem.price}</p>
+
+							<p>Description: {this.state.buyItem.description}</p>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<h4 class="card-header primary-color white-text">Order Amount</h4>
+					<div class="card-body">
+						<form onSubmit={this.handleSubmit} className="md-form">
+							<input
+								className="form-control"
+								type="number"
+								name="qty"
+								value={qty}
+								onChange={this.updateDetails}
+							/>
+							<Button className="btn btn-primary float-right" type="submit">comfirm order</Button>
+						</form>
+					</div>
+				</div>
 			</div>
-		</div>
-		)
-  	}
+		);
+	}
 }
 const mapStateToProps = state => ({
-  userInfo:state.auth.user,
-	userID:state.auth.user.id,
-	addResponse:state.products.addResponse,
-  sellerInfo:state.auth.requesedUserInfo
-})
-export default withRouter(connect(mapStateToProps,{addOrder,fetchProfileByUserId})(OrderPage));
+	userInfo: state.auth.user,
+	userID: state.auth.user.id,
+	addResponse: state.products.addResponse,
+	sellerInfo: state.auth.requesedUserInfo
+});
+export default withRouter(
+	connect(
+		mapStateToProps,
+		{ addOrder, fetchProfileByUserId }
+	)(OrderPage)
+);

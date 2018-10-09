@@ -3,9 +3,7 @@ import {Component} from "react";
 import UserOrderItem from './UserOrderItem';
 import {fetchOrderByUserId} from "../../../Actions/OrderAction";
 import {addOrder} from "../../../Actions/OrderAction";
-import connect from "react-redux/es/connect/connect";
-import { Button,Collapse } from 'mdbreact'
-import {fetchProfileByUserId} from "../../../Actions/AuthActions";
+import {connect} from 'react-redux';
 
 class UserOrders extends Component{
   constructor(props) {
@@ -61,18 +59,25 @@ class UserOrders extends Component{
   }
 
   render () {
-
+    let noOrderAlert = null;
     const orderItems = this.state.orders.map((item,idx) =>(
-
         <UserOrderItem data={item}  parentRemove={this.removeData}  key={idx}/>
-
     ));
+    if(this.state.orders.length === 0) {
+      noOrderAlert = <div className="card ">
+      <div className="card-body">
+          <h3 className="card-title">No Order found</h3>
+          <div className="card-text">You don't have any order yet.</div>
+      </div>
+  </div>
+  }
     return(
       <div className="div">
           <h1>My orders <small className="text-info">{this.state.orders.length}</small></h1>
           <hr/>
 
       {orderItems}
+      {noOrderAlert}
       </div>
     );
   }
