@@ -43,16 +43,16 @@ export class AddProduct extends Component {
 				<hr/>
 				<form onSubmit={this.handleSubmit}>
           <div className="md-form">
-              <Input label="Product Name" class="form-control" name="name" value={name} onChange={this.updateDetails}/>
+              <Input label="Product Name" className="form-control" name="name" value={name} onChange={this.updateDetails}/>
           </div>
           <div className="md-form">
-            <Input label="Price" class="form-control" name="price" value={price} onChange={this.updateDetails}/>
+            <Input label="Price" className="form-control" name="price" value={price} onChange={this.updateDetails}/>
           </div>
           <div className="md-form">
-            <Input label="description" class="form-control" name="description" value={description} onChange={this.updateDetails}/>
+            <Input label="description" className="form-control" name="description" value={description} onChange={this.updateDetails}/>
           </div>
           <div className="md-form">
-            <Input label="Img" class="form-control" name="img" value={img} onChange={this.updateDetails}/>
+            <Input label="Img" className="form-control" name="img" value={img} onChange={this.updateDetails}/>
           </div>
 					<Button className="btn btn-indigo float-right" type="submit">add</Button>
 				</form>

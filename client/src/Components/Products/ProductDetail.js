@@ -1,96 +1,100 @@
 import React from "react";
-import {Carousel, CarouselInner, CarouselItem,Card,CardBody,Button  } from 'mdbreact';
-import {Component} from "react";
-import {fetchProductById} from "../../Actions/ProductAction";
-import {connect} from 'react-redux';
+import { Carousel, CarouselInner, CarouselItem, Card, CardBody, Button } from 'mdbreact';
+import { Component } from "react";
+import { fetchProductById } from "../../Actions/ProductAction";
+import { connect } from 'react-redux';
 import OrderPage from '../Order/OrderPage'
-class ProductDetail extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            id : null,
-            selectProduct:{},
-            ischeckout: false,
-        }
-        this.onBuyClicked = this.onBuyClicked.bind(this);
+class ProductDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: null,
+      selectProduct: {},
+      ischeckout: false,
     }
-    componentWillMount () {
-        this.setState({id : this.props.match.params.id});
-        this.props.fetchProductById(this.props.match.params.id);
-        console.log("Send Request ",this.props.match.params.id);
-    }
-    componentWillReceiveProps(newProps) {
-        const data = newProps.selectProduct
-        this.setState({selectProduct:data});
-    }
- 
-    onBuyClicked() {
-      this.setState({ischeckout:true})
-    }
-    render() {
-      if(this.props.selectProduct !== undefined) {
-        const {name,description,price,img} = this.props.selectProduct;
-       
-        let productImgs = null;
-        let noImg = null;
+    this.onBuyClicked = this.onBuyClicked.bind(this);
+  }
+  componentWillMount() {
+    this.setState({ id: this.props.match.params.id });
+    this.props.fetchProductById(this.props.match.params.id);
+    console.log("Send Request ", this.props.match.params.id);
+  }
+  componentWillReceiveProps(newProps) {
+    const data = newProps.selectProduct
+    this.setState({ selectProduct: data });
+  }
 
-        if(img[0].length) {
-          productImgs = img.map((im, index) => (
-            <CarouselItem itemId={index+1} key={index}>
-              <img className="d-block w-100" src={im} alt="First slide"/>
-            </CarouselItem>
-          ));
-        } else {
-          noImg = <h1>No img avaiable</h1>;
-        }
-        if(!this.state.ischeckout) {
-          return (
-            <div className="container">
-              <div className="row mt-4">
-                <div className="col-md-4">
-                  {noImg}
-                  <Carousel
-                    activeItem={1}
-                    length={img ? img.length : 0}
-                    showControls={true}
-                    showIndicators={true}
-                    thumbnails
-                    className="z-depth-1">
-                    <CarouselInner>
-                      {productImgs}
-                    </CarouselInner>
-                  </Carousel>
+  onBuyClicked() {
+    this.setState({ ischeckout: true })
+  }
+  render() {
+    if (this.props.selectProduct !== undefined) {
+      const { name, description, price, img } = this.props.selectProduct;
 
-                </div>
-                <div className="col-md-8">
-                  <h1>{name}
-                    <hr/>
-                  </h1>
-                  <p>{description}</p>
+      let productImgs = null;
+      let noImg = null;
 
-                  <Card cascade>
-                    <CardBody cascade>
-                      <p>Price: <strong><span style={{fontSize: 25}}>${price}</span></strong></p>
-                      <Button className="btn btn-primary float-right" href="#" onClick={this.onBuyClicked}>Buy now</Button>
-                    </CardBody>
-                  </Card>
-
-
-                </div>
+      if (img[0].length) {
+        productImgs = img.map((im, index) => (
+          <CarouselItem itemId={index + 1} key={index}>
+            <img className="d-block w-100" src={im} alt="First slide" />
+          </CarouselItem>
+        ));
+      } else {
+        noImg = <h1>No img avaiable</h1>;
+      }
+      if (!this.state.ischeckout) {
+        return (
+          <div className="container">
+            <div className="row mt-4">
+              <div className="col-md-4">
+                {noImg}
+                <Carousel
+                  activeItem={1}
+                  length={img ? img.length : 0}
+                  showControls={true}
+                  showIndicators={true}
+                  thumbnails
+                  className="z-depth-1">
+                  <CarouselInner>
+                    {productImgs}
+                  </CarouselInner>
+                </Carousel>
 
               </div>
+              <div className="col-md-8">
+                <h1>{name}
+                  <hr />
+                </h1>
+                <p>{description}</p>
+
+                <Card cascade>
+                  <CardBody cascade>
+                    <p>Price: <strong><span style={{ fontSize: 25 }}>${price}</span></strong></p>
+                    <Button className="btn btn-primary float-right" href="#" onClick={this.onBuyClicked}>Buy now</Button>
+                  </CardBody>
+                </Card>
+
+
+              </div>
+
             </div>
-          );
-        }else {
-          return(
-            <OrderPage item={this.state.selectProduct}/>
-          )
-        }
+          </div>
+        );
+      } else {
+        return (
+          <OrderPage item={this.state.selectProduct} />
+        )
+      }
+    } else {
+      return(
+        <div>Detail undefined</div>
+      )
     }
   }
 }
 const mapStateToProps = state => ({
-    selectProduct:state.products.productItem
+  selectProduct: state.products.productItem
 })
 
-export default connect(mapStateToProps,{fetchProductById})(ProductDetail);
+export default connect(mapStateToProps, { fetchProductById })(ProductDetail);

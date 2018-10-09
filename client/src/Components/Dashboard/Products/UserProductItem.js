@@ -24,18 +24,24 @@ class UserProductItem extends Component {
   }
   render() {
     console.log(this.props.data.img);
-    const imgItems = this.props.data.img.map((imgUri, idx) => (
-      <CarouselItem itemId={idx + 1} key={idx}>
-        <View>
-          <img
+    let imgItems;
+   
+    if(this.props.data.img[0].length > 0) {
+      imgItems = this.props.data.img.map((imgUri, idx) => (
+        <CarouselItem itemId={idx + 1} key={idx}>
+          <View>
+            <img
             className="d-block w-100"
             height="170px"
             src={imgUri}
             alt={imgUri}
           />
-        </View>
-      </CarouselItem>
-    ));
+          </View>
+        </CarouselItem>
+      ));
+    } else {
+      imgItems = <View className="primary-color" ><h1 className="text-white text-center" style={{height:170}}>No image</h1></View>
+    }
     return (
       <div className="card">
         <Carousel

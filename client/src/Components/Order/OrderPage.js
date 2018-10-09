@@ -28,7 +28,6 @@ class OrderPage extends Component {
 		let submitOrder = {
 			qty: this.state.qty,
 			isCompleted: false,
-			time: "2018-10-04T08:18:09.171Z",
 			userId: this.props.userID,
 			productId: this.state.buyItem.id,
 			product: {
