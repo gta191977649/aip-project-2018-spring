@@ -85,9 +85,6 @@ class UserSellDetail extends Component {
               UserName: <strong>{this.props.seller.userName}</strong>
             </p>
             <p>
-              ID: <strong>{this.props.seller.id}</strong>
-            </p>
-            <p>
               Contact: <strong>{this.props.seller.email}</strong>
             </p>
           </CardBody>
