@@ -1,11 +1,9 @@
 import React from "react";
 import { Component } from "react";
 import UserSellItem from './UserSellItem';
-import { fetchOrderByUserId, fetchOrderBySellerId } from "../../../Actions/OrderAction";
+import {fetchOrderBySellerId } from "../../../Actions/OrderAction";
 import { addOrder } from "../../../Actions/OrderAction";
 import connect from "react-redux/es/connect/connect";
-import { Button, Collapse } from 'mdbreact'
-
 class UserSells extends Component {
   constructor(props) {
     super(props);

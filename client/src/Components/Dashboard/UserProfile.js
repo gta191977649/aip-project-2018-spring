@@ -1,9 +1,6 @@
 import {Component} from "react";
 import React from "react";
 import {connect} from 'react-redux';
-import {fetchProducts} from "../../Actions/ProductAction";
-import {addFlashMessage} from "../../Actions/FlashActions";
-
 
 export class UserProfile extends Component {
     render () {

@@ -3,18 +3,11 @@ import {
   Carousel,
   CarouselInner,
   CarouselItem,
-  Container,
   Card,
-  CardImage,
   CardBody,
-  CardTitle,
-  CardText,
-  Button,
-  Input
 } from "mdbreact";
 import { Component } from "react";
 import { connect } from "react-redux";
-import { fetchProductById } from "../../../Actions/ProductAction";
 import { fetchOrderById } from "../../../Actions/OrderAction";
 import { fetchProfileByUserId } from "../../../Actions/AuthActions";
 class ProductDetail extends Component {

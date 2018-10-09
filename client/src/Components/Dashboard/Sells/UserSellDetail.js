@@ -3,18 +3,11 @@ import {
   Carousel,
   CarouselInner,
   CarouselItem,
-  Container,
   Card,
-  CardImage,
   CardBody,
-  CardTitle,
-  CardText,
-  Button,
-  Input
 } from "mdbreact";
 import { Component } from "react";
 import { connect } from "react-redux";
-import { fetchProductById } from "../../../Actions/ProductAction";
 import { fetchOrderById } from "../../../Actions/OrderAction";
 import { fetchProfileByUserId } from "../../../Actions/AuthActions";
 class UserSellDetail extends Component {
@@ -46,8 +39,8 @@ class UserSellDetail extends Component {
       const { qty, time, id } = this.props.order;
       let productImgs = null;
       let noImg = null;
-      let sellerInfo = null;
-      let orderInfo = null;
+      let sellerInfo;
+      let orderInfo;
       if (img) {
         productImgs = img.map((im, index) => (
           <CarouselItem itemId={index + 1} key={index}>
