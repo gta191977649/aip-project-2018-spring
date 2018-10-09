@@ -45,14 +45,14 @@ export const userLogin = auth => dispatch => {
 };
 
 // TODO: Need to update for later
-export const userRegister = register => {
+export const userRegister = (user, history) => {
   //doRegister
-  let handle = register.username;
-  let name = register.name; //Name for user
-  let email = register.email; // Email for storage in backend
-  let confirm = register.confirm; // This is the secondary email to double check that they are the same on the back end
-  let password = register.password;
-  let passwordConfirm = register.passwordConfirm;
+  let handle = user.username;
+  let name = user.name; //Name for user
+  let email = user.email; // Email for storage in backend
+  let confirm = user.confirm; // This is the secondary email to double check that they are the same on the back end
+  let password = user.password;
+  let passwordConfirm = user.passwordConfirm;
 
   return dispatch => {
     return Axios.post(API_URL + "/auth/register", {
@@ -62,12 +62,18 @@ export const userRegister = register => {
       confirm,
       password,
       passwordConfirm
-    }).catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data.errors
+    })
+      .then(res => {
+        if (res.data.success) {
+          history.push("/login");
+        }
+      })
+      .catch(err => {
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data.errors
+        });
       });
-    });
   };
 };
 

@@ -35,11 +35,7 @@ export class RegisterPage extends Component {
   submitHandler(event) {
     event.preventDefault();
     this.setState({ errors: {}, isLoading: true });
-    this.props.userRegister(this.state).then(res => {
-      if (res.data.success) {
-        this.props.history.push("/login");
-      }
-    });
+    this.props.userRegister(this.state, this.props.history);
     this.setState({ isLoading: false });
   }
 
@@ -47,14 +43,6 @@ export class RegisterPage extends Component {
     this.setState({
       [event.target.name]: validator.escape(event.target.value)
     });
-  }
-
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-    if (!isValid) {
-      this.setState({ errors });
-    }
-    return isValid;
   }
 
   render() {
