@@ -1,35 +1,53 @@
-/* Required height of parents of the Full Page Intro and Intro itself */
 html {
   position: relative;
   min-height: 100%;
 }
+
 body {
-  margin-bottom: 55px; /* Margin bottom by footer height */
+  min-height: 100%;
 }
-#main{
-  /* margin-top: 76px; */
+
+#main {
+  margin-top: 5rem;
+  min-height: 100vh;
 }
-#nav{
-  margin-bottom: 3rem;
-}
+
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
-  height: 55px; /* Set the fixed height of the footer here */
-  line-height: 55px; /* Vertically center the text there */
+  min-height: 60px;
   background-color: #2196f3 !important;
 }
 
 [class$="-primary"],
 [class*="-primary "] {
-    background-color: #2196f3 !important;
+  background-color: #2196f3 !important;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.error-template {padding: 40px 15px;text-align: center;}
-.error-actions {margin-top:15px;margin-bottom:15px;}
-.error-actions .btn { margin-right:10px; }
+.error-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.error-actions {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.error-actions .btn {
+  margin-right: 10px;
+}
+
+.searchArea {
+  padding-top: 100px;
+}
+
+
+.nav-search::placeholder {
+  color: white;
+}

@@ -10,6 +10,11 @@ const authenticateRoute = passport.authenticate('jwt', {
 
 // Product Routes
 
+// @route GET api/products/search
+// @desc Returns a list matching a certain name
+// @access Public
+router.get('/search', ProductController.product_search);
+
 // @route GET api/products
 // @desc Gets the list of products
 // @access Public
@@ -34,9 +39,9 @@ router.delete('/:id', authenticateRoute, ProductController.product_delete);
 // @access Private
 router.put('/:id', authenticateRoute, ProductController.product_update);
 
-// @route GET api/products/creator/user:id
-// @desc Gets the list of products by creator (userid)
+// @route GET api/products/serller/user:id
+// @desc Gets the list of products by seller (userid)
 // @access Public
-router.get('/creator/:userid', ProductController.product_list_creator);
+router.get('/seller/:userid', ProductController.product_list_seller);
 
 module.exports = router;

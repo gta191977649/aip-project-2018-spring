@@ -39,6 +39,13 @@ mongoose
 // Set Mongoose Promise engine to Bluebird!
 mongoose.Promise = Promise;
 
+// Register models
+require('./models/Account');
+require('./models/Feedback');
+require('./models/Order');
+require('./models/Product');
+require('./models/UserProfile');
+
 // Setup Routes
 app.use('/api', apiRouter);
 app.use(function(req, res) {

@@ -4,6 +4,7 @@ import { Component } from "react";
 import { addOrder } from "../../Actions/OrderAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { fetchProfileByUserId } from "../../Actions/AuthActions";
 
 class OrderPage extends Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class OrderPage extends Component {
     this.updateDetails = this.updateDetails.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   updateDetails(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -73,12 +73,14 @@ class OrderPage extends Component {
   }
 }
 const mapStateToProps = state => ({
+  userInfo: state.auth.user,
   userID: state.auth.user.id,
-  addResponse: state.products.addResponse
+  addResponse: state.products.addResponse,
+  sellerInfo: state.auth.requesedUserInfo
 });
 export default withRouter(
   connect(
     mapStateToProps,
-    { addOrder }
+    { addOrder, fetchProfileByUserId }
   )(OrderPage)
 );

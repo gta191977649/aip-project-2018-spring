@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let OrderSchema = new Schema({
-  product_id: {
+  product: {
     type: Schema.Types.ObjectId,
     ref: 'Product',
   },
-  customer_id: {
+  customer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -25,4 +25,4 @@ let OrderSchema = new Schema({
 });
 
 // eslint-disable-next-line no-undef
-module.exports.default = Order = mongoose.model('Order', OrderSchema);
+module.exports = Order = mongoose.model('Order', OrderSchema);

@@ -4,6 +4,7 @@ import { ListGroup, ListGroupItem } from 'mdbreact'
 import UserProfile from './UserProfile';
 import UserProducts from './Products/UserProducts';
 import UserOrder from './Orders/UserOrders';
+import UserSell from './Sells/UserSells'
 export class DashboardPage extends Component {
 
     constructor(props) {
@@ -17,16 +18,20 @@ export class DashboardPage extends Component {
         this.onNavClick(0);
     }
     onNavClick(id) {
-        console.log("clicked ",id)
+        console.log("clicked ",id);
         switch (id) {
             case 0:
-                this.setState({renderCompoment:<UserProfile/>})
+                this.setState({renderCompoment:<UserProfile/>});
                 break;
             case 1:
-                this.setState({renderCompoment:<UserProducts/>})
+                this.setState({renderCompoment:<UserProducts/>});
                 break;
             case 2:
-                this.setState({renderCompoment:<UserOrder/>})
+                this.setState({renderCompoment:<UserOrder/>});
+                break;
+            case 3:
+                this.setState({renderCompoment:<UserSell/>});
+                break;
         }
     }
     render() {
@@ -38,6 +43,7 @@ export class DashboardPage extends Component {
                             <ListGroupItem hover onClick={() => {this.onNavClick(0)}}>Profile</ListGroupItem>
                             <ListGroupItem hover onClick={() => {this.onNavClick(1)}}>My Sell items</ListGroupItem>
                             <ListGroupItem hover onClick={() => {this.onNavClick(2)}}>My Orders</ListGroupItem>
+                            <ListGroupItem hover onClick={() => {this.onNavClick(3)}}>My Sells</ListGroupItem>
                         </ListGroup>
                     </div>
                     <div className="col-md-9">

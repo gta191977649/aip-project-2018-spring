@@ -1,36 +1,31 @@
 import React, { Component } from "react";
-//Redux
+import store from "./store";
 import { Provider } from "react-redux";
-import configureStore from "./store";
-import { PersistGate } from "redux-persist/integration/react";
-
+import { BrowserRouter as Router } from "react-router-dom";
 //MDB
-import 'font-awesome/css/font-awesome.min.css';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
-import './App.css';
+import "font-awesome/css/font-awesome.min.css";
+import "bootstrap-css-only/css/bootstrap.min.css";
+import "mdbreact/dist/css/mdb.css";
+import "./App.css";
 
 //Components
 import Nav from "./Components/Nav";
 import Main from "./Components/Main";
-import Footer from "./Components/Footer";
+import FooterComponent from "./Components/FooterComponent";
 import AuthComponent from "./Utils/AuthComponent";
 
 class App extends Component {
-//   static propTypes = {
-//     store: PropTypes.object.isRequired
-//   }
-
   render() {
-    const {store, persistor } = configureStore();
     return (
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <AuthComponent />
-          <Nav />
-          <Main />
-          <Footer />
-        </PersistGate>
+        <Router>
+          <div className="App">
+            <AuthComponent />
+            <Nav />
+            <Main />
+            <FooterComponent />
+          </div>
+        </Router>
       </Provider>
     );
   }

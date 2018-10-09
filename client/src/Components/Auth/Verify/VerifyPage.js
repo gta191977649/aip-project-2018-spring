@@ -4,15 +4,15 @@ import { addFlashMessage } from "../../../Actions/FlashActions";
 import { Container, Col, Row } from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ProgressBar from '../../ProgressBar';
+import ProgressBar from "../../Misc/ProgressBar";
 export class VerifyPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ...props.location.state,
       progress: 0,
-      interval: 10,
-    }
+      interval: 10
+    };
 
     this.autoChange = this.autoChange.bind(this);
   }
@@ -26,20 +26,20 @@ export class VerifyPage extends Component {
     console.log(this.state);
   }
 
-  componentUpdated(){
-    if(this.state.isLoaded){
+  componentUpdated() {
+    if (this.state.isLoaded) {
       this.props.userVerify(this.state.auth).then(
         res => {
           this.props.addFlashMessage({
-            type: 'success',
-            text: 'You are now verfieid, please login!'
-          }); 
-          this.props.history.push('/login'); 
+            type: "success",
+            text: "You are now verfieid, please login!"
+          });
+          this.props.history.push("/login");
         },
-        err => { 
+        err => {
           this.props.addFlashMessage({
-            type: 'error',
-            text: 'There was an error validating please contact an admin!'
+            type: "error",
+            text: "There was an error validating please contact an admin!"
           });
         }
       );
@@ -57,19 +57,22 @@ export class VerifyPage extends Component {
       oldState.progress += 1;
       this.setState(oldState);
     }
-    this.setState({isLoaded: true});
+    this.setState({ isLoaded: true });
     this.componentUpdated();
   }
 
   render() {
     const { progress, interval } = this.state;
     return (
-      
       <Container>
         <Row>
           <Col md="6" className="mx-auto text-center">
             <h2>Please wait while we verify your account!</h2>
-            <ProgressBar progress={progress} autoIncrement={true} interval={interval}/>
+            <ProgressBar
+              progress={progress}
+              autoIncrement={true}
+              interval={interval}
+            />
           </Col>
         </Row>
       </Container>

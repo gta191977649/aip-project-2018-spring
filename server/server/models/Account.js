@@ -11,10 +11,16 @@ let UserSchema = new Schema({
     type: String,
     require: true,
   },
+  handle: {
+    type: String,
+    required: true,
+    max: 40,
+  },
   password: {
     type: String,
     required: true,
   },
+
   avatar: {
     type: String,
   },

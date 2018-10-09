@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let ProductSchema = new Schema({
-  creator_id: {
+  seller: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -24,4 +24,4 @@ let ProductSchema = new Schema({
 });
 
 // eslint-disable-next-line no-undef
-module.exports.default = Product = mongoose.model('product', ProductSchema);
+module.exports = Product = mongoose.model('Product', ProductSchema);

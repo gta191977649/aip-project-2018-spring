@@ -9,8 +9,8 @@ import {
   NavItem,
   NavLink
 } from "mdbreact";
-/*import { withRouter } from 'react-router-dom';*/
 import User from "./Auth/User";
+import SearchNavForm from "./Search/SearchNavForm";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -28,34 +28,34 @@ class Nav extends React.Component {
       collapse: !this.state.collapse
     });
   }
-  render() {
-    let user = this.state.user;
 
+  render() {
     return (
-        <Navbar color="blue" dark expand="lg">
-          <Container>
-            <NavbarBrand href="/">
-              <strong className="px-2">StoreApp</strong>
-            </NavbarBrand>
-            {!this.state.isWideEnough && (
-              <NavbarToggler onClick={this.onClick} />
-            )}
-            <Collapse isOpen={this.state.collapse} navbar>
-              <NavbarNav left>
-                <NavItem>
-                  <NavLink to="/">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to="/products">Product</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to="/about">About</NavLink>
-                </NavItem>
-              </NavbarNav>
+      <Navbar color="br-primary" expand="lg" fixed="top" dark scrolling>
+        <Container>
+          <NavbarBrand href="/">
+            <strong className="px-2">AIP Auctions</strong>
+          </NavbarBrand>
+          {!this.state.isWideEnough && <NavbarToggler onClick={this.onClick} />}
+          <Collapse isOpen={this.state.collapse} navbar>
+            <NavbarNav left>
+              <NavItem>
+                <NavLink to="/">Home</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/categories">Product Categories</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/about">About</NavLink>
+              </NavItem>
+            </NavbarNav>
+            <NavbarNav right>
+              <SearchNavForm />
               <User />
-            </Collapse>
-          </Container>
-        </Navbar>
+            </NavbarNav>
+          </Collapse>
+        </Container>
+      </Navbar>
     );
   }
 }

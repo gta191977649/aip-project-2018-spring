@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import {deleteFlashMessage} from '../../Actions/FlashActions';
-import ProgressBar from '../ProgressBar';
-export class FlashMessage extends Component { 
-  onClick(event){
+import { deleteFlashMessage } from "../../Actions/FlashActions";
+import ProgressBar from "../Misc/ProgressBar";
+export class FlashMessage extends Component {
+  onClick(event) {
     //TODO: Change to remove single later
     this.props.deleteFlashMessage(this.props.message.id);
   }
-  async componentDidMount(){
+  async componentDidMount() {
     await this.sleep(2000);
     this.onClick(null);
   }
@@ -28,7 +28,6 @@ export class FlashMessage extends Component {
         })}
         role="alert"
       >
-      
         <button onClick={this.onClick.bind(this)} className="close">
           &times;
         </button>

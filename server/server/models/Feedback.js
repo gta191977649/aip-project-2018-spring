@@ -30,4 +30,4 @@ let FeedbackSchema = new Schema({
 });
 
 // eslint-disable-next-line no-undef
-module.exports.default = Feedback = mongoose.model('Feedback', FeedbackSchema);
+module.exports = Feedback = mongoose.model('Feedback', FeedbackSchema);

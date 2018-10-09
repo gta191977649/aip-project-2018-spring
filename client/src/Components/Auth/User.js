@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { NavbarNav, NavLink, NavItem } from "mdbreact";
-import {withRouter} from 'react-router-dom'
-import {userLogout} from '../../Actions/AuthActions';
-import {addFlashMessage} from '../../Actions/FlashActions';
+import { withRouter } from "react-router-dom";
+import { userLogout } from "../../Actions/AuthActions";
+import { addFlashMessage } from "../../Actions/FlashActions";
 
 export class User extends Component {
   static propTypes = {
@@ -13,42 +13,44 @@ export class User extends Component {
     addFlashMessage: PropTypes.func.isRequired
   };
 
-  logout(event){
+  logout(event) {
     event.preventDefault();
     console.log("LOGO");
     this.props.userLogout(this.props.auth.user);
-    this.props.history.push('/login'); 
+    this.props.history.push("/login");
     this.props.addFlashMessage({
-      type: 'error',
-      text: 'Logged out!'
+      type: "error",
+      text: "Logged out!"
     });
-    
   }
 
   render() {
     const { isLoggedIn } = this.props.auth;
     const userLinks = (
-      <NavbarNav right>
+      <>
         <NavItem>
           <NavLink to="/dashboard">Dashboard</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/logout" onClick={this.logout.bind(this)}>Logout</NavLink>
+          <NavLink to="/logout" onClick={this.logout.bind(this)}>
+            Logout
+          </NavLink>
         </NavItem>
-      </NavbarNav>
+      </>
     );
 
     const guestLinks = (
-      <NavbarNav right>
+      <>
         <NavItem>
           <NavLink to="/login">Login</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/register">Register</NavLink>
         </NavItem>
-      </NavbarNav>
+      </>
     );
-    return <div>{isLoggedIn ? userLinks : guestLinks}</div>;
+    let component = isLoggedIn ? userLinks : guestLinks;
+    return component;
   }
 }
 
@@ -57,10 +59,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  userLogout, addFlashMessage
+  userLogout,
+  addFlashMessage
 };
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(User));
+)(User);

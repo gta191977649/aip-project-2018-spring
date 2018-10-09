@@ -21,6 +21,7 @@ module.exports.user_current = async (req, res) => {
 module.exports.user_register = async (req, res) => {
   const {errors, isValid} = validateRegister(req.body);
   if (!isValid) {
+    console.log('Not valid yo' + JSON.stringify(errors));
     return res.status(400).json({
       errors,
     });
@@ -29,8 +30,16 @@ module.exports.user_register = async (req, res) => {
   let user = await User.findOne({email: req.body.email});
   if (user) {
     errors.email = 'Email already exists';
+    console.log('ERROR: email exists');
     return res.status(400).json({errors});
   } else {
+    let username = await User.findOne({handle: req.body.handle});
+    if (username) {
+      errors.username = 'Username already exists';
+      console.log('ERROR: username/handle exists!');
+      return res.status(400).json({errors});
+    }
+
     let avatar = gravatar.url(req.body.email, {
       s: '200', // Size
       r: 'pg', // Rating
@@ -38,6 +47,7 @@ module.exports.user_register = async (req, res) => {
     });
 
     let newUser = new User({
+      handle: req.body.handle,
       name: req.body.name,
       email: req.body.email,
       avatar,
