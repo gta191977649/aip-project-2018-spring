@@ -9,7 +9,9 @@ import {
   FETCH_ORDER_USER_ID,
   FETCH_ORDER_SELLER_ID
 } from "./Types";
-import { API_URL } from "../Utils/Constants";
+
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost";
 const orderRestURI = API_URL + "/orders";
 
 export const fetchOrders = () => dispatch => {

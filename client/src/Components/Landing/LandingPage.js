@@ -10,9 +10,9 @@ export class LandingPage extends Component {
   static propTypes = {};
   render() {
     return (
-      <div id="classicformpage">
+      <div id="classicformpage" className="mt-0">
         {/* TODO: Implement parrallax */}
-        <View className="landingview parallax">
+        <View className="landingview">
           <Mask
             className="d-flex justify-content-center align-items-center gradient"
             pattern={6}
@@ -21,7 +21,7 @@ export class LandingPage extends Component {
               <Row>
                 <Col md="12" className="mb-4 white-text text-center">
                   <h3 className="display-3 font-weight-bold mb-0 pt-md-5">
-                    AIP Auctions
+                    {process.env.REACT_APP_NAME}
                   </h3>
                   <hr className="hr-light my-4 w-75" />
 

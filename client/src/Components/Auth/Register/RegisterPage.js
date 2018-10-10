@@ -21,7 +21,6 @@ export class RegisterPage extends Component {
       passwordConfirm: "",
       isLoading: false
     };
-
     this.updateDetails = this.updateDetails.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
   }
@@ -78,11 +77,14 @@ export class RegisterPage extends Component {
             <form className="needs-validation" onSubmit={this.submitHandler}>
               <p className="display-4 h5 text-center mb-4">Sign up</p>
               <div className={alertError} role="alert">
-                {errors.name ? errors.confirm : ""}
-                {errors.email ? errors.email : ""}
-                {errors.confirm ? errors.confirm : ""}
-                {errors.password ? errors.password : ""}
-                {errors.passwordConfirm ? errors.passwordConfirm : ""}
+                {errors.name ? errors.confirm + "<br />" : ""}
+                {errors.email ? errors.email + "<br />" : ""}
+                {errors.confirm ? errors.confirm + "<br />" : ""}
+                {errors.password ? errors.password + "<br />" : ""}
+                {errors.passwordConfirm
+                  ? errors.passwordConfirm + "<br />"
+                  : ""}
+
                 {errors.username ? errors.username : ""}
               </div>
               <div className="grey-text">

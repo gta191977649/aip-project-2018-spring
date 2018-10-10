@@ -58,7 +58,8 @@ export class LoginPage extends Component {
             <form className="needs-validation" onSubmit={this.submitHandler}>
               <p className="display-4 h5 text-center mb-4">Sign in</p>
               <div className={alertError} role="alert">
-                {errors.email ? errors.email : ""}
+                {errors.email ? errors.email + "<br />" : ""}
+
                 {errors.password ? errors.password : ""}
               </div>
               <div className="grey-text">

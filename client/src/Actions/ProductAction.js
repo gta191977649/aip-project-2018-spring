@@ -10,7 +10,10 @@ import {
 
 import axios from "axios";
 //const productRestURI = process.env.API + "Products"; Bug with undefined
-const productRestURI = "http://localhost:3000/api/Products";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost";
+const productRestURI = API_URL+"/products";
+
 export const fetchProducts = () => dispatch => {
 
   axios.get(productRestURI)

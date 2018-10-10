@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
+import { Container, Row, Col, Avatar } from "mdbreact";
 //Components
 import { profileGet } from "../../Actions/AuthActions";
 import { isEmpty } from "../../Utils/UtilMethods";
@@ -27,12 +27,27 @@ export class ProfilePage extends Component {
   componentDidMount() {
     let handle = this.props.match.params.handle;
     if (!isEmpty(handle)) {
-      let result = this.props.profileGet(handle);
-      console.log(result.data);
+      this.props.profileGet(handle).then(result => {
+        console.log(result.data);
+      });
     }
   }
   render() {
-    return <div />;
+    return (
+      <Container className="mt-5" fluid>
+        <Row className="pt-5">
+          <Col md="12">
+            <Avatar
+              tag="img"
+              src=""
+              className="rounded-circle z-depth-1 img-fluid"
+              alt="Sample avatar"
+            />
+            <h5 className="font-weight-bold mt-4 mb-3">Anna Williams</h5>
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 }
 

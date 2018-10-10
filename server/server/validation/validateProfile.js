@@ -1,28 +1,48 @@
-const validator = require('validator');
-const isEmpty = require('../utils/is-empty');
+const validator = require("validator");
+const isEmpty = require("../utils/is-empty");
 
 module.exports = function validateLoginInput(data) {
   let errors = {};
 
-  data.email = !isEmpty(data.email) ? data.email : '';
-  data.password = !isEmpty(data.password) ? data.password : '';
+  data.website = !isEmpty(data.website) ? validator.escape(data.website) : "";
+  data.location = !isEmpty(data.location)
+    ? validator.escape(data.location)
+    : "";
+  data.description = !isEmpty(data.description)
+    ? validator.escape(data.description)
+    : "";
 
-  let isValidEmail = validator.isEmail('' + validator.escape(data.email));
-  let isPassValid = validator.isLength(validator.escape(data.password), {
-    min: 8,
-    max: 24,
+  let isWebsiteValid =
+    validator.isLength(data.website, {
+      min: 8,
+      max: 24
+    }) &&
+    (validator.isURL(data.website) ||
+      validator.unescape(data.website) === "N/A");
+  let isLocationValid = validator.isLength(data.location, {
+    min: 1,
+    max: 30
   });
 
-  if (!isValidEmail || validator.isEmpty(data.email)) {
-    errors.email = 'Email Invalid';
+  let isDescriptionValid = validator.isLength(data.description, {
+    min: 1,
+    max: 300
+  });
+
+  if (!isWebsiteValid || validator.isEmpty(data.website)) {
+    errors.website = "Website invalid";
   }
 
-  if (!isPassValid || validator.isEmpty(data.password)) {
-    errors.password = 'Password invalid';
+  if (!isLocationValid || validator.isEmpty(data.location)) {
+    errors.location = "Location invalid, must be between 1 and 30 characters";
+  }
+
+  if (!isDescriptionValid || validator.isEmpty(data.description)) {
+    error.description = "Description is invalid";
   }
 
   return {
     errors,
-    isValid: isEmpty(errors),
+    isValid: isEmpty(errors)
   };
 };

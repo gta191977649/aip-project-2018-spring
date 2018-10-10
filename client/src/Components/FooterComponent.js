@@ -3,8 +3,8 @@ import { Col, Container, Row, Footer, Fa } from "mdbreact";
 import { CATEGORIES } from "../Utils/Constants";
 class FooterComponent extends React.Component {
   render() {
-    let categories = CATEGORIES.map(name => (
-      <p>
+    let categories = CATEGORIES.forEach(name => (
+      <p key={name.key}>
         <a href={"/category/" + name}>
           <Fa icon="arrow-right" className="mr-1" /> {name}
         </a>
@@ -16,7 +16,7 @@ class FooterComponent extends React.Component {
           <Row className="text-center text-md-left mt-3 pb-3">
             <Col md="3" lg="3" xl="3" className="mx-auto mt-3">
               <h6 className="text-uppercase mb-4 font-weight-bold">
-                AIPAuctions
+                {process.env.REACT_APP_NAME}
               </h6>
               <p>
                 Bringing you the best products for the cheapest products, by

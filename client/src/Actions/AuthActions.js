@@ -5,12 +5,13 @@ import {
   GET_ERRORS,
   PROFILE_GET
 } from "./Types";
-import { API_URL } from "../Utils/Constants";
 import Axios from "axios";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
 import { addFlashMessage } from "./FlashActions";
 import { isEmpty } from "../Utils/UtilMethods";
 import jwt from "jsonwebtoken";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost";
 
 //TODO: Need to update for login.
 export const userLogin = (auth, history) => dispatch => {

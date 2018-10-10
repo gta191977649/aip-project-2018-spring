@@ -35,7 +35,8 @@ class Nav extends React.Component {
   }
 
   render() {
-    let transparent = this.props.location.pathname === "/" ? true : false;
+    let shouldTransparent = this.props.location.pathname === "/";
+    let transparent = shouldTransparent ? true : false;
     return (
       <Navbar
         color="br-primary"
@@ -47,7 +48,7 @@ class Nav extends React.Component {
       >
         <Container fluid>
           <NavbarBrand href="/">
-            <strong className="px-2">AIP Auctions</strong>
+            <strong className="px-2">{process.env.REACT_APP_NAME}</strong>
           </NavbarBrand>
           {!this.state.isWideEnough && <NavbarToggler onClick={this.onClick} />}
           <Collapse isOpen={this.state.collapse} navbar>
@@ -65,25 +66,40 @@ class Nav extends React.Component {
                     Products
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem href="/products">
+                    <NavLink
+                      to="/products"
+                      className="dropdown-item black-text"
+                    >
                       <Fa icon="list" className="mr-1" /> All Products
-                    </DropdownItem>
+                    </NavLink>
 
-                    <DropdownItem href="/category/clothes">
+                    <NavLink
+                      to="/category/clothes"
+                      className="dropdown-item black-text"
+                    >
                       <Fa icon="tags" className="mr-1" /> Clothes
-                    </DropdownItem>
+                    </NavLink>
 
-                    <DropdownItem href="/category/electronics">
+                    <NavLink
+                      to="/category/electronics"
+                      className="dropdown-item black-text"
+                    >
                       <Fa icon="television" className="mr-1" /> Electronics
-                    </DropdownItem>
+                    </NavLink>
 
-                    <DropdownItem href="/category/software">
+                    <NavLink
+                      to="/category/software"
+                      className="dropdown-item black-text"
+                    >
                       <Fa icon="gears" className="mr-1" /> Software
-                    </DropdownItem>
+                    </NavLink>
 
-                    <DropdownItem href="/category/Toys">
+                    <NavLink
+                      to="/category/toys"
+                      className="dropdown-item black-text"
+                    >
                       <Fa icon="soccer-ball-o" className="mr-1" /> Toys
-                    </DropdownItem>
+                    </NavLink>
                   </DropdownMenu>
                 </Dropdown>
               </NavItem>

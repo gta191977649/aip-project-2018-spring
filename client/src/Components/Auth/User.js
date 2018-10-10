@@ -46,17 +46,20 @@ export class User extends Component {
               {name}
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem href="/dashboard">
+              <NavLink to="/dashboard" className="dropdown-item black-text">
                 <Fa icon="bar-chart" className="mr-1" />
                 Dashboard
-              </DropdownItem>
-              <DropdownItem href={"/profile/" + handle}>
+              </NavLink>
+              <NavLink
+                to={"/profile/" + handle}
+                className="dropdown-item black-text"
+              >
                 <Fa icon="user" className="mr-1" /> Your Profile
-              </DropdownItem>
-              <DropdownItem href="/orders">
+              </NavLink>
+              <NavLink to="/orders" className="dropdown-item black-text">
                 <Fa icon="list" className="mr-1" /> Your orders
-              </DropdownItem>
-              <DropdownItem href="/logout" onClick={this.logout}>
+              </NavLink>
+              <DropdownItem href="/logout">
                 <Fa icon="sign-out" className="mr-1" />
                 Logout
               </DropdownItem>

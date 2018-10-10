@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "cp -n .env.example .env"
   },
   "engines": {
     "node": ">=8.0.0"
