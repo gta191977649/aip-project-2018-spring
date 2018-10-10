@@ -17,23 +17,22 @@ import { addFlashMessage } from "../../Actions/FlashActions";
 export class User extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    userLogout: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired
+    userLogout: PropTypes.func.isRequired
   };
   constructor(props) {
     super(props);
 
     this.logout = this.logout.bind(this);
   }
+
   logout(event) {
     event.preventDefault();
-    console.log("LOGO");
     this.props.userLogout(this.props.auth.user, this.props.history);
   }
 
   render() {
     const { isLoggedIn } = this.props.auth;
-    const { name, avatar } = this.props.auth.user;
+    const { name, avatar, handle } = this.props.auth.user;
     const userLinks = (
       <>
         <NavItem>
@@ -51,13 +50,13 @@ export class User extends Component {
                 <Fa icon="bar-chart" className="mr-1" />
                 Dashboard
               </DropdownItem>
-              <DropdownItem href="#">
+              <DropdownItem href={"/profile/" + handle}>
                 <Fa icon="user" className="mr-1" /> Your Profile
               </DropdownItem>
               <DropdownItem href="/orders">
                 <Fa icon="list" className="mr-1" /> Your orders
               </DropdownItem>
-              <DropdownItem href="#" onClick={this.logout}>
+              <DropdownItem href="/logout" onClick={this.logout}>
                 <Fa icon="sign-out" className="mr-1" />
                 Logout
               </DropdownItem>
@@ -91,8 +90,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  userLogout,
-  addFlashMessage
+  userLogout
 };
 
 export default withRouter(

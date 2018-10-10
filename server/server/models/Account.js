@@ -38,6 +38,7 @@ UserSchema.methods.generateJWT = function() {
     id: this._id,
     name: this.name,
     avatar: this.avatar,
+    handle: this.handle,
   };
   return jwt.sign(payload, keys.secret, {
     expiresIn: parseInt(expirationDate.getTime() / 1000, 10),

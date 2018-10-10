@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import LandingPage from "./Landing/LandingPage";
 import About from "./About/About";
 import RegisterPage from "./Auth/Register/RegisterPage";
+import Logout from "./Auth/Logout";
 import LoginPage from "./Auth/Login/LoginPage";
 import Products from "./Products/Products";
 import ProductDetail from "./Products/ProductDetail";
@@ -19,6 +20,9 @@ import ErrorCodeComponent from "./ErrorCodeComponent";
 import AddProduct from "./Dashboard/Products/AddProduct";
 import UserOrderDetails from "./Dashboard/Orders/UserOrderDetails";
 import CategoriesPage from "./Products/CategoriesPage";
+import OrderPage from "./Order/OrderPage";
+import ProfilePage from "./Profile/ProfilePage";
+
 export class Main extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired
@@ -35,9 +39,12 @@ export class Main extends Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/products/:id" component={ProductDetail} />
-          <Route path="/categories/:name" component={CategoriesPage} />
+          <Route path="/category/:name" component={CategoriesPage} />
           <Route path="/products" component={Products} />
+
           <Route path="/search" component={SearchPage} />
+          <Route path="/profile/:handle" component={ProfilePage} />
+
           <PrivateRoute
             path="/dashboard"
             component={Dashboard}
@@ -53,7 +60,16 @@ export class Main extends Component {
             component={UserOrderDetails}
             isLoggedIn={isLoggedIn}
           />
-
+          <PrivateRoute
+            parth="/orders"
+            component={OrderPage}
+            isLoggedIn={isLoggedIn}
+          />
+          <PrivateRoute
+            path="/logout"
+            component={Logout}
+            isLoggedIn={isLoggedIn}
+          />
           {/* This is an error component for 404s :) */}
           <Route path="*" exact={true} component={ErrorCodeComponent} />
         </Switch>

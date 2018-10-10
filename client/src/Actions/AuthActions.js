@@ -2,7 +2,8 @@ import {
   USER_SET,
   FETCH_USER_ID,
   FETCH_USERS_ERROR,
-  GET_ERRORS
+  GET_ERRORS,
+  PROFILE_GET
 } from "./Types";
 import { API_URL } from "../Utils/Constants";
 import Axios from "axios";
@@ -103,8 +104,8 @@ export const fetchProfileByUserId = id => dispatch => {
     })
     .catch(error => {
       dispatch({
-        type: FETCH_USERS_ERROR,
-        payload: error.message
+        type: GET_ERRORS,
+        payload: error.response.data.errors
       });
     });
 };
@@ -123,21 +124,48 @@ export const userVerify = auth => {
 };
 
 export const userLogout = (user, history) => dispatch => {
-  Axios.post(API_URL + "/auth/logout").then(
-    res => {
-      //Remove token for logout
-      localStorage.removeItem("token");
-      // set blank token to auth
-      setAuthorizationToken();
+  //Remove token for logout
+  localStorage.removeItem("token");
+  // set blank token to auth
+  setAuthorizationToken();
 
+  dispatch({
+    type: USER_SET,
+    payload: {}
+  });
+  history.push("/login");
+};
+
+export const profileGet = handle => {
+  return dispatch => {
+    return Axios.get(API_URL + "/profiles/" + handle).catch(err => {
+      console.log("ERRORED");
       dispatch({
-        type: USER_SET,
-        payload: {}
+        type: GET_ERRORS,
+        payload: err.response.data.errors
       });
-      history.push("/login");
-    },
-    err => {
-      console.log("ERROR Contact admin!");
-    }
-  );
+    });
+  };
+};
+
+export const profileUpdate = formData => {
+  let _id = formData._id;
+  let website = formData.website;
+  let location = formData.location;
+  let description = formData.description;
+
+  return dispatch => {
+    return Axios.put(API_URL + "/profiles", {
+      _id,
+      website,
+      location,
+      description
+    }).catch(err => {
+      console.log("ERRORED");
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data.errors
+      });
+    });
+  };
 };

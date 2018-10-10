@@ -76,13 +76,16 @@ footer {
 #classicformpage .landingview {
   background: url('https://i.imgur.com/HvcCJC3.jpg');
 
+  background-attachment: fixed;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
   height: 100vh;
 }
 
-#classicformpage .gradient {}
+.landingsearch::placeholder {
+  color: grey;
+}
 
 #classicformpage .card {
   background-color: rgba(126, 123, 215, 0.2);
@@ -101,4 +104,11 @@ footer {
 
 #classicformpage label {
   color: #fff !important;
+}
+
+
+.parallax {
+  /* Create the parallax scrolling effect */
+
+
 }

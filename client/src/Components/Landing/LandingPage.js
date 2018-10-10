@@ -7,14 +7,16 @@ import { Container, Row, Col, Fa, View, Mask, Button } from "mdbreact";
 // MOVED CSS -> App.css
 
 export class LandingPage extends Component {
-  static propTypes = {
-    fetchUser: PropTypes.func.isRequired
-  };
+  static propTypes = {};
   render() {
     return (
       <div id="classicformpage">
-        <View className="landingview">
-          <Mask className="d-flex justify-content-center align-items-center gradient">
+        {/* TODO: Implement parrallax */}
+        <View className="landingview parallax">
+          <Mask
+            className="d-flex justify-content-center align-items-center gradient"
+            pattern={6}
+          >
             <Container className="px-md-3 px-sm-0">
               <Row>
                 <Col md="12" className="mb-4 white-text text-center">
@@ -31,9 +33,11 @@ export class LandingPage extends Component {
         </View>
 
         <Container fluid className="background">
+          <hr />
           <h2 className="h1-responsive font-weight-bold text-center my-5">
             Product Categories
           </h2>
+          <hr />
           <Row>
             <Category
               image="https://i.imgur.com/2Q0ajmo.jpg"
@@ -60,6 +64,7 @@ export class LandingPage extends Component {
             />
           </Row>
         </Container>
+        <hr />
       </div>
     );
   }

@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "jsonwebtoken": "^8.3.0",
-    "mdbreact": "git+https://oauth2:<TOKENGOESHERE>@git.mdbootstrap.com/mdb/react/re-pro.git",
+    "mdbreact": "git+https://oauth2:eUQoSsQsEe6kukAFPyPc@git.mdbootstrap.com/mdb/react/re-pro.git",
     "query-string": "^6.2.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

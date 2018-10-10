@@ -5,7 +5,7 @@ class FooterComponent extends React.Component {
   render() {
     let categories = CATEGORIES.map(name => (
       <p>
-        <a href="#!">
+        <a href={"/category/" + name}>
           <Fa icon="arrow-right" className="mr-1" /> {name}
         </a>
       </p>
@@ -78,17 +78,19 @@ class FooterComponent extends React.Component {
           </Row>
           <hr />
           <Row className="d-flex align-items-center">
-            <Col md="8" lg="8">
+            <Col md="6" lg="6">
               <p className="text-center text-md-left white-text">
                 &copy; {new Date().getFullYear()} Copyright:{" "}
                 <a href="/"> AIPAuctions </a>; All Stock Images obtained from{" "}
                 <a href="https://pexels.com">Pexels</a>
               </p>
             </Col>
-            <span>
-              Website created by; <a href="idrisdev.com">Idris</a>, Le Cai and
-              Wenze
-            </span>
+            <Col md="6" lg="6">
+              <p className="text-center text-md-right white-text">
+                Website created by; <a href="idrisdev.com">Idris</a>, Le Cai and
+                Wenze
+              </p>
+            </Col>
           </Row>
         </Container>
       </Footer>

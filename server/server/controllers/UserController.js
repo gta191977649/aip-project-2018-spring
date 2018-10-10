@@ -1,6 +1,7 @@
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const User = require('../models/Account');
+const Profile = require('../models/UserProfile');
 const validateRegister = require('../validation/validateRegister');
 const validateLogin = require('../validation/validateLogin');
 
@@ -59,11 +60,16 @@ module.exports.user_register = async (req, res) => {
         newUser.password = hash;
         newUser
             .save()
-            .then((user) =>
+            .then((user) => {
+              let profile = new Profile({user: user._id});
+              profile.save(function(err) {
+                if (err) console.log(err);
+              // thats it!
+              });
               res.json({
                 success: true,
-              })
-            )
+              });
+            })
             .catch((err) => console.log(err));
       });
     });

@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { CATEGORIES } from "../../Utils/Constants";
+import { Container, Col, Row } from "mdbreact";
 export class CategoriesPage extends Component {
   static propTypes = {
     prop: PropTypes
   };
 
   render() {
-    let categories = CATEGORIES.map(name => (
-      <a href={"/categories/" + name} className="mr-5">
-        {name}
-      </a>
-    ));
-    return <div>{categories}</div>;
+    return (
+      <Container className="mt-5">
+        <Row className="pt-5">
+          <Col md="12">Hello</Col>
+        </Row>
+      </Container>
+    );
   }
 }
 

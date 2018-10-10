@@ -4,9 +4,9 @@ import { Container, Row, Col } from "mdbreact";
 export default class About extends Component {
   render() {
     return (
-      <Container>
-        <Row>
-          <div className="container text-center">
+      <Container className="mt-5 text-center">
+        <Row className="pt-5">
+          <Col md="12">
             <h1 className="display-4 text-center">About</h1>
             <hr />
             <h2>This Project is developed by</h2>
@@ -16,7 +16,7 @@ export default class About extends Component {
             <p className="text-info">
               For <strong>Advanced internet programming Spring 2018</strong>
             </p>
-          </div>
+          </Col>
         </Row>
       </Container>
     );

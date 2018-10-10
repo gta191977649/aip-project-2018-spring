@@ -4,11 +4,13 @@ import authReducer from "./AuthReducer";
 import flashReducer from "./FlashReducer";
 import orderReducer from "./OrderReducer";
 import errorReducer from "./ErrorReducer";
+import cartReducer from "./CartReducer";
 
 export default combineReducers({
   products: productReducer,
   auth: authReducer,
   flashMessages: flashReducer,
   orders: orderReducer,
-  errors: errorReducer
+  errors: errorReducer,
+  cart: cartReducer
 });

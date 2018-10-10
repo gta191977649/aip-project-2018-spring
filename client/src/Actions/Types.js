@@ -36,10 +36,17 @@ export const USER_LOGOUT = "USER_LOGOUT";
 export const FETCH_USER_ID = "FETCH_USER_ID";
 export const FETCH_USERS_ERROR = "FETCH_USERS_ERROR";
 
+//CART ACTIONS
+export const CART_ADD = "CART_ADD";
+export const CART_REMOVE = "CART_REMOVE";
+export const CART_CLEAR = "CART_CLEAR";
+
 //FLASH/ALERT ACTIONS
 
 export const FLASH_ADD = "FLASH_ADD";
 export const FLASH_REMOVE = "FLASH_REMOVE";
 export const FLASH_REMOVE_ALL = "FLASH_REMOVE_ALL";
-
 export const GET_ERRORS = "GET_ERRORS";
+
+//PROFILE REDUCER
+export const PROFILE_GET = "PROFILE_GET";

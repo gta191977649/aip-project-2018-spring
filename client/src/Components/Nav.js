@@ -14,7 +14,7 @@ import {
   DropdownToggle,
   DropdownMenu
 } from "mdbreact";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import User from "./Auth/User";
 
 class Nav extends React.Component {
@@ -35,8 +35,16 @@ class Nav extends React.Component {
   }
 
   render() {
+    let transparent = this.props.location.pathname === "/" ? true : false;
     return (
-      <Navbar color="br-primary" expand="lg" fixed="top" dark scrolling>
+      <Navbar
+        color="br-primary"
+        expand="lg"
+        fixed="top"
+        dark
+        scrolling
+        transparent={transparent}
+      >
         <Container fluid>
           <NavbarBrand href="/">
             <strong className="px-2">AIP Auctions</strong>
@@ -57,23 +65,23 @@ class Nav extends React.Component {
                     Products
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem href="#">
+                    <DropdownItem href="/products">
                       <Fa icon="list" className="mr-1" /> All Products
                     </DropdownItem>
 
-                    <DropdownItem href="#">
+                    <DropdownItem href="/category/clothes">
                       <Fa icon="tags" className="mr-1" /> Clothes
                     </DropdownItem>
 
-                    <DropdownItem href="#">
+                    <DropdownItem href="/category/electronics">
                       <Fa icon="television" className="mr-1" /> Electronics
                     </DropdownItem>
 
-                    <DropdownItem href="#">
+                    <DropdownItem href="/category/software">
                       <Fa icon="gears" className="mr-1" /> Software
                     </DropdownItem>
 
-                    <DropdownItem href="#">
+                    <DropdownItem href="/category/Toys">
                       <Fa icon="soccer-ball-o" className="mr-1" /> Toys
                     </DropdownItem>
                   </DropdownMenu>
@@ -95,4 +103,4 @@ class Nav extends React.Component {
     );
   }
 }
-export default Nav;
+export default withRouter(Nav);

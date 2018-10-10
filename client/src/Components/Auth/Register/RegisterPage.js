@@ -72,8 +72,8 @@ export class RegisterPage extends Component {
     const alertError = !isEmpty(errors) ? "alert alert-danger" : "hidden";
 
     return (
-      <Container>
-        <Row>
+      <Container className="mt-5">
+        <Row className="pt-5">
           <Col md="6" className="mx-auto">
             <form className="needs-validation" onSubmit={this.submitHandler}>
               <p className="display-4 h5 text-center mb-4">Sign up</p>

@@ -25,21 +25,22 @@ class LandingSearchForm extends Component {
     const { search } = this.state;
     return (
       <Col md="6" className="mx-auto">
-        <Card>
+        <Card color="grey">
           <CardBody>
             <form onSubmit={this.submitHandler}>
               <h4 className="subtext-header mt-2 mb-4">
                 Looking for something specific?
               </h4>
-              <div className="white-text">
+              <div className="grey-text">
                 <Input
+                  className="landingsearch"
                   group
                   type="text"
                   label="Search"
                   name="search"
                   value={search}
                   onChange={this.updateDetails}
-                  color="white"
+                  color="grey"
                 />
               </div>
               <Button color="primary" type="submit">
