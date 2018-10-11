@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -16,12 +16,14 @@ import VerifyPage from './Auth/Verify/VerifyPage';
 import FlashMessagesList from './Flash/FlashMessagesList';
 import SearchPage from './Search/SearchPage';
 import ErrorCodeComponent from './ErrorCodeComponent';
-
+import AddProduct from './Dashboard/Products/AddProduct'
+import UserOrderDetails from "./Dashboard/Orders/UserOrderDetails";
+import UserSellDetail from './Dashboard/Sells/UserSellDetail';
 export class Main extends Component {
     static propTypes = {
       auth: PropTypes.object.isRequired
     }
-  
+
     render() {
       const { isLoggedIn } = this.props.auth;
       return (
@@ -38,24 +40,25 @@ export class Main extends Component {
           <Route path="/verify" component={VerifyPage} />
           <Route path="/search" component={SearchPage} />
           <PrivateRoute path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
+          <PrivateRoute path="/product/add" component={AddProduct} isLoggedIn={isLoggedIn}/>
+          <PrivateRoute path="/order/detail/:id" component={UserOrderDetails} isLoggedIn={isLoggedIn}/>
+          <PrivateRoute path="/sell/detail/:id" component={UserSellDetail} isLoggedIn={isLoggedIn}/>
 
 
-
-
-          {/* This is an error component for 404s :) */}
+            {/* This is an error component for 404s :) */}
           <Route path='*' exact={true} component={ErrorCodeComponent} />
         </Switch>
       </main>
       )
     }
   }
-  
+
   const mapStateToProps = (state) => ({
     auth:state.auth
   })
-  
+
   const mapDispatchToProps = {
-    
+
   }
-  
+
   export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))

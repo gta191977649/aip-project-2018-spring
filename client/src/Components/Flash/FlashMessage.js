@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import {deleteFlashMessage} from '../../Actions/FlashActions';
-import ProgressBar from '../ProgressBar';
+
 export class FlashMessage extends Component { 
   onClick(event){
     //TODO: Change to remove single later

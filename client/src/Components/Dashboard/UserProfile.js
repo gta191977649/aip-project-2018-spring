@@ -1,15 +1,12 @@
 import {Component} from "react";
 import React from "react";
 import {connect} from 'react-redux';
-import {fetchProducts} from "../../Actions/ProductAction";
-import {addFlashMessage} from "../../Actions/FlashActions";
-
 
 export class UserProfile extends Component {
     render () {
         return (
             <div>
-                <h1>My Profile</h1>
+                <h1>Welcome, <small className="text-info">{this.props.userName}</small></h1>
                     <hr/>
                 <div className="card ">
 

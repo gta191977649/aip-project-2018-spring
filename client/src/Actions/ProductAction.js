@@ -9,7 +9,8 @@ import {
 } from "./Types";
 
 import axios from "axios";
-const productRestURI = "http://127.0.0.1:3000/api/Products";
+//const productRestURI = process.env.API + "Products"; Bug with undefined
+const productRestURI = "http://localhost:3000/api/Products";
 export const fetchProducts = () => dispatch => {
 
   axios.get(productRestURI)
@@ -30,8 +31,8 @@ export const fetchProducts = () => dispatch => {
 }
 
 export const fetchProductById = (id) => dispatch => {
-
-  axios.get(productRestURI + id)
+    console.log("url: ",productRestURI);
+  axios.get(productRestURI +"/" +id)
     .then(
       response => {
         dispatch({

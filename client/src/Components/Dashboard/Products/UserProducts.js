@@ -48,9 +48,12 @@ class UserProducts extends Component{
     }
 
     //TODO: Replace this with better redux
-    USAFE_componentWillReceiveProps(newProps) {
-        this.setState({products: newProps.userProducts});
-        this.setState({reflash: false});
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            products: newProps.userProducts,
+            reflash: false
+        })
+
     }
 
     render () {
@@ -60,7 +63,7 @@ class UserProducts extends Component{
             </div>
         ));
         let noItemAlert;
-        if(this.state.products.length == 0) noItemAlert = <div>No Item</div>;
+        if(this.state.products.length === 0) noItemAlert = <div>No Item</div>;
            if(this.state.isEdit){
               return(
                 <EditProduct itemData={this.state.targetEditItemData} cancelHanlder={this.toogleEdit} reflashHandle={this.fetchProductData}/>

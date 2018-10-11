@@ -1,5 +1,4 @@
 import * as Type from "../Actions/Types";
-import { UPDATE_PRUDUCT } from "../Actions/Types";
 const initialState = {
   items: [],
   item: {},
