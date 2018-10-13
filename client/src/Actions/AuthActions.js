@@ -36,7 +36,8 @@ export const userLogin = (auth, history) => dispatch => {
 export const userRegister = (user, history) => {
   //doRegister
   let handle = user.username;
-  let name = user.name; //Name for user
+  let fname = user.fname; //Name for user
+  let lname = user.lname; //Name for user
   let email = user.email; // Email for storage in backend
   let confirm = user.confirm; // This is the secondary email to double check that they are the same on the back end
   let password = user.password;
@@ -45,7 +46,8 @@ export const userRegister = (user, history) => {
   return dispatch => {
     return Axios.post(API_URL + "/auth/register", {
       handle,
-      name,
+      fname,
+      lname,
       email,
       confirm,
       password,

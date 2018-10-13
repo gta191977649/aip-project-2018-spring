@@ -3,6 +3,14 @@ const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 let UserSchema = new Schema({
+  fname: {
+    type: String,
+    required: true,
+  },
+  lname: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,

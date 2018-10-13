@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Input, Button, toast } from "mdbreact";
+import {
+  Container,
+  Row,
+  Col,
+  Input,
+  Button,
+  toast,
+  FormInline
+} from "mdbreact";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -13,7 +21,8 @@ export class RegisterPage extends Component {
     super(props);
     this.state = {
       errors: {},
-      name: "",
+      fname: "",
+      lname: "",
       username: "",
       email: "",
       confirm: "",
@@ -56,7 +65,8 @@ export class RegisterPage extends Component {
     const {
       errors,
       username,
-      name,
+      fname,
+      lname,
       email,
       confirm,
       password,
@@ -65,7 +75,8 @@ export class RegisterPage extends Component {
     } = this.state;
 
     //Check to see if there are any input errors
-    const nameErrorClass = errors.name ? "invalid" : "";
+    const fnameErrorClass = errors.fname ? "invalid" : "";
+    const lnameErrorClass = errors.lname ? "invalid" : "";
     const emailErrorClass = errors.email ? "invalid" : "";
     const confirmErrorClass = errors.confirm ? "invalid" : "";
     const passErrorClass = errors.password ? "invalid" : "";
@@ -109,61 +120,91 @@ export class RegisterPage extends Component {
                   onChange={this.updateDetails}
                   className={usernameErrorClass}
                 />
-                <Input
-                  label="Your name"
-                  name="name"
-                  icon="user"
-                  group
-                  type="text"
-                  validate
-                  value={name}
-                  onChange={this.updateDetails}
-                  className={nameErrorClass}
-                />
-                <Input
-                  label="Your email"
-                  icon="envelope"
-                  name="email"
-                  group
-                  type="email"
-                  validate
-                  value={email}
-                  onChange={this.updateDetails}
-                  className={emailErrorClass}
-                />
-                <Input
-                  label="Confirm your email"
-                  icon="exclamation-triangle"
-                  name="confirm"
-                  group
-                  type="text"
-                  validate
-                  value={confirm}
-                  onChange={this.updateDetails}
-                  className={confirmErrorClass}
-                />
-                <Input
-                  label="Your password"
-                  icon="lock"
-                  group
-                  type="password"
-                  name="password"
-                  validate
-                  value={password}
-                  onChange={this.updateDetails}
-                  className={passErrorClass || passConfErrorClass}
-                />
-                <Input
-                  label="Confirm your password"
-                  icon="lock"
-                  group
-                  type="password"
-                  name="passwordConfirm"
-                  validate
-                  value={passwordConfirm}
-                  onChange={this.updateDetails}
-                  className={passConfErrorClass}
-                />
+                <Row>
+                  <Col md="6">
+                    <Input
+                      label="Your first name"
+                      name="fname"
+                      icon="user"
+                      group
+                      type="text"
+                      validate
+                      value={fname}
+                      onChange={this.updateDetails}
+                      className={fnameErrorClass}
+                    />
+                  </Col>
+                  <Col md="6">
+                    <Input
+                      label="Your last name"
+                      name="lname"
+                      icon="user"
+                      group
+                      type="text"
+                      validate
+                      value={lname}
+                      onChange={this.updateDetails}
+                      className={lnameErrorClass}
+                    />
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col md="6">
+                    <Input
+                      label="Your email"
+                      icon="envelope"
+                      name="email"
+                      group
+                      type="email"
+                      validate
+                      value={email}
+                      onChange={this.updateDetails}
+                      className={emailErrorClass}
+                    />
+                  </Col>
+                  <Col md="6">
+                    <Input
+                      label="Confirm your email"
+                      icon="exclamation-triangle"
+                      name="confirm"
+                      group
+                      type="text"
+                      validate
+                      value={confirm}
+                      onChange={this.updateDetails}
+                      className={confirmErrorClass}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md="6">
+                    <Input
+                      label="Your password"
+                      icon="lock"
+                      group
+                      type="password"
+                      name="password"
+                      validate
+                      value={password}
+                      onChange={this.updateDetails}
+                      className={passErrorClass || passConfErrorClass}
+                    />
+                  </Col>
+                  <Col md="6">
+                    <Input
+                      label="Confirm your password"
+                      icon="lock"
+                      group
+                      type="password"
+                      name="passwordConfirm"
+                      validate
+                      value={passwordConfirm}
+                      onChange={this.updateDetails}
+                      className={passConfErrorClass}
+                    />
+                  </Col>
+                </Row>
               </div>
               <div className="text-center">
                 <Button color="primary" type="submit" disabled={isLoading}>

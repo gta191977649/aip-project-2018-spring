@@ -5,7 +5,8 @@ module.exports = function validateRegisterInput(data) {
   data.handle = !isEmpty(data.handle) ? validator.escape(data.handle) : '';
   data.email = !isEmpty(data.email) ? validator.escape(data.email) : '';
   data.confirm = !isEmpty(data.confirm) ? validator.escape(data.confirm) : '';
-  data.name = !isEmpty(data.name) ? validator.escape(data.name) : '';
+  data.fname = !isEmpty(data.fname) ? validator.escape(data.fname) : '';
+  data.lname = !isEmpty(data.lname) ? validator.escape(data.lname) : '';
   data.password = !isEmpty(data.password)
     ? validator.escape(data.password)
     : '';
@@ -28,7 +29,8 @@ module.exports = function validateRegisterInput(data) {
   let isEmailSame =
     validator.equals(data.confirm, data.email) && isConfirmEmailValid;
   /* let isNameValid = validator.isAlphanumeric(data.name);*/
-  let isNameEmpty = validator.isEmpty(data.name);
+  let isFNameEmpty = validator.isEmpty(data.fname);
+  let isLNameEmpty = validator.isEmpty(data.lname);
 
   if (!isHandleValid || validator.isEmpty(data.handle)) {
     errors.username =
@@ -49,8 +51,9 @@ module.exports = function validateRegisterInput(data) {
   if (!isEmailSame) {
     errors.confirm = 'Email not the same';
   }
-  if (isNameEmpty) {
-    errors.name = 'Name is empty';
+  if (isFNameEmpty || isLNameEmpty) {
+    errors.fname = 'Name is empty';
+    errors.lname = 'Name is empty';
   }
 
   return {

@@ -49,7 +49,9 @@ module.exports.user_register = async (req, res) => {
 
     let newUser = new User({
       handle: req.body.handle,
-      name: req.body.name,
+      fname: req.body.fname,
+      lname: req.body.lname,
+      name: req.body.fname + ' ' + req.body.lname,
       email: req.body.email,
       avatar,
       password: req.body.password,
