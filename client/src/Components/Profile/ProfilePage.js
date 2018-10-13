@@ -19,7 +19,9 @@ export class ProfilePage extends Component {
     this.state = {
       foundHandle: true,
       user: {},
-      profile: {}
+      profile: {
+        feedback: []
+      }
     };
   }
 
@@ -42,12 +44,17 @@ export class ProfilePage extends Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
   render() {
-    const {} = this.state;
+    const { description, feedback } = this.state.profile;
     const { avatar, name, handle } = this.state.user;
+
+    let feedbackElem = !isEmpty(feedback) ? (
+      feedback.map((feedbackItem, i) => {
+        return feedbackItem.experience;
+      })
+    ) : (
+      <span>No Feedback yet</span>
+    );
     return (
       <Container className="mt-5" fluid>
         <Row className="pt-5 br-primary ">
@@ -58,15 +65,33 @@ export class ProfilePage extends Component {
                   <Avatar
                     tag="img"
                     src={"http:" + avatar}
-                    className="rounded-circle z-depth-1 img-fluid mx-auto"
+                    className="rounded-circle z-depth-1 img-fluid mx-auto d-block"
                     alt="Sample avatar"
                   />
                 </div>
-                <h1 className="font-weight-boldmt-4 pt-2">
+              </Col>
+              <Col md="6" className="mt-5 text-justify">
+                {description}
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md="6">
+                <h1 className="font-weight-boldmt-4 pt-2 text-center">
                   {name} ({handle})
                 </h1>
               </Col>
-              <Col md="6">TEST</Col>
+              <Col md="3" className="offset-md-3 text-right">
+                {feedbackElem}
+              </Col>
+            </Row>
+          </Container>
+        </Row>
+
+        <Row>
+          <Container>
+            <Row>
+              <Col md="6">Ye Boi</Col>
             </Row>
           </Container>
         </Row>
