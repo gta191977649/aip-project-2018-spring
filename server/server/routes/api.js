@@ -22,4 +22,8 @@ router.use('/orders', orderRoutes);
 
 // Feedback Routes
 router.use('/feedback', feedbackRoutes);
+
+router.use(function(req, res) {
+  res.status(404).send('Sorry can\'t find that!');
+});
 module.exports = router;
