@@ -42,25 +42,25 @@ export class LandingPage extends Component {
             <Category
               image="https://i.imgur.com/2Q0ajmo.jpg"
               name="Clothes"
-              link="/categories/clothes"
+              link="/category/clothes"
             />
 
             <Category
               image="https://i.imgur.com/CJNKqH5.jpg"
               name="Electronics"
-              link="/categories/electronics"
+              link="/category/electronics"
             />
 
             <Category
               image="https://i.imgur.com/syudytV.jpg"
               name="Software"
-              link="/categories/software"
+              link="/category/software"
             />
 
             <Category
               image="https://i.imgur.com/BjPmYCf.jpg"
               name="Toys"
-              link="/categories/toys"
+              link="/category/toys"
             />
           </Row>
         </Container>
