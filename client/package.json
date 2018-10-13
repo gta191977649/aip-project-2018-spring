@@ -21,6 +21,11 @@
     "shortid": "^2.2.13",
     "validator": "^10.8.0"
   },
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
