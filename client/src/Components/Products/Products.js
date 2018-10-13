@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "mdbreact";
 import { connect } from "react-redux";
+
 import { fetchProducts } from "../../Actions/ProductAction";
 import ProductItem from "./ProductItem";
+
 class Products extends Component {
   componentWillMount() {
     this.props.fetchProducts();

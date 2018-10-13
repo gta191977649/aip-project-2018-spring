@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Input, Button } from "mdbreact";
-import { userRegister } from "../../../Actions/AuthActions";
-import { addFlashMessage } from "../../../Actions/FlashActions";
+import { Container, Row, Col, Input, Button, toast } from "mdbreact";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import validator from "validator";
-import { isEmpty } from "../../../Utils/UtilMethods";
+
+import isEmpty from "../../../Utils/isEmpty";
+import { userRegister } from "../../../Actions/AuthActions";
 
 export class RegisterPage extends Component {
   constructor(props) {
@@ -27,6 +27,9 @@ export class RegisterPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
+      if (nextProps.errors.message) {
+        toast.error(nextProps.errors.message);
+      }
       this.setState({ errors: nextProps.errors });
     }
   }
@@ -49,7 +52,7 @@ export class RegisterPage extends Component {
     }
   }
   render() {
-    //Get the vars from the state
+    //Get the vars from the state (deconstruct)
     const {
       errors,
       username,
@@ -61,15 +64,25 @@ export class RegisterPage extends Component {
       isLoading
     } = this.state;
 
-    //Error Classes because MDBReact is Bad.
+    //Check to see if there are any input errors
     const nameErrorClass = errors.name ? "invalid" : "";
     const emailErrorClass = errors.email ? "invalid" : "";
     const confirmErrorClass = errors.confirm ? "invalid" : "";
     const passErrorClass = errors.password ? "invalid" : "";
     const passConfErrorClass = errors.passwordConfirm ? "invalid" : "";
     const usernameErrorClass = errors.username ? "invalid" : "";
+
+    //Check to see if there is any errors
     const alertError = !isEmpty(errors) ? "alert alert-danger" : "hidden";
 
+    let nameError = errors.name ? errors.confirm + "\r\n" : "";
+    let emailError = errors.email ? errors.email + "\r\n" : "";
+    let confirmError = errors.confirm ? errors.confirm + "\r\n" : "";
+    let passwordError = errors.password ? errors.password + "\r\n" : "";
+    let passConfError = errors.passwordConfirm
+      ? errors.passwordConfirm + "\r\n"
+      : "";
+    let usernameError = errors.username ? errors.username : "";
     return (
       <Container className="mt-5">
         <Row className="pt-5">
@@ -77,15 +90,12 @@ export class RegisterPage extends Component {
             <form className="needs-validation" onSubmit={this.submitHandler}>
               <p className="display-4 h5 text-center mb-4">Sign up</p>
               <div className={alertError} role="alert">
-                {errors.name ? errors.confirm + "<br />" : ""}
-                {errors.email ? errors.email + "<br />" : ""}
-                {errors.confirm ? errors.confirm + "<br />" : ""}
-                {errors.password ? errors.password + "<br />" : ""}
-                {errors.passwordConfirm
-                  ? errors.passwordConfirm + "<br />"
-                  : ""}
-
-                {errors.username ? errors.username : ""}
+                {nameError}
+                {emailError}
+                {confirmError}
+                {passwordError}
+                {passConfError}
+                {usernameError}
               </div>
               <div className="grey-text">
                 <Input
@@ -175,7 +185,6 @@ export class RegisterPage extends Component {
 
 RegisterPage.propTypes = {
   userRegister: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -186,8 +195,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  userRegister,
-  addFlashMessage
+  userRegister
 };
 
 export default withRouter(

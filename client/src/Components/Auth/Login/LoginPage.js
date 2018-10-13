@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Input, Button } from "mdbreact";
 import validator from "validator";
-import validateInput from "../../../Utils/LoginInputValidator";
-import { userLogin } from "../../../Actions/AuthActions";
-import { addFlashMessage } from "../../../Actions/FlashActions";
-import { isEmpty } from "../../../Utils/UtilMethods";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
+
+import { userLogin } from "../../../Actions/AuthActions";
+import isEmpty from "../../../Utils/isEmpty";
+
 export class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -46,11 +46,26 @@ export class LoginPage extends Component {
       this.props.history.push("/dashboard");
     }
   }
+
+  writeConsole(test) {
+    console.log(...test);
+  }
   render() {
+    //Deconstruct the state
     const { errors, email, password } = this.state;
+
+    //Check to see if there are any input errors
     const emailErrorClass = errors.email ? "invalid" : "";
     const passErrorClass = errors.password ? "invalid" : "";
+
+    //Check to see if there is any errors
     const alertError = !isEmpty(errors) ? "alert alert-danger" : "hidden";
+
+    // Prepare the errors for display
+    const errorMessage = errors.message ? errors.message + "\r\n" : "";
+    const emailError = errors.email ? errors.email + "\r\n" : "";
+    const passwordError = errors.password ? errors.password : "";
+
     return (
       <Container className="mt-5">
         <Row className="pt-5">
@@ -58,9 +73,9 @@ export class LoginPage extends Component {
             <form className="needs-validation" onSubmit={this.submitHandler}>
               <p className="display-4 h5 text-center mb-4">Sign in</p>
               <div className={alertError} role="alert">
-                {errors.email ? errors.email + "<br />" : ""}
-
-                {errors.password ? errors.password : ""}
+                {errorMessage}
+                {emailError}
+                {passwordError}
               </div>
               <div className="grey-text">
                 <Input
@@ -109,7 +124,6 @@ export class LoginPage extends Component {
 
 LoginPage.propTypes = {
   userLogin: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -119,8 +133,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 const mapDispatchToProps = {
-  userLogin,
-  addFlashMessage
+  userLogin
 };
 
 export default withRouter(

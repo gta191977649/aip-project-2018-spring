@@ -7,6 +7,7 @@ import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import "./App.css";
+import { ToastContainer } from "mdbreact";
 
 //Components
 import Nav from "./Components/Nav";
@@ -21,6 +22,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <AuthComponent />
+            <ToastContainer newestOnTop={true} autoClose={5000} />
             <Nav />
             <Main />
             <FooterComponent />

@@ -7,12 +7,11 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
   Fa
 } from "mdbreact";
+
 import { withRouter } from "react-router-dom";
 import { userLogout } from "../../Actions/AuthActions";
-import { addFlashMessage } from "../../Actions/FlashActions";
 
 export class User extends Component {
   static propTypes = {
@@ -46,23 +45,24 @@ export class User extends Component {
               {name}
             </DropdownToggle>
             <DropdownMenu>
-              <NavLink to="/dashboard" className="dropdown-item black-text">
+              <NavLink to="/dashboard" className="dropdown-item">
                 <Fa icon="bar-chart" className="mr-1" />
                 Dashboard
               </NavLink>
-              <NavLink
-                to={"/profile/" + handle}
-                className="dropdown-item black-text"
-              >
+              <NavLink to={"/profile/" + handle} className="dropdown-item">
                 <Fa icon="user" className="mr-1" /> Your Profile
               </NavLink>
-              <NavLink to="/orders" className="dropdown-item black-text">
+              <NavLink to="/orders" className=" dropdown-item">
                 <Fa icon="list" className="mr-1" /> Your orders
               </NavLink>
-              <DropdownItem href="/logout">
+              <NavLink
+                to="/logout"
+                className="dropdown-item"
+                onClick={this.logout}
+              >
                 <Fa icon="sign-out" className="mr-1" />
                 Logout
-              </DropdownItem>
+              </NavLink>
             </DropdownMenu>
           </Dropdown>
         </NavItem>

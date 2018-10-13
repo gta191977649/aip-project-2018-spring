@@ -106,9 +106,12 @@ footer {
   color: #fff !important;
 }
 
+/* Overiding default navlink coloring only for drop down menus */
+.dropdown .dropdown-menu .nav-link {
+  color: #000 !important;
+}
 
-.parallax {
-  /* Create the parallax scrolling effect */
-
-
+/* Overiding default navlink coloring only for drop down menus */
+.dropdown .dropdown-menu .nav-link.active {
+  color: #fff !important;
 }

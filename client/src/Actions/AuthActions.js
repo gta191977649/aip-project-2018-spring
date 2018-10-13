@@ -1,17 +1,13 @@
-import {
-  USER_SET,
-  FETCH_USER_ID,
-  FETCH_USERS_ERROR,
-  GET_ERRORS,
-  PROFILE_GET
-} from "./Types";
+import { toast } from "mdbreact";
 import Axios from "axios";
-import setAuthorizationToken from "../Utils/AuthorizationToken";
-import { addFlashMessage } from "./FlashActions";
-import { isEmpty } from "../Utils/UtilMethods";
 import jwt from "jsonwebtoken";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost";
+import { USER_SET, FETCH_USER_ID } from "./Types";
+import setAuthorizationToken from "../Utils/AuthorizationToken";
+import isEmpty from "../Utils/isEmpty";
+import { handleError } from "./ErrorActions";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/api";
 
 //TODO: Need to update for login.
 export const userLogin = (auth, history) => dispatch => {
@@ -30,21 +26,10 @@ export const userLogin = (auth, history) => dispatch => {
       localStorage.setItem("token", token);
       setAuthorizationToken(token);
       dispatch(userSet(token));
-      dispatch(
-        addFlashMessage({
-          type: "success",
-          text: "Logged in!"
-        })
-      );
-
+      toast.success("Logged in!");
       history.push("/");
     })
-    .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data.errors
-      });
-    });
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
 
 // TODO: Need to update for later
@@ -68,15 +53,11 @@ export const userRegister = (user, history) => {
     })
       .then(res => {
         if (res.data.success) {
+          toast.success("Registration successful! Please login!");
           history.push("/login");
         }
       })
-      .catch(err => {
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data.errors
-        });
-      });
+      .catch(axiosError => handleError(axiosError, dispatch));
   };
 };
 
@@ -87,7 +68,6 @@ export const createProfile = profile => {
 export const userSet = token => dispatch => {
   //If token is not empty decode token else empty string :)
   let decoded = !isEmpty(token) ? jwt.decode(token) : "";
-
   return dispatch({
     type: USER_SET,
     payload: decoded
@@ -103,25 +83,7 @@ export const fetchProfileByUserId = id => dispatch => {
         payload: response.data
       });
     })
-    .catch(error => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: error.response.data.errors
-      });
-    });
-};
-
-export const userVerify = auth => {
-  let id = auth.id;
-  let token = "testtoken";
-  return dispatch => {
-    return Axios.get(API_URL + "/CustomUsers/confirm", {
-      params: {
-        uid: id,
-        token: token
-      }
-    });
-  };
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
 
 export const userLogout = (user, history) => dispatch => {
@@ -134,18 +96,14 @@ export const userLogout = (user, history) => dispatch => {
     type: USER_SET,
     payload: {}
   });
+
+  toast.info("Logged out!");
   history.push("/login");
 };
 
 export const profileGet = handle => {
   return dispatch => {
-    return Axios.get(API_URL + "/profiles/" + handle).catch(err => {
-      console.log("ERRORED");
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data.errors
-      });
-    });
+    return Axios.get(API_URL + "/profiles/" + handle);
   };
 };
 
@@ -161,12 +119,6 @@ export const profileUpdate = formData => {
       website,
       location,
       description
-    }).catch(err => {
-      console.log("ERRORED");
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data.errors
-      });
-    });
+    }).catch(axiosError => handleError(axiosError, dispatch));
   };
 };

@@ -1,17 +1,17 @@
 import axios from "axios";
+
 import {
   ADD_ORDER,
   FETCH_ORDERS,
   UPDATE_ORDER,
-  FETCH_ORDERS_ERROR,
   FETCH_ORDER_ID,
   SEARCH_ORDERS,
   FETCH_ORDER_USER_ID,
   FETCH_ORDER_SELLER_ID
 } from "./Types";
+import { handleError } from "./ErrorActions";
 
-
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/api";
 const orderRestURI = API_URL + "/orders";
 
 export const fetchOrders = () => dispatch => {
@@ -23,12 +23,7 @@ export const fetchOrders = () => dispatch => {
         payload: response.data
       });
     })
-    .catch(error => {
-      dispatch({
-        type: FETCH_ORDERS_ERROR,
-        payload: error.message
-      });
-    });
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
 
 export const fetchOrdersById = id => dispatch => {
@@ -40,12 +35,7 @@ export const fetchOrdersById = id => dispatch => {
         payload: response.data
       });
     })
-    .catch(error => {
-      dispatch({
-        type: FETCH_ORDERS_ERROR,
-        payload: error.message
-      });
-    });
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
 export const searchOrders = filter => dispatch => {
   axios
@@ -56,12 +46,7 @@ export const searchOrders = filter => dispatch => {
         payload: response.data
       });
     })
-    .catch(error => {
-      dispatch({
-        type: FETCH_ORDERS_ERROR,
-        payload: error.message
-      });
-    });
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
 export const fetchOrderByUserId = userid => dispatch => {
   console.log("Recieved filter:", userid);
@@ -74,12 +59,7 @@ export const fetchOrderByUserId = userid => dispatch => {
         payload: response.data
       });
     })
-    .catch(error => {
-      dispatch({
-        type: FETCH_ORDERS_ERROR,
-        payload: error.message
-      });
-    });
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
 export const fetchOrderBySellerId = sellerId => dispatch => {
   const filter = { where: { "product.userId": sellerId } };
@@ -91,12 +71,7 @@ export const fetchOrderBySellerId = sellerId => dispatch => {
         payload: response.data
       });
     })
-    .catch(error => {
-      dispatch({
-        type: FETCH_ORDERS_ERROR,
-        payload: error.message
-      });
-    });
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
 export const updateOrder = (orderId, newData) => dispatch => {
   console.log("id", orderId);
@@ -109,13 +84,9 @@ export const updateOrder = (orderId, newData) => dispatch => {
         payload: response.status
       });
     })
-    .catch(error => {
-      dispatch({
-        type: UPDATE_ORDER,
-        payload: false
-      });
-    });
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
+
 export const addOrder = orderData => dispatch => {
   console.log("Recieved filter:", orderData);
   axios

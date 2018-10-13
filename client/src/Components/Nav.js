@@ -66,38 +66,26 @@ class Nav extends React.Component {
                     Products
                   </DropdownToggle>
                   <DropdownMenu>
-                    <NavLink
-                      to="/products"
-                      className="dropdown-item black-text"
-                    >
+                    <NavLink to="/products" className="dropdown-item">
                       <Fa icon="list" className="mr-1" /> All Products
                     </NavLink>
 
-                    <NavLink
-                      to="/category/clothes"
-                      className="dropdown-item black-text"
-                    >
+                    <NavLink to="/category/clothes" className="dropdown-item">
                       <Fa icon="tags" className="mr-1" /> Clothes
                     </NavLink>
 
                     <NavLink
                       to="/category/electronics"
-                      className="dropdown-item black-text"
+                      className="dropdown-item"
                     >
                       <Fa icon="television" className="mr-1" /> Electronics
                     </NavLink>
 
-                    <NavLink
-                      to="/category/software"
-                      className="dropdown-item black-text"
-                    >
+                    <NavLink to="/category/software" className="dropdown-item">
                       <Fa icon="gears" className="mr-1" /> Software
                     </NavLink>
 
-                    <NavLink
-                      to="/category/toys"
-                      className="dropdown-item black-text"
-                    >
+                    <NavLink to="/category/toys" className="dropdown-item ">
                       <Fa icon="soccer-ball-o" className="mr-1" /> Toys
                     </NavLink>
                   </DropdownMenu>

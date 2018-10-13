@@ -41,11 +41,7 @@ export const CART_ADD = "CART_ADD";
 export const CART_REMOVE = "CART_REMOVE";
 export const CART_CLEAR = "CART_CLEAR";
 
-//FLASH/ALERT ACTIONS
-
-export const FLASH_ADD = "FLASH_ADD";
-export const FLASH_REMOVE = "FLASH_REMOVE";
-export const FLASH_REMOVE_ALL = "FLASH_REMOVE_ALL";
+// ERROR ACTIONS
 export const GET_ERRORS = "GET_ERRORS";
 
 //PROFILE REDUCER

@@ -6,7 +6,7 @@ import validator from "validator";
 
 //Components
 import { profileGet, profileUpdate } from "../../../Actions/AuthActions";
-import { isEmpty } from "../../../Utils/UtilMethods";
+import isEmpty from "../../../Utils/isEmpty";
 
 export class ProfileForm extends Component {
   static propTypes = {
