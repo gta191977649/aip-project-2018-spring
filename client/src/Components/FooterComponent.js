@@ -1,13 +1,18 @@
+//Node_Module
 import React from "react";
 import { Col, Container, Row, Footer, Fa } from "mdbreact";
+import { Link } from "react-router-dom";
+
+//Created Components
 import { CATEGORIES } from "../Utils/Constants";
+
 class FooterComponent extends React.Component {
   render() {
-    let categories = CATEGORIES.forEach(name => (
-      <p key={name.key}>
-        <a href={"/category/" + name}>
+    let categories = CATEGORIES.map((name, i) => (
+      <p key={i}>
+        <Link to={"/category/" + name}>
           <Fa icon="arrow-right" className="mr-1" /> {name}
-        </a>
+        </Link>
       </p>
     ));
     return (
@@ -36,28 +41,28 @@ class FooterComponent extends React.Component {
                 Useful links
               </h6>
               <p>
-                <a href="#!">
+                <Link to="/dashboard">
                   <Fa icon="user" className="mr-1" />
                   Your Account
-                </a>
+                </Link>
               </p>
               <p>
-                <a href="#!">
+                <Link to="/orders">
                   <Fa icon="list" className="mr-1" />
                   See your orders
-                </a>
+                </Link>
               </p>
               <p>
-                <a href="#!">
+                <Link to="/changepassword">
                   <Fa icon="cog" className="mr-1" />
                   Change Password
-                </a>
+                </Link>
               </p>
               <p>
-                <a href="#!">
+                <Link to="/help">
                   <Fa icon="exclamation-triangle" className="mr-1" />
                   Help
-                </a>
+                </Link>
               </p>
             </Col>
             <hr className="w-100 clearfix d-md-none" />
