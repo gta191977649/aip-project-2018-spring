@@ -10,7 +10,7 @@ import {
   FETCH_USER_ID,
   FETCH_USERS_ERROR
 } from "../Actions/Types";
-import { isEmpty } from "../Utils/UtilMethods";
+import isEmpty from "../Utils/isEmpty";
 const initialState = {
   user: {},
   isLoggedIn: false,

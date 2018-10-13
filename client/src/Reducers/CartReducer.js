@@ -2,7 +2,7 @@
 import { CART_ADD, CART_CLEAR, CART_REMOVE } from "../Actions/Types";
 
 //Util Methods
-import { isEmpty } from "../Utils/UtilMethods";
+import isEmpty from "../Utils/isEmpty";
 
 const initialState = {
   items: [],
