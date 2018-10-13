@@ -82,29 +82,32 @@ module.exports.user_register = async (req, res) => {
 module.exports.user_login = async (req, res) => {
   const {errors, isValid} = validateLogin(req.body);
   if (!isValid) {
-    return res.json({
-      errors,
-    });
+    return res.status(400).json({errors});
   }
   const {email, password} = req.body;
 
   // Find user by email
-  let user = await User.findOne({email});
+  let user = await User.findOne({email}).catch((error) => console.log(error));
   if (!user) {
     errors.email = 'User not found';
-    return res.status(404).json({errors});
-  }
-  // Check Password
-  let isMatch = await bcrypt.compare(password, user.password);
-  if (isMatch) {
-    res.json({
-      success: true,
-      token: user.generateJWT(),
-    });
   } else {
-    errors.password = 'Password incorrect';
-    return res.status(400).json({errors});
+    // Check Password
+    let matched = await bcrypt
+        .compare(password, user.password)
+        .catch((error) => console.log(error));
+    if (matched) {
+      return res.json({
+        success: true,
+        token: user.generateJWT(),
+      });
+    } else {
+      errors.password = 'Password incorrect';
+    }
   }
+
+  // Decision to put this here was because it's a shorter method than registration
+  // if the method was big like registration I would move this up to where the error message is declared
+  return res.status(400).json({errors});
 };
 
 module.exports.user_logout = async (req, res) => {
