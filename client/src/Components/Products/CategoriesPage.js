@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { CATEGORIES } from "../../Utils/Constants";
+import PropTypes from "prop-types";
 import { Container, Col, Row } from "mdbreact";
+
+import { CATEGORIES } from "../../Utils/Constants";
+
 export class CategoriesPage extends Component {
   static propTypes = {
     prop: PropTypes
