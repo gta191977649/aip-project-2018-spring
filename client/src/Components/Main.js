@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -13,12 +13,10 @@ import Products from "./Products/Products";
 import ProductDetail from "./Products/ProductDetail";
 import PrivateRoute from "./Auth/PrivateRoute";
 import Dashboard from "./Dashboard/DashboardPage";
-import VerifyPage from "./Auth/Verify/VerifyPage";
-import FlashMessagesList from "./Flash/FlashMessagesList";
+import HelpPage from "./Help/HelpPage";
 import SearchPage from "./Search/SearchPage";
-import ErrorCodeComponent from "./ErrorCodeComponent";
-import AddProduct from "./Dashboard/Products/AddProduct";
-import UserOrderDetails from "./Dashboard/Orders/UserOrderDetails";
+import ErrorCodeComponent from "../Utils/ErrorCodeComponent";
+import ServerErrorComponent from "../Utils/ServerErrorComponent";
 import CategoriesPage from "./Products/CategoriesPage";
 import OrderPage from "./Order/OrderPage";
 import ProfilePage from "./Profile/ProfilePage";
@@ -32,7 +30,6 @@ export class Main extends Component {
     const { isLoggedIn } = this.props.auth;
     return (
       <main id="main">
-        <FlashMessagesList />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/about" component={About} />
@@ -41,27 +38,22 @@ export class Main extends Component {
           <Route path="/products/:id" component={ProductDetail} />
           <Route path="/category/:name" component={CategoriesPage} />
           <Route path="/products" component={Products} />
-
+          <Route path="/help" component={HelpPage} />
           <Route path="/search" component={SearchPage} />
           <Route path="/profile/:handle" component={ProfilePage} />
 
           <PrivateRoute
-            path="/dashboard"
+            path="/dashboard/:page"
             component={Dashboard}
             isLoggedIn={isLoggedIn}
           />
-          <PrivateRoute
-            path="/product/add"
-            component={AddProduct}
-            isLoggedIn={isLoggedIn}
+          <Route
+            path="/dashboard"
+            render={() => <Redirect to="/dashboard/home" />}
           />
+
           <PrivateRoute
-            path="/order/detail/:id"
-            component={UserOrderDetails}
-            isLoggedIn={isLoggedIn}
-          />
-          <PrivateRoute
-            parth="/orders"
+            path="/orders"
             component={OrderPage}
             isLoggedIn={isLoggedIn}
           />
@@ -70,7 +62,9 @@ export class Main extends Component {
             component={Logout}
             isLoggedIn={isLoggedIn}
           />
+
           {/* This is an error component for 404s :) */}
+          <Route path="/500" component={ServerErrorComponent} />
           <Route path="*" exact={true} component={ErrorCodeComponent} />
         </Switch>
       </main>
