@@ -32,5 +32,5 @@ RUN npm install -g pm2
 CMD ["pm2", "start", "process.yml", "--no-daemon"]
 
 # Expose ports
-EXPOSE 5000
 EXPOSE 3000
+EXPOSE 1337
