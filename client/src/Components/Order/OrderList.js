@@ -14,7 +14,7 @@ import {
 
 //Components
 import { fetchOrdersById } from "../../Actions/OrderAction";
-import { isEmpty } from "../../Utils/UtilMethods";
+import isEmpty from "../../Utils/isEmpty";
 
 export class OrderList extends Component {
   static propTypes = {
