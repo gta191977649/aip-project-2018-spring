@@ -6,6 +6,15 @@
     "type": "git",
     "url": "git+https://github.com/gta191977649/aip-project-2018-spring.git"
   },
+  "scripts": {
+    "server:install": "cd server && npm install",
+    "server:start": "cd server && npm start",
+    "server:start-dev": "cd server && npm run server",
+    "client:install": "cd client && npm install",
+    "client:start": "npm run client:build && cd client && node render.js",
+    "client:build": "cd client && npm run build",
+    "client:start-dev": "cd client && npm run start"
+  },
   "author": "Idris, Le Cai and Wenze",
   "license": "MIT",
   "bugs": {
