@@ -10,7 +10,7 @@ import RegisterPage from "./Auth/Register/RegisterPage";
 import Logout from "./Auth/Logout";
 import LoginPage from "./Auth/Login/LoginPage";
 import Products from "./Products/Products";
-import ProductDetail from "./Products/ProductDetail";
+import ProductInfo from "./Products/ProductInfo";
 import PrivateRoute from "./Auth/PrivateRoute";
 import Dashboard from "./Dashboard/DashboardPage";
 import HelpPage from "./Help/HelpPage";
@@ -35,7 +35,7 @@ export class Main extends Component {
           <Route path="/about" component={About} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
-          <Route path="/products/:id" component={ProductDetail} />
+          <Route path="/products/:id" component={ProductInfo} />
           <Route path="/category/:name" component={CategoriesPage} />
           <Route path="/products" component={Products} />
           <Route path="/help" component={HelpPage} />
