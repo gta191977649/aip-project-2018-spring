@@ -115,3 +115,9 @@ footer {
 .dropdown .dropdown-menu .nav-link.active {
   color: #fff !important;
 }
+
+.custom-select {
+  /* this is to ensure that the custom select has the same border and matches the material border radius*/
+  border-radius: .125rem;
+
+}
