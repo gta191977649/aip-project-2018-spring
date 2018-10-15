@@ -83,17 +83,18 @@ export class RegisterPage extends Component {
     const passConfErrorClass = errors.passwordConfirm ? "invalid" : "";
     const usernameErrorClass = errors.username ? "invalid" : "";
 
-    //Check to see if there is any errors
+    ///Check to see if there is any errors
     const alertError = !isEmpty(errors) ? "alert alert-danger" : "hidden";
 
-    let nameError = errors.name ? errors.confirm + "\r\n" : "";
-    let emailError = errors.email ? errors.email + "\r\n" : "";
-    let confirmError = errors.confirm ? errors.confirm + "\r\n" : "";
-    let passwordError = errors.password ? errors.password + "\r\n" : "";
-    let passConfError = errors.passwordConfirm
-      ? errors.passwordConfirm + "\r\n"
+    //Error Displays
+    let printErrors = !isEmpty(errors)
+      ? Object.values(errors).map((error, index) => (
+          <>
+            <span key={index}>{error}</span>
+            <br />
+          </>
+        ))
       : "";
-    let usernameError = errors.username ? errors.username : "";
     return (
       <Container className="mt-5">
         <Row className="pt-5">
@@ -101,12 +102,7 @@ export class RegisterPage extends Component {
             <form className="needs-validation" onSubmit={this.submitHandler}>
               <p className="display-4 h5 text-center mb-4">Sign up</p>
               <div className={alertError} role="alert">
-                {nameError}
-                {emailError}
-                {confirmError}
-                {passwordError}
-                {passConfError}
-                {usernameError}
+                {printErrors}
               </div>
               <div className="grey-text">
                 <Input

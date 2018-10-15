@@ -58,13 +58,18 @@ export class LoginPage extends Component {
     const emailErrorClass = errors.email ? "invalid" : "";
     const passErrorClass = errors.password ? "invalid" : "";
 
-    //Check to see if there is any errors
+    ///Check to see if there is any errors
     const alertError = !isEmpty(errors) ? "alert alert-danger" : "hidden";
 
-    // Prepare the errors for display
-    const errorMessage = errors.message ? errors.message + "\r\n" : "";
-    const emailError = errors.email ? errors.email + "\r\n" : "";
-    const passwordError = errors.password ? errors.password : "";
+    //Error Displays
+    let printErrors = !isEmpty(errors)
+      ? Object.values(errors).map((error, index) => (
+          <>
+            <span key={index}>{error}</span>
+            <br />
+          </>
+        ))
+      : "";
 
     return (
       <Container className="mt-5">
@@ -73,9 +78,7 @@ export class LoginPage extends Component {
             <form className="needs-validation" onSubmit={this.submitHandler}>
               <p className="display-4 h5 text-center mb-4">Sign in</p>
               <div className={alertError} role="alert">
-                {errorMessage}
-                {emailError}
-                {passwordError}
+                {printErrors}
               </div>
               <div className="grey-text">
                 <Input

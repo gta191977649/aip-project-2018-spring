@@ -67,18 +67,30 @@ export class ProfileForm extends Component {
       _id,
       valueChange
     } = this.state;
+
     const websiteErr = errors.website ? "invalid" : "";
     const locationErr = errors.location ? "invalid" : "";
     const descriptionErr = errors.description ? "invalid" : "";
+
+    //Check to see if there is any errors
     const alertError = !isEmpty(errors) ? "alert alert-danger" : "hidden";
+
+    //Error Displays
+    let printErrors = !isEmpty(errors)
+      ? Object.values(errors).map((error, index) => (
+          <>
+            <span key={index}>{error}</span>
+            <br />
+          </>
+        ))
+      : "";
     return (
       <Row>
         <Col md="6" className="mx-auto">
           <h5 className="my-2 h5 text-center">Edit Profile Details</h5>
           <form className="needs-validation" onSubmit={this.submitHandler}>
             <div className={alertError} role="alert">
-              {errors.email ? errors.email : ""}
-              {errors.password ? errors.password : ""}
+              {printErrors}
             </div>
             <div className="grey-text">
               <input type="hidden" name="_id" value={_id} />
