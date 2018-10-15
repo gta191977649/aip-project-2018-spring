@@ -9,6 +9,8 @@ import ProfileForm from "../Auth/Profile/ProfileForm";
 import DashboardHomePage from "./DashboardHomePage";
 import OrderList from "../Order/OrderList";
 import isEmpty from "../../Utils/isEmpty";
+import NewProductForm from "./Selling/NewProductForm";
+import SellingList from "./Selling/SellingList";
 
 export class DashboardPage extends Component {
   static propTypes = {
@@ -37,18 +39,28 @@ export class DashboardPage extends Component {
                     <Fa icon="dashboard" className="ml-2" />
                   </NavLink>
                 </NavItem>
+
+                <NavItem>
+                  <NavLink to="/dashboard/newproduct">
+                    Post new product
+                    <Fa icon="pencil-square-o" className="ml-2" />
+                  </NavLink>
+                </NavItem>
+
                 <NavItem>
                   <NavLink to="/dashboard/buying">
-                    Buying
+                    Bought Items
                     <Fa icon="cart-arrow-down" className="ml-2" />
                   </NavLink>
                 </NavItem>
+
                 <NavItem>
                   <NavLink to="/dashboard/selling">
-                    Selling
+                    Your Products
                     <Fa icon="dollar" className="ml-2" />
                   </NavLink>
                 </NavItem>
+
                 <NavItem>
                   <NavLink to="/dashboard/settings">
                     Settings
@@ -68,8 +80,13 @@ export class DashboardPage extends Component {
                 <Route exact path="/dashboard/buying" component={OrderList} />
                 <Route
                   exact
+                  path="/dashboard/newproduct"
+                  component={NewProductForm}
+                />
+                <Route
+                  exact
                   path="/dashboard/selling"
-                  component={ProfileForm}
+                  component={SellingList}
                 />
                 <Route
                   exact
