@@ -1,5 +1,12 @@
 // Load Models
 const Product = require('../models/Product');
+const User = require('../models/Account');
+const validateProduct = require('../validation/validateProduct');
+const jwt = require('jsonwebtoken');
+const mongoNotConnected = require('../utils/check-mongoose-connection');
+const path = require('path');
+const fs = require('fs');
+const slugify = require('../utils/slugify');
 
 module.exports.products_list = async (req, res) => {
   let items = await Product.find().catch((err) => console.log(err));
@@ -20,20 +27,67 @@ module.exports.product_search = async (req, res) => {
   }
 };
 
-module.exports.product_info = async (req, res) => {
-  if (!req.params) {
+module.exports.product_info = async (req, res) => {};
+
+module.exports.product_new = async (req, res, next) => {
+  const {errors, isValid} = validateProduct(req);
+  if (!isValid) {
+    fs.unlink(
+        path.join(__dirname, '../../uploads/', req.file.filename),
+        function(error) {
+          if (error) {
+            throw error;
+          }
+          console.log('Failed Validation, Deleted image!');
+        }
+    );
+    return res.status(400).json({errors});
   }
-  res.json({});
-};
+  console.log(req.file);
+  try {
+    // Check if mongo is connected
+    if (mongoNotConnected()) {
+      errors.message = 'Database not connected, contact server administrator';
+      return res.status(400).json({errors});
+    }
 
-module.exports.product_new = async (req, res) => {
-  console.log(req.params);
+    let token = req.headers.authorization;
+    if (!token) {
+      errors.auth = 'not valid';
+      res.status(401).json(errors);
+    }
 
-  // const newProduct = new Product({
-  //   name: req.body.name,
-  // });
-  // let item = await newProduct.save();
-  // res.json(item);
+    let user = jwt.decode(token.split(' ')[1]);
+    if (user) {
+      const {filename} = req.file;
+      let seller = user.id;
+      let image = 'uploads/' + filename;
+      let name = req.body.name;
+      let category = req.body.category;
+      let price = req.body.price.replace(/[^\d.]/g, ''); // removing non-digit or dot characters
+      let description = req.body.description;
+      let qty = req.body.qty;
+      let link = slugify(req.body.name) + '-' + new Date().valueOf();
+
+      let product = new Product({
+        seller,
+        link,
+        name,
+        price,
+        category,
+        image,
+        description,
+        qty,
+      });
+
+      product.save().then((product) => {
+        console.log('Prod created');
+        res.json({product});
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports.product_list_seller = async (req, res) => {
