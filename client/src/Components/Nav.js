@@ -26,12 +26,19 @@ class Nav extends React.Component {
       user: false
     };
     this.onClick = this.onClick.bind(this);
+    this.navigate = this.navigate.bind(this);
   }
 
   onClick() {
     this.setState({
       collapse: !this.state.collapse
     });
+  }
+
+  navigate(event) {
+    let target = event.target;
+    let location = target.attributes.to.value;
+    this.props.history.push(location);
   }
 
   render() {
@@ -66,28 +73,34 @@ class Nav extends React.Component {
                     Products
                   </DropdownToggle>
                   <DropdownMenu>
-                    <NavLink to="/products" className="dropdown-item">
+                    <DropdownItem to="/products" onClick={this.navigate}>
                       <Fa icon="list" className="mr-1" /> All Products
-                    </NavLink>
+                    </DropdownItem>
 
-                    <NavLink to="/category/clothes" className="dropdown-item">
+                    <DropdownItem
+                      to="/category/clothes"
+                      onClick={this.navigate}
+                    >
                       <Fa icon="tags" className="mr-1" /> Clothes
-                    </NavLink>
+                    </DropdownItem>
 
-                    <NavLink
+                    <DropdownItem
                       to="/category/electronics"
-                      className="dropdown-item"
+                      onClick={this.navigate}
                     >
                       <Fa icon="television" className="mr-1" /> Electronics
-                    </NavLink>
+                    </DropdownItem>
 
-                    <NavLink to="/category/software" className="dropdown-item">
+                    <DropdownItem
+                      to="/category/software"
+                      onClick={this.navigate}
+                    >
                       <Fa icon="gears" className="mr-1" /> Software
-                    </NavLink>
+                    </DropdownItem>
 
-                    <NavLink to="/category/toys" className="dropdown-item ">
+                    <DropdownItem to="/category/toys" onClick={this.navigate}>
                       <Fa icon="soccer-ball-o" className="mr-1" /> Toys
-                    </NavLink>
+                    </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </NavItem>
