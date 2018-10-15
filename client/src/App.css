@@ -1,0 +1,117 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+#main {
+  min-height: 100vh;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  min-height: 60px;
+  background-color: #2196f3 !important;
+}
+
+[class$="-primary"],
+[class*="-primary "] {
+  background-color: #2196f3 !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.error-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.error-actions {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.error-actions .btn {
+  margin-right: 10px;
+}
+
+.searchArea {
+  padding-top: 100px;
+}
+
+
+.nav-search::placeholder {
+  color: white;
+}
+
+.user-avatar {
+  height: 30px;
+}
+
+#classicformpage .landing-allproducts {
+  background-image: url('');
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+#classicformpage .landing-clothes {
+  background-image: url('https://i.imgur.com/2Q0ajmo.jpg');
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+#classicformpage .landing-electronics {
+  background-image: url('https://i.imgur.com/4KYa2Dp.jpg');
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+#classicformpage .landingview {
+  background: url('https://i.imgur.com/HvcCJC3.jpg');
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.landingsearch::placeholder {
+  color: grey;
+}
+
+#classicformpage .card {
+  background-color: rgba(126, 123, 215, 0.2);
+}
+
+#classicformpage h6 {
+  line-height: 1.7;
+}
+
+
+@media (max-width: 768px) {
+  #classicformpage .navbar:not(.top-nav-collapse) {
+    background: #424f95 !important;
+  }
+}
+
+#classicformpage label {
+  color: #fff !important;
+}
+
+/* Overiding default navlink coloring only for drop down menus */
+.dropdown .dropdown-menu .nav-link {
+  color: #000 !important;
+}
+
+/* Overiding default navlink coloring only for drop down menus */
+.dropdown .dropdown-menu .nav-link.active {
+  color: #fff !important;
+}

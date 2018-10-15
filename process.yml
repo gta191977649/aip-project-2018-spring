@@ -1,0 +1,16 @@
+## Doesn't work yet
+
+apps:
+  - name: "client"
+    script: "render.js"
+    exec_mode: "cluster"
+    instance: "max"
+    env:
+      NODE_ENV: production
+
+  - name: "api"
+    script: "server/server.js"
+    exec_mode: "cluster"
+    instance: "max"
+    ? env
+    NODE_ENV: production
