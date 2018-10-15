@@ -14,11 +14,11 @@ module.exports = function validateLoginInput(data) {
   });
 
   if (!isValidEmail || validator.isEmpty(data.email)) {
-    errors.email = 'Email Invalid';
+    errors.email = 'Email Invalid, example email: email@example.net';
   }
 
   if (!isPassValid || validator.isEmpty(data.password)) {
-    errors.password = 'Password invalid';
+    errors.password = 'Password invalid, Min 8 Character, Max 24 Characters.';
   }
 
   return {

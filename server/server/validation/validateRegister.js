@@ -15,7 +15,7 @@ module.exports = function validateRegisterInput(data) {
     : '';
 
   let isHandleValid = validator.isLength(data.handle, {min: 2, max: 40});
-  let isValidEmail = validator.isEmail('' + data.email);
+  let isValidEmail = validator.isEmail('' + data.email); // added the blank space to make sure it converts to string properly
   let isPassValid = validator.isLength(data.password, {
     min: 8,
     max: 24,
@@ -37,19 +37,21 @@ module.exports = function validateRegisterInput(data) {
       'Username is invalid, must be between 2 and 40 characters';
   }
   if (!isValidEmail || validator.isEmpty(data.email)) {
-    errors.email = 'Email Invalid';
+    errors.email = 'Email Invalid. (Example: email@example.com';
   }
   if (!isPassValid || validator.isEmpty(data.password)) {
-    errors.password = 'Password invalid';
+    errors.password = 'Password invalid, Min 8 Characters, Max 24 Characters';
   }
   if (!isPassConfirmValid || validator.isEmpty(data.passwordConfirm)) {
-    errors.passwordConfirm = 'Passwords don\'t match';
+    errors.passwordConfirm = 'Passwords do not match';
   }
   if (!isConfirmEmailValid || validator.isEmpty(data.confirm)) {
-    errors.confirm = 'Email invalid';
+    errors.confirm =
+      'Emails do not match. Must be the same as the email you entered.';
   }
   if (!isEmailSame) {
-    errors.confirm = 'Email not the same';
+    errors.confirm =
+      'Emails do not match. Must be the same as the email you entered.';
   }
   if (isFNameEmpty || isLNameEmpty) {
     errors.fname = 'Name is empty';
