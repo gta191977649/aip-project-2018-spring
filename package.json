@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/gta191977649/aip-project-2018-spring/issues"
   },
-  "homepage": "https://github.com/gta191977649/aip-project-2018-spring#readme"
+  "homepage": "https://github.com/gta191977649/aip-project-2018-spring#readme",
+  "dependencies": {
+    "chart.js": "^2.7.2",
+    "react-chartjs-2": "^2.7.4"
+  }
 }
