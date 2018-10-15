@@ -1,9 +1,8 @@
 import SearchForm from "./SearchForm";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { searchProducts } from "../../Actions/ProductAction";
+import { searchProducts } from "../../Actions/ProductActions";
 import { Container, Row, Col } from "mdbreact";
-import ProductItem from "../Products/ProductItem";
 import queryString from "query-string";
 
 export class SearchPage extends Component {
@@ -18,9 +17,7 @@ export class SearchPage extends Component {
     this.setState({ query: values });
   }
   render() {
-    let productItems = this.props.products.map(item => (
-      <ProductItem id={item.id} data={item} key={item.id} />
-    ));
+    let productItems;
     if (!this.props.products.length) {
       productItems = (
         <div>

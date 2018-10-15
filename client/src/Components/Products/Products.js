@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { Col, Container, Row } from "mdbreact";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Container, Col, Row } from "mdbreact";
 
-import { fetchProducts } from "../../Actions/ProductAction";
-import ProductItem from "./ProductItem";
+export class Products extends Component {
+  static propTypes = {};
 
-class Products extends Component {
-  componentWillMount() {
-    this.props.fetchProducts();
-  }
   render() {
     return (
       <Container className="mt-5">
@@ -22,12 +19,11 @@ class Products extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  products: state.products.items,
-  error: state.products.error,
-  errorMsg: state.products.errorMsg
-});
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {};
+
 export default connect(
   mapStateToProps,
-  { fetchProducts }
+  mapDispatchToProps
 )(Products);

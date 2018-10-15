@@ -13,7 +13,7 @@ import {
 } from "mdbreact";
 
 //Components
-import { fetchOrdersById } from "../../Actions/OrderAction";
+import { fetchOrdersById } from "../../Actions/OrderActions";
 import isEmpty from "../../Utils/isEmpty";
 
 export class OrderList extends Component {

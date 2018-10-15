@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Input, Button, FormInline } from "mdbreact";
 import { connect } from "react-redux";
-import { searchProducts } from "../../Actions/ProductAction";
+import { searchProducts } from "../../Actions/ProductActions";
 
 export class SearchForm extends Component {
   constructor(props) {

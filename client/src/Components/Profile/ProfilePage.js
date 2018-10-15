@@ -32,6 +32,7 @@ export class ProfilePage extends Component {
         .profileGet(handle)
         .then(result => {
           this.setState({ ...result.data });
+          console.log(this.state);
         })
         .catch(axiosError => {
           toast.error(
@@ -39,8 +40,6 @@ export class ProfilePage extends Component {
           );
           this.props.history.push("/500");
         });
-
-      console.log(this.state);
     }
   }
 
