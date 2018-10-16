@@ -1,5 +1,5 @@
 const express = require('express');
-const apiRouter = require('./routes/api');
+const app = express();
 const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -7,8 +7,10 @@ const Promise = require('bluebird');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const path = require('path');
+
+const apiRouter = require('./routes/api');
 const mongourl = require('./config/keys').mongo;
-const app = express();
+
 require('dotenv').config();
 // Redefine promise to bluebird for performance increase?
 global.Promise = Promise;
@@ -35,13 +37,18 @@ mongoose
         mongourl,
         {useNewUrlParser: true}
     )
-    .then(() => console.log('Mongo Connected...'))
+    .then(() => {
+      console.log('Mongo Connected...');
+      // Start creation of default model
+      let setupDefaultModels = require('./setup/setupDefaultModels');
+      setupDefaultModels();
+    })
     .catch((err) => console.log(err));
 // Set Mongoose Promise engine to Bluebird!
 mongoose.Promise = Promise;
 
 // Register models
-require('./models/Account');
+require('./models/User');
 require('./models/Feedback');
 require('./models/Order');
 require('./models/Product');
