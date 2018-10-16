@@ -20,6 +20,11 @@ import ServerErrorComponent from "../Utils/ServerErrorComponent";
 import CategoriesPage from "./Products/CategoriesPage";
 import OrderPage from "./Order/OrderPage";
 import ProfilePage from "./Profile/ProfilePage";
+import CartPage from "./Cart/CartPage";
+import ClothesPage from "./Categories/ClothesPage";
+import ToysPage from "./Categories/ToysPage";
+import SoftwarePage from "./Categories/SoftwarePage";
+import ElectronicsPage from "./Categories/ElectronicsPage";
 
 export class Main extends Component {
   static propTypes = {
@@ -36,11 +41,19 @@ export class Main extends Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/products/:id" component={ProductInfo} />
-          <Route path="/category/:name" component={CategoriesPage} />
+
+          {/* Product Categories */}
+          <Route path="/categories" component={CategoriesPage} />
+          <Route path="/category/toys" component={ToysPage} />
+          <Route path="/category/software" component={SoftwarePage} />
+          <Route path="/category/clothes" component={ClothesPage} />
+          <Route path="/category/electronics" component={ElectronicsPage} />
+
           <Route path="/products" component={Products} />
           <Route path="/help" component={HelpPage} />
           <Route path="/search" component={SearchPage} />
           <Route path="/profile/:handle" component={ProfilePage} />
+          <Route path="/cart" component={CartPage} />
 
           <PrivateRoute
             path="/dashboard/:page"

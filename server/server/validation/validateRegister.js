@@ -1,5 +1,5 @@
 const validator = require('validator');
-const isEmpty = require('../utils/is-empty');
+const isEmpty = require('../utils/isEmpty');
 module.exports = function validateRegisterInput(data) {
   let errors = {};
   data.handle = !isEmpty(data.handle) ? validator.escape(data.handle) : '';

@@ -4,7 +4,8 @@ const gravatar = require('gravatar');
 
 const User = require('../models/User');
 const Product = require('../models/Product');
-const urlFriendlyName = require('../utils/create-url-name');
+const Profile = require('../models/UserProfile');
+const urlFriendlyName = require('../utils/createUrlName');
 
 module.exports = () => {
   let defaultUser = require('../config/keys').defaultUser;
@@ -94,6 +95,11 @@ module.exports = () => {
         ) {
           console.log('Error occured');
         }
+        let profile = new Profile({user: user._id});
+        profile.save(function(err) {
+          if (err) console.log(err);
+          // thats it!
+        });
       });
     } else {
       console.log('Default User found');

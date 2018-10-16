@@ -14,6 +14,7 @@ import Nav from "./Components/Nav";
 import Main from "./Components/Main";
 import FooterComponent from "./Components/FooterComponent";
 import AuthComponent from "./Utils/AuthComponent";
+import FetchProductsComponent from "./Components/Products/FetchProductComponent";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <AuthComponent />
+            <FetchProductsComponent />
             <ToastContainer newestOnTop={true} autoClose={5000} />
             <Nav />
             <Main />

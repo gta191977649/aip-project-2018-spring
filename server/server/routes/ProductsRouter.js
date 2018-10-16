@@ -43,10 +43,10 @@ router.post(
     imageUpload.single('image'),
     ProductController.product_new
 );
-// @route GET api/products/:id
+// @route GET api/products/:link
 // @desc Gets the information of a single product
 // @access Public
-router.get('/:id', ProductController.product_info);
+router.get('/:link', ProductController.product_info);
 
 // @route DELETE api/products/:id
 // @desc Deletes a product based upon id

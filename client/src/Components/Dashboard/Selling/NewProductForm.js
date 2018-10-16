@@ -138,8 +138,6 @@ export class NewProductForm extends Component {
       </option>
     ));
 
-    let TestName = name ? slugify(name) : "";
-
     return (
       <Row className="">
         <Col md="6" className="mx-auto">
@@ -148,7 +146,6 @@ export class NewProductForm extends Component {
             <div className={alertError} role="alert">
               {printErrors}
             </div>
-            {TestName}
             <div className="grey-text">
               <Row>
                 <Col>

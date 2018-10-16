@@ -4,7 +4,7 @@ const User = require('../models/User');
 const Profile = require('../models/UserProfile');
 const validateRegister = require('../validation/validateRegister');
 const validateLogin = require('../validation/validateLogin');
-const mongoNotConnected = require('../utils/check-mongoose-connection');
+const mongoNotConnected = require('../utils/checkMongooseConnection');
 
 // @route POST api/auth/current
 // @desc Gets current user details

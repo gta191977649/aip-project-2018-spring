@@ -41,12 +41,7 @@ let ProductSchema = new Schema({
   },
 });
 
-// Getter
-ProductSchema.path('price').get(function(num) {
-  return (num / 100).toFixed(2);
-});
-
-// Setter
+// Setter - Convert decimal dollars to cents
 ProductSchema.path('price').set(function(num) {
   return num * 100;
 });

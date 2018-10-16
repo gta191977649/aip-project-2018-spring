@@ -1,15 +1,16 @@
 // Load Models
 const Product = require('../models/Product');
-const User = require('../models/User');
 const validateProduct = require('../validation/validateProduct');
 const jwt = require('jsonwebtoken');
-const mongoNotConnected = require('../utils/check-mongoose-connection');
+const mongoNotConnected = require('../utils/checkMongooseConnection');
 const path = require('path');
 const fs = require('fs');
 const slugify = require('../utils/slugify');
 
 module.exports.products_list = async (req, res) => {
-  let items = await Product.find().catch((err) => console.log(err));
+  let items = await Product.find()
+      .populate({path: 'seller', select: 'handle'})
+      .catch((err) => console.log(err));
   res.json(items);
 };
 
@@ -27,7 +28,30 @@ module.exports.product_search = async (req, res) => {
   }
 };
 
-module.exports.product_info = async (req, res) => {};
+module.exports.product_info = async (req, res) => {
+  console.log(req.params);
+
+  let errors = {};
+  if (req.params.link) {
+    let link = req.params.link;
+    try {
+      let product = await Product.findOne({link})
+          .populate({path: 'seller', select: 'handle'})
+          .exec();
+
+      if (product) {
+        res.status(200).json({product});
+      }
+    } catch (error) {
+      errors.message = 'Unknown error occured; try again later.';
+    }
+  } else {
+    errors.message = 'Unable to proccess request; No product link provided.';
+    res.status(400).json({errors});
+  }
+
+  return res;
+};
 
 module.exports.product_new = async (req, res, next) => {
   const {errors, isValid} = validateProduct(req);
@@ -103,4 +127,37 @@ module.exports.product_delete = async (req, res) => {
 module.exports.product_update = async (req, res) => {
   // Update a product
   res.json([]);
+};
+
+const formatMoney = (
+    amount,
+    decimalCount = 2,
+    decimal = '.',
+    thousands = ','
+) => {
+  try {
+    decimalCount = Math.abs(decimalCount);
+    decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+
+    const negativeSign = amount < 0 ? '-' : '';
+
+    let i = parseInt(
+        (amount = Math.abs(Number(amount) || 0).toFixed(decimalCount))
+    ).toString();
+    let j = i.length > 3 ? i.length % 3 : 0;
+
+    return (
+      negativeSign +
+      (j ? i.substr(0, j) + thousands : '') +
+      i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + thousands) +
+      (decimalCount
+        ? decimal +
+          Math.abs(amount - i)
+              .toFixed(decimalCount)
+              .slice(2)
+        : '')
+    );
+  } catch (e) {
+    console.log(e);
+  }
 };

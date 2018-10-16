@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Container, Row, Col, Fa, View, Mask, Button } from "mdbreact";
+import jwt from "jsonwebtoken";
+
 import LandingSearchForm from "./LandingSearchForm";
 import Category from "../Products/Category";
-import { Container, Row, Col, Fa, View, Mask, Button } from "mdbreact";
-// MOVED CSS -> App.css
+import { fetchProducts } from "../../Actions/ProductActions";
 
 export class LandingPage extends Component {
   static propTypes = {};
@@ -70,9 +72,13 @@ export class LandingPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  products: state.products
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  fetchProducts
+};
 
 export default connect(
   mapStateToProps,

@@ -17,7 +17,8 @@ import { userLogout } from "../../Actions/AuthActions";
 export class User extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    userLogout: PropTypes.func.isRequired
+    userLogout: PropTypes.func.isRequired,
+    cart: PropTypes.object.isRequired
   };
   constructor(props) {
     super(props);
@@ -40,6 +41,8 @@ export class User extends Component {
   render() {
     const { isLoggedIn } = this.props.auth;
     const { name, avatar, handle } = this.props.auth.user;
+    const { itemcount } = this.props.cart;
+
     const userLinks = (
       <>
         <NavItem>
@@ -104,12 +107,23 @@ export class User extends Component {
       </>
     );
     let component = isLoggedIn ? userLinks : guestLinks;
-    return component;
+    return (
+      <>
+        <NavItem>
+          <NavLink to="/cart" className="ml-2">
+            <Fa icon="shopping-basket" className="mr-1" />
+            Cart ({itemcount})
+          </NavLink>
+        </NavItem>
+        {component}
+      </>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  cart: state.cart
 });
 
 const mapDispatchToProps = {

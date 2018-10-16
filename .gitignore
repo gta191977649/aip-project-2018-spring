@@ -132,3 +132,7 @@ lib-cov
 
 client/.env
 server/.env
+server/uploads/faded.png
+server/uploads/1539684803598_some-new-product-thats-dope.jpg
+server/uploads/1539684681987_some-new-product.png
+server/uploads/1539684619819_some-new-product.png

@@ -6,6 +6,7 @@ import { Container, Row, Col, Avatar, toast } from "mdbreact";
 //Components
 import { profileGet } from "../../Actions/AuthActions";
 import isEmpty from "../../Utils/isEmpty";
+import ProductList from "./ProductList";
 
 export class ProfilePage extends Component {
   static propTypes = {
@@ -21,7 +22,8 @@ export class ProfilePage extends Component {
       user: {},
       profile: {
         feedback: []
-      }
+      },
+      products: []
     };
   }
 
@@ -44,8 +46,9 @@ export class ProfilePage extends Component {
   }
 
   render() {
-    const { description, feedback } = this.state.profile;
-    const { avatar, name, handle } = this.state.user;
+    let { profile, user, products } = this.state;
+    const { description, feedback } = profile;
+    const { avatar, name, handle } = user;
 
     let feedbackElem = !isEmpty(feedback) ? (
       feedback.map((feedbackItem, i) => {
@@ -90,7 +93,9 @@ export class ProfilePage extends Component {
         <Row>
           <Container>
             <Row>
-              <Col md="6">Ye Boi</Col>
+              <Col>
+                <ProductList products={{ products }} />
+              </Col>
             </Row>
           </Container>
         </Row>

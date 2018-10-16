@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Col, Row } from "mdbreact";
+import { Container, Row, Col } from "mdbreact";
 
-import Product from "./Product";
+import Product from "../Products/Product";
 
-export class Products extends Component {
+export class SoftwarePage extends Component {
   static propTypes = {
-    products: PropTypes.array.isRequired
+    products: PropTypes.object.isRequired
   };
 
   render() {
-    let products = this.props.products.map((item, i) => (
-      <Product key={i} product={item} />
-    ));
+    let products = this.props.products.map((item, i) => {
+      if (item.category.toLowerCase() === "software") {
+        return <Product key={i} product={item} />;
+      } else {
+        return "";
+      }
+    });
     return (
       <Container className="mt-custom" fluid>
         <Row>
           <Col>
-            <h1 className="text-center">Available Products</h1>
+            <h1 className="text-center">Software</h1>
             <hr />
           </Col>
         </Row>
@@ -37,4 +41,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Products);
+)(SoftwarePage);

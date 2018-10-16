@@ -3,9 +3,10 @@ const jwt = require('jsonwebtoken');
 
 const Profile = require('../models/UserProfile');
 const User = require('../models/User');
-const isEmpty = require('../utils/is-empty');
+const Product = require('../models/Product');
+const isEmpty = require('../utils/isEmpty');
 const validateProfile = require('../validation/validateProfile');
-const mongoNotConnected = require('../utils/check-mongoose-connection');
+const mongoNotConnected = require('../utils/checkMongooseConnection');
 
 module.exports.profiles_get = async (req, res) => {
   let errors = {};
@@ -33,7 +34,8 @@ module.exports.profiles_get = async (req, res) => {
       // If User is Foud - Look for profile
       let profile = await Profile.findOne({user: user._id});
       if (profile) {
-        res.status(200).json({profile, user});
+        let products = await Product.find({seller: user._id});
+        res.status(200).json({profile, user, products});
       } else {
         // If Profile is not found respond with error
         errors.handle = 'Could not find profile, do you have one?';
