@@ -2,7 +2,7 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 
 const Profile = require('../models/UserProfile');
-const User = require('../models/Account');
+const User = require('../models/User');
 const isEmpty = require('../utils/is-empty');
 const validateProfile = require('../validation/validateProfile');
 const mongoNotConnected = require('../utils/check-mongoose-connection');

@@ -1,6 +1,6 @@
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
-const User = require('../models/Account');
+const User = require('../models/User');
 const Profile = require('../models/UserProfile');
 const validateRegister = require('../validation/validateRegister');
 const validateLogin = require('../validation/validateLogin');

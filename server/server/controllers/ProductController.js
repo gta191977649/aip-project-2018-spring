@@ -1,6 +1,6 @@
 // Load Models
 const Product = require('../models/Product');
-const User = require('../models/Account');
+const User = require('../models/User');
 const validateProduct = require('../validation/validateProduct');
 const jwt = require('jsonwebtoken');
 const mongoNotConnected = require('../utils/check-mongoose-connection');
