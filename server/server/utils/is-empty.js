@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (value) =>
   value === undefined ||
   value === null ||

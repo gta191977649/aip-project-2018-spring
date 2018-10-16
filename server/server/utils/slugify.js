@@ -1,3 +1,5 @@
+'use strict';
+
 /* Function grabbed from https://gist.github.com/matthagemann/382adfc57adbd5af078dc93feef01fe1 */
 
 module.exports = function slugify(string) {
