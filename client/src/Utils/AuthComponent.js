@@ -6,7 +6,8 @@ import { userSet } from "../Actions/AuthActions";
 
 export class AuthComponent extends Component {
   static propTypes = {
-    userSet: PropTypes.func.isRequired
+    userSet: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
   };
 
   componentWillMount() {
@@ -18,7 +19,7 @@ export class AuthComponent extends Component {
   }
 
   render() {
-    return <div />;
+    return <div className="d-none" />;
   }
 }
 

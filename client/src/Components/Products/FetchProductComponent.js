@@ -4,12 +4,15 @@ import { connect } from "react-redux";
 
 import { fetchProducts } from "../../Actions/ProductActions";
 export class FetchProductComponent extends Component {
+  static propTypes = {
+    products: PropTypes.object.isRequired
+  };
   componentDidMount() {
     this.props.fetchProducts();
   }
 
   render() {
-    return <></>;
+    return <div className="d-none" />;
   }
 }
 
