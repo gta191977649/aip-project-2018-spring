@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Input,
-  Button,
-  toast,
-  FormInline
-} from "mdbreact";
+import { Container, Row, Col, Input, Button, toast } from "mdbreact";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
