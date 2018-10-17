@@ -6,15 +6,23 @@ const Product = require('../models/Product');
 
 const isEmpty = require('../utils/isEmpty');
 
-module.exports.order_list = (req, res) => {
+// TODO: Improve load times
+module.exports.order_list = async (req, res) => {
   let userid = req.body.id;
+  try {
+    let orders = await Order.find({customer: userid}).populate({
+      path: 'items',
+      populate: {
+        path: 'product',
+        select: 'price link name',
+      },
+    });
 
-  Order.find({customer: userid})
-      .then((orders) => {
-        return res.status(200).json(orders);
-      })
-      .catch((err) => console.log(err));
-  res.status(400);
+    return res.status(200).json(orders);
+  } catch (err) {
+    console.log(err);
+    return res.status(500);
+  }
 };
 
 module.exports.order_new = async (req, res) => {
@@ -79,7 +87,7 @@ module.exports.order_new = async (req, res) => {
       orderItemBuffer.push(orderItem);
     }
   });
-  // console.log(orderItemBuffer);
+  console.log(orderItemBuffer);
   if (!isEmpty(orderItemBuffer)) {
     OrderItem.collection.insertMany(orderItemBuffer);
   }
