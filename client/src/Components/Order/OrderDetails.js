@@ -1,32 +1,63 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Row, Col, Card, CardText, CardTitle } from "mdbreact";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardText,
+  CardTitle,
+  CardBody
+} from "mdbreact";
 
 import isEmpty from "../../Utils/isEmpty";
+import OrderProductList from "./OrderProductList";
 
 export class OrderDetails extends Component {
   static propTypes = {
-    orders: PropTypes.object.isRequired
+    orders: PropTypes.array.isRequired
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      order: {}
+      _id: "",
+      items: [],
+      isCompleted: false
     };
   }
 
+  // TODO: Improve this to filter better - perhaps orders.find() (Google Find() on array)
+  // On Component Mount fetch id param and then lookup in orders to find relevant ID and then filter out the details
   componentDidMount() {
     let orderid = this.props.match.params.id;
     if (!isEmpty(orderid)) {
       if (!isEmpty(this.props.orders)) {
         let orders = this.props.orders;
 
-        orders.items.forEach((element, index) => {
+        orders.forEach((element, index) => {
           if (element._id === orderid) {
-            this.setState({ order: element });
+            this.setState({ ...element });
+            return;
+          }
+        });
+      }
+    }
+  }
+
+  // TODO: Improve (if you can if not just delete this comment) figure out why sometimes the id does not show
+  // Does the exact same thing as the component did mount function
+  componentWillReceiveProps(nextProps) {
+    let orderid = nextProps.match.params.id;
+    if (!isEmpty(orderid)) {
+      if (!isEmpty(nextProps.orders)) {
+        let orders = nextProps.orders;
+
+        orders.forEach((element, index) => {
+          if (element._id === orderid) {
+            this.setState({ ...element });
             return;
           }
         });
@@ -35,7 +66,7 @@ export class OrderDetails extends Component {
   }
 
   render() {
-    let { _id, items, isCompleted } = this.state.order;
+    let { _id, items, isCompleted } = this.state;
     let completed = (
       <span className="green-text">
         <b>Completed</b>
@@ -52,10 +83,19 @@ export class OrderDetails extends Component {
         <Row className="profile-body">
           <Container>
             <Card>
-              <CardTitle>
-                {_id}
-                {isCompleted ? completed : notCompleted}
-              </CardTitle>
+              <CardBody className="p-5">
+                <CardTitle className="">
+                  <span className="float-left ml-5">Order ID: {_id}</span>
+                  <span className="float-right mr-5">
+                    Status: {isCompleted ? completed : notCompleted}
+                  </span>
+                  <br />
+                  <hr />
+                </CardTitle>
+                <CardText>Products:</CardText>
+
+                <OrderProductList orderitems={items} />
+              </CardBody>
             </Card>
           </Container>
         </Row>
@@ -65,7 +105,7 @@ export class OrderDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-  orders: state.orders
+  orders: state.orders.orders
 });
 
 const mapDispatchToProps = {};
