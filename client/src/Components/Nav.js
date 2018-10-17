@@ -67,6 +67,12 @@ class Nav extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink to="/search">
+                  <Fa icon="search" className="mr-1" />
+                  Search
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <Dropdown>
                   <DropdownToggle nav caret>
                     <Fa icon="list" className="mr-1" />
@@ -104,6 +110,7 @@ class Nav extends React.Component {
                   </DropdownMenu>
                 </Dropdown>
               </NavItem>
+
               <NavItem>
                 <NavLink to="/about">
                   <Fa icon="info-circle" className="mr-1" />
