@@ -34,11 +34,13 @@ export default function(state = initialState, action) {
         state.items.push({ item: product, qty: 1 });
       }
 
+      //Moved these out of the return because wierd bug was not updating the values
+      state.cost = state.cost + product.price;
+      state.itemcount = state.items.length;
+
       //Return dispatch object
       return {
-        ...state,
-        cost: state.cost + product.price,
-        itemcount: state.items.length
+        ...state
       };
     case CART_REMOVE:
       return {
