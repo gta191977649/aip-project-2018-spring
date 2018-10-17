@@ -10,7 +10,9 @@ const slugify = require('../utils/slugify');
 module.exports.products_list = async (req, res) => {
   let items = await Product.find()
       .populate({path: 'seller', select: 'handle'})
+      .exec()
       .catch((err) => console.log(err));
+
   res.json(items);
 };
 

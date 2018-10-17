@@ -3,17 +3,18 @@ const jwt = require('jsonwebtoken');
 const Order = require('../models/Order');
 const OrderItem = require('../models/OrderItem');
 const Product = require('../models/Product');
-const User = require('../models/User');
 
 const isEmpty = require('../utils/isEmpty');
 
-module.exports.order_list = async (req, res) => {
-  let userid = req.body.userid;
+module.exports.order_list = (req, res) => {
+  let userid = req.body.id;
 
-  let orders = await Order.find({customer: userid}).catch((err) =>
-    console.log(err)
-  );
-  res.json(orders);
+  Order.find({customer: userid})
+      .then((orders) => {
+        return res.status(200).json(orders);
+      })
+      .catch((err) => console.log(err));
+  res.status(400);
 };
 
 module.exports.order_new = async (req, res) => {

@@ -10,6 +10,7 @@ export const FETCH_ALL_USERS = "FETCH_ALL_USERS";
 
 //ORDER ACTION
 export const NEW_ORDER = "NEW_ORDER";
+export const FETCH_ORDERS = "FETCH_ORDERS";
 
 //AUTH ACTIONS
 export const USER_LOGIN = "USER_LOGIN";
