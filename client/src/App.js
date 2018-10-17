@@ -28,7 +28,12 @@ class App extends Component {
             <ProductsComponent />
             <CartComponent />
             <OrdersComponent />
-            <ToastContainer newestOnTop={true} autoClose={5000} />
+            <ToastContainer
+              newestOnTop
+              position="bottom-right"
+              autoClose={5000}
+              draggable
+            />
             <Nav />
             <Main />
             <FooterComponent />
