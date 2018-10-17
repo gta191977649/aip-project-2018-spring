@@ -1,4 +1,5 @@
 import { NEW_PRODUCT, FETCH_PRODUCTS } from "../Actions/Types";
+
 const initialState = {
   products: []
 };
