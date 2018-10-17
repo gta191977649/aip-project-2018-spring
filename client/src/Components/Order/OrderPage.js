@@ -33,6 +33,25 @@ export class OrderPage extends Component {
     };
   }
 
+  componentDidMount() {
+    let { items } = this.props.orders;
+    let currentOrdersBuffer = [];
+    let previousOrdersBuffer = [];
+
+    if (!isEmpty(items)) {
+      items.map((item, index) => {
+        item.isCompleted
+          ? previousOrdersBuffer.push(item)
+          : currentOrdersBuffer.push(item);
+      });
+    }
+
+    this.setState({
+      currentOrders: currentOrdersBuffer,
+      previousOrders: previousOrdersBuffer
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     let { items } = nextProps.orders;
     let currentOrdersBuffer = [];

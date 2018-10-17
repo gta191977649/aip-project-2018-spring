@@ -29,6 +29,8 @@ import CartPage from "./Cart/CartPage";
 import CheckoutPage from "./Checkout/CheckoutPage";
 import CheckoutCompletePage from "./Checkout/CheckoutCompletePage";
 
+import OrderDetails from "./Order/OrderDetails";
+
 export class Main extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired
@@ -71,6 +73,12 @@ export class Main extends Component {
           <PrivateRoute
             path="/orders"
             component={OrderPage}
+            isLoggedIn={isLoggedIn}
+          />
+
+          <PrivateRoute
+            path="/order/:id"
+            component={OrderDetails}
             isLoggedIn={isLoggedIn}
           />
           <PrivateRoute

@@ -13,10 +13,7 @@ export class OrderList extends Component {
           <td>{item._id}</td>
           <td>{item.items.length}</td>
           <td>
-            <Link
-              to={"/product/" + item._id}
-              className="btn btn-primary btn-sm"
-            >
+            <Link to={"/order/" + item._id} className="btn btn-primary btn-sm">
               View Details
             </Link>
           </td>
