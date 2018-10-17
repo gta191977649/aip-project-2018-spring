@@ -19,7 +19,8 @@ module.exports.product_search = async (req, res) => {
     let name = req.query.name;
     let items = await Product.find({
       name: {
-        $regex: '.*' + name + '.*',
+        $regex: name,
+        $options: 'i',
       },
     }).catch((err) => console.log(err));
     res.json(items);
