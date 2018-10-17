@@ -9,7 +9,7 @@ export class OrderList extends Component {
 
     let ordersBody = !isEmpty(orders) ? (
       orders.map((item, index) => (
-        <tr>
+        <tr key={index}>
           <td>{item._id}</td>
           <td>{item.items.length}</td>
           <td>
