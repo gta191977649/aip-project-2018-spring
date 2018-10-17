@@ -32,16 +32,17 @@ export class CheckoutPage extends Component {
     }
   }
 
+  // WARNING: Possible memory leak (State Setting) if error occurs fix
   async checkout(event) {
     event.preventDefault();
     this.setState({ isLoading: true });
     if (!this.props.auth.isLoggedIn) {
       this.setState({ error: "You need to be logged in!" });
+      this.setState({ isLoading: false });
     } else {
       let response = await this.props.createOrder(this.props.cart);
       this.props.history.push("/");
     }
-    this.setState({ isLoading: false });
   }
 
   render() {
