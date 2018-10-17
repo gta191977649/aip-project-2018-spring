@@ -58,6 +58,7 @@ module.exports = () => {
           category: phone.category,
           image: phone.image,
           description: phone.description,
+          qty: phone.qty,
           hasStock: phone.qty > 0,
         });
 
