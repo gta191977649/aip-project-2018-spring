@@ -8,8 +8,7 @@ import {
   CardTitle,
   CardText,
   CardFooter,
-  Fa,
-  Tooltip
+  Fa
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import validator from "validator";
@@ -25,7 +24,9 @@ export class Product extends Component {
 
   async itemCartClick(event) {
     event.preventDefault();
-    await this.props.addToCart(this.props.product, this.props.cart);
+    if (this.props.product.hasStock) {
+      await this.props.addToCart(this.props.product, this.props.cart);
+    }
   }
 
   itemFavouriteClick(event) {
@@ -52,7 +53,9 @@ export class Product extends Component {
       name,
       price,
       description,
-      image
+      image,
+      qty,
+      hasStock
     } = this.props.product;
 
     let productContainerStyle = {
@@ -65,6 +68,11 @@ export class Product extends Component {
       backgroundPosition: "center",
       borderRadius: ".125rem"
     };
+
+    let isActive = hasStock ? "white-text" : "grey-text";
+
+    let qtyDisplay = hasStock ? qty + " left" : "None Left";
+
     return (
       <Col className="mb-2" md="2">
         <Card narrow ecommerce className="mb-2" style={productContainerStyle}>
@@ -93,14 +101,15 @@ export class Product extends Component {
             </CardText>
             <CardFooter className="px-1">
               <span className="float-left text-white">
-                ${convertCentsToDollars(price)}
+                ${convertCentsToDollars(price)} - {qtyDisplay}
               </span>
               <span className="float-right grey-text">
                 <Link
                   to="#"
-                  className="white-text ml-3"
+                  className={isActive + " ml-3"}
                   title="Add to cart"
                   onClick={e => this.itemCartClick(e)}
+                  disabled={!hasStock}
                 >
                   <Fa icon="cart-arrow-down" />
                 </Link>
