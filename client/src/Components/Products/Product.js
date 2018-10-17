@@ -1,3 +1,4 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -13,15 +14,23 @@ import {
 import { Link } from "react-router-dom";
 import validator from "validator";
 
+// @import Project Components
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
 import { addToCart } from "../../Actions/CartActions";
 
+// @Name Products
+// @Description Provides a little display to show important information of a product
+// @Use(optional) Place on other components for product managmenet
 export class Product extends Component {
+  // Better than doing Product.propTypes
+  // has same effect though.
   static propTypes = {
     cart: PropTypes.object.isRequired,
     product: PropTypes.object.isRequired
   };
 
+  // @Name itemCartClick
+  // @Description Adds item to cart
   async itemCartClick(event) {
     event.preventDefault();
     if (this.props.product.hasStock) {
@@ -29,6 +38,8 @@ export class Product extends Component {
     }
   }
 
+  // @Name itemFavouriteClick
+  // @Description Creates a fake effect of adding to wishlist
   itemFavouriteClick(event) {
     event.preventDefault();
     let objectClass = event.target.attributes.class.value.split(" ");
@@ -46,7 +57,10 @@ export class Product extends Component {
     event.target.attributes.class.value = objectClass.join(" ");
   }
 
+  // @Name render
+  // @Description renders the product component
   render() {
+    // Deconstruct the product prop
     const {
       seller,
       link,
@@ -58,6 +72,8 @@ export class Product extends Component {
       hasStock
     } = this.props.product;
 
+    // Define custom inline style for the element
+    // TODO: Grab Constant for API URL
     let productContainerStyle = {
       background:
         "linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(http://localhost:3000/" +
@@ -69,10 +85,13 @@ export class Product extends Component {
       borderRadius: ".125rem"
     };
 
+    //Check if the item has stock and echo white-text if in stock or grey if no stock
     let isActive = hasStock ? "white-text" : "grey-text";
 
+    //Pretty display of quantity
     let qtyDisplay = hasStock ? qty + " left" : "None Left";
 
+    //Returning the component display
     return (
       <Col className="mb-2" md="2">
         <Card narrow ecommerce className="mb-2" style={productContainerStyle}>
