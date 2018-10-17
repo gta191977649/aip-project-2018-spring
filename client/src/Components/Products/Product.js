@@ -19,13 +19,13 @@ import { addToCart } from "../../Actions/CartActions";
 
 export class Product extends Component {
   static propTypes = {
-    cart: PropTypes.object.isRequired
+    cart: PropTypes.object.isRequired,
+    product: PropTypes.object.isRequired
   };
 
-  itemCartClick(event) {
+  async itemCartClick(event) {
     event.preventDefault();
-
-    this.props.addToCart(this.props.product);
+    await this.props.addToCart(this.props.product, this.props.cart);
   }
 
   itemFavouriteClick(event) {
