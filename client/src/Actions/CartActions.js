@@ -45,8 +45,11 @@ export const saveCart = cart => dispatch => {
   // Have to deconstruct cart; and then add one to itemcount to counteract wierd bug.
   const { items, cost, itemcount } = cart;
   let time = new Date().valueOf();
-
-  let cartToken = jwt.sign({ cart, time }, "aipauctions", { expiresIn: "30m" });
+  let cartToken = jwt.sign(
+    { cart: { items, cost, itemcount }, time },
+    "aipauctions",
+    { expiresIn: "30m" }
+  );
   localStorage.setItem("cart", cartToken);
   return dispatch(fetchCart);
 };
