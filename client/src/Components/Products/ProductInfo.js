@@ -1,32 +1,94 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Row, Col } from "mdbreact";
+import { Container, Row, Col, Button } from "mdbreact";
+
+import isEmpty from "../../Utils/isEmpty";
+import convertCentsToDollars from "../../Utils/convertCentsToDollars";
+import { addToCart } from "../../Actions/CartActions";
 
 export class ProductInfo extends Component {
   static propTypes = {
-    prop: PropTypes
+    products: PropTypes.object.isRequired,
+    cart: PropTypes.object.isRequired,
+    addToCart: PropTypes.func.isRequired
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+
+    this.itemCartClick = this.itemCartClick.bind(this);
+  }
+
+  componentDidMount() {
+    let link = this.props.match.params.link;
+    const { products } = this.props.products;
+    this.findProduct(products, link);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let link = this.props.match.params.link;
+    const { products } = nextProps.products;
+    this.findProduct(products, link);
+  }
+
+  async findProduct(products, link) {
+    if (!isEmpty(link)) {
+      const product = products.find(product => product.link === link);
+      if (!isEmpty(product)) {
+        this.setState({ ...product });
+      }
+    }
+  }
+
+  async itemCartClick(event) {
+    event.preventDefault();
+    if (this.state.hasStock) {
+      await this.props.addToCart(this.state, this.props.cart);
+    }
+  }
+
   render() {
-    const { image } = this.props.product;
+    const { image, name, description, hasStock, qty, price } = this.state;
     return (
       <Container className="mt-5" fluid>
         <Row className="pt-5 br-primary profile-header">
           <Container>
+            <Row />
+
             <Row>
-              <Col md="12" className="py-3">
-                <img src={"https://"} />
+              <Col md="12" className="pb-3">
+                <img
+                  src={"http://localhost:3000/" + image}
+                  alt="product"
+                  className="img-fluid d-block mx-auto"
+                />
               </Col>
             </Row>
 
             <Row>
-              <Col md="6">
+              <Col md="6" className="mx-auto">
                 <h1 className="font-weight-boldmt-4 pt-2 text-center">
-                  Soemthing
+                  {name} ($
+                  {convertCentsToDollars(price)})
                 </h1>
               </Col>
-              <Col md="3" className="offset-md-3 text-right" />
+            </Row>
+            <Row>
+              <Col md="6" className="mx-auto text-center">
+                <div className=" ">
+                  ({hasStock ? qty + " left" : "None Left"})
+                </div>
+                <button
+                  onClick={this.itemCartClick}
+                  className="btn btn-primary"
+                  disabled={!hasStock}
+                >
+                  Add To Cart
+                </button>
+              </Col>
             </Row>
           </Container>
         </Row>
@@ -39,7 +101,11 @@ export class ProductInfo extends Component {
               </Col>
             </Row>
             <Row>
-              <Col>"empty"</Col>
+              <Col>{description}</Col>
+            </Row>
+
+            <Row>
+              <Col />
             </Row>
           </Container>
         </Row>
@@ -48,9 +114,14 @@ export class ProductInfo extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  products: state.products,
+  cart: state.cart
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  addToCart
+};
 
 export default connect(
   mapStateToProps,
