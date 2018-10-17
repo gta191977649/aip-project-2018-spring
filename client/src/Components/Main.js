@@ -45,7 +45,7 @@ export class Main extends Component {
           <Route path="/about" component={About} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
-          <Route path="/products/:id" component={ProductInfo} />
+          <Route path="/product/:link" component={ProductInfo} />
 
           {/* Product Categories */}
           <Route path="/categories" component={CategoriesPage} />
