@@ -8,18 +8,39 @@ import convertCentsToDollars from "../../Utils/convertCentsToDollars";
 import isEmpty from "../../Utils/isEmpty";
 import { clearCart, saveCart } from "../../Actions/CartActions";
 import { createOrder } from "../../Actions/OrderActions";
+
 export class CartPage extends Component {
   static propTypes = {
-    cart: PropTypes.object.isRequired
+    cart: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
+    clearCart: PropTypes.func.isRequired,
+    createOrder: PropTypes.func.isRequired,
+    saveCart: PropTypes.func.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: ""
+    };
+  }
   async clearCart(event) {
     await this.props.clearCart();
     this.props.saveCart(this.props.cart);
   }
+
+  async checkout(event) {
+    event.preventDefault();
+    if (!this.props.auth.isLoggedIn) {
+      this.setState({ error: "You need to be logged in!" });
+    } else {
+      this.props.history.push("/checkout");
+    }
+  }
+
   render() {
     const { cart } = this.props;
-
+    let { error } = this.state;
     let items = cart.items.map((item, index) => (
       <tr key={index}>
         <th scope="row">{index}</th>
@@ -80,13 +101,22 @@ export class CartPage extends Component {
         </Col>
       </Row>
     );
-
+    ///Check to see if there is any errors
+    let alertError = !isEmpty(error) ? "alert alert-danger" : "hidden";
     return (
       <Container className="mt-custom">
         <Row>
           <Col className="text-center">
+            <div className={alertError} role="alert">
+              You need to be logged in:{" "}
+              <Link to="/login">Click here to login</Link>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="text-center">
             <h1>
-              Your cart
+              Your Cart
               {isEmpty(cart.items) ? " is empty." : "."}
             </h1>
             <hr />
@@ -99,7 +129,8 @@ export class CartPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  auth: state.auth
 });
 
 const mapDispatchToProps = {

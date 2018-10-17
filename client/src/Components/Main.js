@@ -20,11 +20,14 @@ import ServerErrorComponent from "../Utils/ServerErrorComponent";
 import CategoriesPage from "./Products/CategoriesPage";
 import OrderPage from "./Order/OrderPage";
 import ProfilePage from "./Profile/ProfilePage";
-import CartPage from "./Cart/CartPage";
 import ClothesPage from "./Categories/ClothesPage";
 import ToysPage from "./Categories/ToysPage";
 import SoftwarePage from "./Categories/SoftwarePage";
 import ElectronicsPage from "./Categories/ElectronicsPage";
+
+import CartPage from "./Cart/CartPage";
+import CheckoutPage from "./Cart/CheckoutPage";
+import CheckoutCompletePage from "./Cart/CheckoutCompletePage";
 
 export class Main extends Component {
   static propTypes = {
@@ -73,6 +76,19 @@ export class Main extends Component {
           <PrivateRoute
             path="/logout"
             component={Logout}
+            isLoggedIn={isLoggedIn}
+          />
+
+          <PrivateRoute
+            exact
+            path="/checkout"
+            component={CheckoutPage}
+            isLoggedIn={isLoggedIn}
+          />
+
+          <PrivateRoute
+            path="/checkout/complete"
+            component={CheckoutCompletePage}
             isLoggedIn={isLoggedIn}
           />
 
