@@ -12,10 +12,10 @@ export class CheckoutCompletePage extends Component {
               <h1>Complete</h1>
               <div class="error-details">Your order has been placed!</div>
               <div class="error-actions">
-                <Link to="/" class="btn btn-primary btn-lg">
+                <a href="/" class="btn btn-primary btn-lg">
                   <span class="glyphicon glyphicon-home" />
                   Back to homepage
-                </Link>
+                </a>
                 <Link to="/orders" class="btn btn-default btn-lg">
                   <span class="glyphicon glyphicon-envelope" /> Your Orders
                 </Link>

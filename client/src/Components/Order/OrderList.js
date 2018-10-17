@@ -1,25 +1,33 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import isEmpty from "../../Utils/isEmpty";
 
 export class OrderList extends Component {
   render() {
-    const { orders } = this.props;
+    let { orders } = this.props;
 
     let ordersBody = !isEmpty(orders) ? (
       orders.map((item, index) => (
-        <td>
-          <tr>{item._id}</tr>
-          <tr>{item.items.length}</tr>
-          <tr>Adding Order</tr>
-        </td>
+        <tr>
+          <td>{item._id}</td>
+          <td>{item.items.length}</td>
+          <td>
+            <Link
+              to={"/product/" + item._id}
+              className="btn btn-primary btn-sm"
+            >
+              View Details
+            </Link>
+          </td>
+        </tr>
       ))
     ) : (
-      <td>
-        <tr>0</tr>
-        <tr>No Products</tr>
-        <tr>Adding Order</tr>
-      </td>
+      <tr>
+        <td>0</td>
+        <td>No Products</td>
+        <td>No Actions</td>
+      </tr>
     );
     return (
       <table className="table">

@@ -15,6 +15,7 @@ import {
 //Components
 import { fetchOrdersById } from "../../Actions/OrderActions";
 import isEmpty from "../../Utils/isEmpty";
+import OrderList from "./OrderList";
 
 export class OrderPage extends Component {
   static propTypes = {
@@ -23,11 +24,36 @@ export class OrderPage extends Component {
     orders: PropTypes.object.isRequired
   };
 
-  render() {
-    let { items } = this.props.orders;
-    let hasItems = !isEmpty(items);
-    let currentOrders = hasItems ? items.map((item, index) => {}) : "";
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      currentOrders: [],
+      previousOrders: []
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let { items } = nextProps.orders;
+    let currentOrdersBuffer = [];
+    let previousOrdersBuffer = [];
+
+    if (!isEmpty(items)) {
+      items.map((item, index) => {
+        item.isCompleted
+          ? previousOrdersBuffer.push(item)
+          : currentOrdersBuffer.push(item);
+      });
+    }
+
+    this.setState({
+      currentOrders: currentOrdersBuffer,
+      previousOrders: previousOrdersBuffer
+    });
+  }
+
+  render() {
+    let { currentOrders, previousOrders } = this.state;
     let noItems = (
       <Card className="text-center">
         <CardBody>
@@ -36,23 +62,22 @@ export class OrderPage extends Component {
         </CardBody>
       </Card>
     );
-
     return (
-      <div>
+      <Container className="mt-custom">
         <Row>
           <Col md="12">
             <h2 className="text-center">Current Orders</h2>
-            {hasItems ? itemsData : noItems}
+            <OrderList orders={currentOrders} />
           </Col>
         </Row>
 
         <Row className="mt-5">
           <Col md="12">
             <h2 className="text-center">Previous Orders</h2>
-            {hasItems ? itemsData : noItems}
+            <OrderList orders={previousOrders} />
           </Col>
         </Row>
-      </div>
+      </Container>
     );
   }
 }

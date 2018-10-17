@@ -26,8 +26,8 @@ import SoftwarePage from "./Categories/SoftwarePage";
 import ElectronicsPage from "./Categories/ElectronicsPage";
 
 import CartPage from "./Cart/CartPage";
-import CheckoutPage from "./Cart/CheckoutPage";
-import CheckoutCompletePage from "./Cart/CheckoutCompletePage";
+import CheckoutPage from "./Checkout/CheckoutPage";
+import CheckoutCompletePage from "./Checkout/CheckoutCompletePage";
 
 export class Main extends Component {
   static propTypes = {
