@@ -44,9 +44,9 @@ export class CartPage extends Component {
     let items = cart.items.map((item, index) => (
       <tr key={index}>
         <th scope="row">{index}</th>
-        <td>{item.item.name}</td>
+        <td>{item.name}</td>
         <td>{item.qty}</td>
-        <td>${convertCentsToDollars(item.item.price)}</td>
+        <td>${convertCentsToDollars(item.price)}</td>
       </tr>
     ));
 
