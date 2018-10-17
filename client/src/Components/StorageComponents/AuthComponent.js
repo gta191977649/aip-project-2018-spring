@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import setAuthorizationToken from "./AuthorizationToken";
-import { userSet } from "../Actions/AuthActions";
+import setAuthorizationToken from "../../Utils/AuthorizationToken";
+import { userSet } from "../../Actions/AuthActions";
 
 export class AuthComponent extends Component {
   static propTypes = {

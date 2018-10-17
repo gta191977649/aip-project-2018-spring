@@ -13,9 +13,9 @@ import { ToastContainer } from "mdbreact";
 import Nav from "./Components/Nav";
 import Main from "./Components/Main";
 import FooterComponent from "./Components/FooterComponent";
-import AuthComponent from "./Utils/AuthComponent";
-import FetchProductsComponent from "./Components/Products/FetchProductComponent";
-import CartComponent from "./Components/Cart/StoreCartComponent";
+import AuthComponent from "./Components/StorageComponents//AuthComponent";
+import FetchProductsComponent from "./Components/StorageComponents/FetchProductComponent";
+import CartComponent from "./Components/StorageComponents/StoreCartComponent";
 
 class App extends Component {
   render() {
