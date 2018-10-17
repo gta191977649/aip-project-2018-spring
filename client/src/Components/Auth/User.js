@@ -112,7 +112,7 @@ export class User extends Component {
         <NavItem>
           <NavLink to="/cart" className="ml-2">
             <Fa icon="shopping-basket" className="mr-1" />
-            Cart ({itemcount})
+            Cart (Items: {itemcount})
           </NavLink>
         </NavItem>
         {component}

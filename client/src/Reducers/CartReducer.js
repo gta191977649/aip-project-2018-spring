@@ -1,5 +1,10 @@
 //Actions
-import { CART_ADD, CART_CLEAR, CART_REMOVE } from "../Actions/Types";
+import {
+  CART_ADD,
+  CART_CLEAR,
+  CART_REMOVE,
+  CART_FETCH
+} from "../Actions/Types";
 
 //Util Methods
 import isEmpty from "../Utils/isEmpty";
@@ -33,7 +38,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         cost: state.cost + product.price,
-        itemcount: state.itemcount + 1
+        itemcount: state.items.length
       };
     case CART_REMOVE:
       return {
@@ -44,6 +49,10 @@ export default function(state = initialState, action) {
         items: [],
         cost: 0,
         itemcount: 0
+      };
+    case CART_FETCH:
+      return {
+        ...action.payload
       };
     default:
       return state;

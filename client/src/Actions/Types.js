@@ -26,6 +26,7 @@ export const FETCH_USERS_ERROR = "FETCH_USERS_ERROR";
 export const CART_ADD = "CART_ADD";
 export const CART_REMOVE = "CART_REMOVE";
 export const CART_CLEAR = "CART_CLEAR";
+export const CART_FETCH = "CART_FETCH";
 
 // ERROR ACTIONS
 export const GET_ERRORS = "GET_ERRORS";

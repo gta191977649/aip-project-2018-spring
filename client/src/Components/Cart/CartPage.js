@@ -6,21 +6,22 @@ import { Link, withRouter } from "react-router-dom";
 
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
 import isEmpty from "../../Utils/isEmpty";
-import { clearCart } from "../../Actions/CartActions";
+import { clearCart, saveCart } from "../../Actions/CartActions";
 import { createOrder } from "../../Actions/OrderActions";
 export class CartPage extends Component {
   static propTypes = {
     cart: PropTypes.object.isRequired
   };
 
-  clearCart(event) {
-    this.props.clearCart(this.props.history);
+  async clearCart(event) {
+    await this.props.clearCart();
+    this.props.saveCart(this.props.cart);
   }
   render() {
     const { cart } = this.props;
 
     let items = cart.items.map((item, index) => (
-      <tr>
+      <tr key={index}>
         <th scope="row">{index}</th>
         <td>{item.item.name}</td>
         <td>{item.qty}</td>
@@ -32,7 +33,7 @@ export class CartPage extends Component {
       <>
         <Row>
           <Col>
-            <table class="table">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -103,7 +104,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   clearCart,
-  createOrder
+  createOrder,
+  saveCart
 };
 
 export default withRouter(
