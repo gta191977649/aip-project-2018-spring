@@ -21,7 +21,7 @@ export class OrderPage extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
-    orders: PropTypes.object.isRequired
+    orders: PropTypes.array.isRequired
   };
 
   constructor(props) {
@@ -33,35 +33,24 @@ export class OrderPage extends Component {
     };
   }
 
-  componentDidMount() {
-    let { items } = this.props.orders;
-    let currentOrdersBuffer = [];
-    let previousOrdersBuffer = [];
-
-    if (!isEmpty(items)) {
-      items.map((item, index) => {
-        item.isCompleted
-          ? previousOrdersBuffer.push(item)
-          : currentOrdersBuffer.push(item);
-      });
-    }
-
-    this.setState({
-      currentOrders: currentOrdersBuffer,
-      previousOrders: previousOrdersBuffer
-    });
+  async componentDidMount() {
+    await this.props.fetchOrdersById(this.props.auth.user._id);
+    this.populateOrders(this.props.orders);
   }
 
   componentWillReceiveProps(nextProps) {
-    let { items } = nextProps.orders;
+    this.populateOrders(nextProps.orders);
+  }
+
+  populateOrders(orders) {
     let currentOrdersBuffer = [];
     let previousOrdersBuffer = [];
 
-    if (!isEmpty(items)) {
-      items.map((item, index) => {
-        item.isCompleted
-          ? previousOrdersBuffer.push(item)
-          : currentOrdersBuffer.push(item);
+    if (!isEmpty(orders)) {
+      orders.map((order, index) => {
+        order.isCompleted
+          ? previousOrdersBuffer.push(order)
+          : currentOrdersBuffer.push(order);
       });
     }
 
@@ -73,7 +62,7 @@ export class OrderPage extends Component {
 
   render() {
     let { currentOrders, previousOrders } = this.state;
-    let noItems = (
+    let noorders = (
       <Card className="text-center">
         <CardBody>
           <CardTitle>Sorry nothing found</CardTitle>
@@ -104,7 +93,7 @@ export class OrderPage extends Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  orders: state.orders
+  orders: state.orders.orders
 });
 
 const mapDispatchToProps = {
