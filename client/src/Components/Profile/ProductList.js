@@ -8,13 +8,12 @@ import convertCentsToDollars from "../../Utils/convertCentsToDollars";
 export default class ProductList extends Component {
   render() {
     const { products } = this.props;
-    console.log(products);
     let emptyList = (
       <Row>
         <Col>
           <Card>
             <CardBody className="text-center">
-              No products found for user.
+              This user has no product for sale
             </CardBody>
           </Card>
         </Col>
@@ -40,8 +39,8 @@ export default class ProductList extends Component {
         ))
       : "";
 
-    let listBody = !isEmpty(products) ? (
-      <table class="table">
+    let listBody = !isEmpty(products.length) ? (
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
