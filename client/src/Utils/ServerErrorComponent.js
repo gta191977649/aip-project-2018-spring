@@ -5,22 +5,23 @@ import { Container, Row, Col } from "mdbreact";
 export class ServerErrorComponent extends Component {
   render() {
     return (
-      <Container className="mt-5">
-        <Row className="mt-5">
+      <Container classNameName="mt-5">
+        <Row classNameName="mt-5">
           <Col md="12">
-            <div class="error-template">
+            <div className="error-template">
               <h1>Oops!</h1>
-              <h2>404 Not Found</h2>
-              <div class="error-details">
-                Sorry, an error has occured, Requested page not found!
+              <h2>500 Internal Server Error</h2>
+              <div className="error-details">
+                Sorry, an error has occured, please try again later!
               </div>
-              <div class="error-actions">
-                <Link to="/" class="btn btn-primary btn-lg">
-                  <span class="glyphicon glyphicon-home" />
+              <div className="error-actions">
+                <Link to="/" className="btn btn-primary btn-lg">
+                  <span className="glyphicon glyphicon-home" />
                   Take Me Home
                 </Link>
-                <Link to="/help" class="btn btn-default btn-lg">
-                  <span class="glyphicon glyphicon-envelope" /> Contact Support
+                <Link to="/help" className="btn btn-default btn-lg">
+                  <span className="glyphicon glyphicon-envelope" /> Contact
+                  Support
                 </Link>
               </div>
             </div>
