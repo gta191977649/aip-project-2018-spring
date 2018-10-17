@@ -22,8 +22,6 @@ export const newProduct = formData => dispatch => {
     .catch(axiosError => handleError(axiosError, dispatch));
 };
 
-export const searchProducts = formData => {};
-
 export const fetchProducts = () => dispatch => {
   Axios.get(productsURL)
     .then(result => {
