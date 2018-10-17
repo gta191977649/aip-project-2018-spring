@@ -7,7 +7,7 @@ import Product from "../Products/Product";
 
 export class SoftwarePage extends Component {
   static propTypes = {
-    products: PropTypes.object.isRequired
+    products: PropTypes.array.isRequired
   };
 
   render() {
