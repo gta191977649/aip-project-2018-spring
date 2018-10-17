@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
+import Loadable from "react-loading-overlay";
 import { Row, Col, Button, Container, toast } from "mdbreact";
 
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
@@ -31,13 +31,15 @@ export class CheckoutPage extends Component {
       this.setState({ errors: nextProps.errors });
     }
   }
+
   async checkout(event) {
     event.preventDefault();
     this.setState({ isLoading: true });
     if (!this.props.auth.isLoggedIn) {
       this.setState({ error: "You need to be logged in!" });
     } else {
-      this.props.createOrder(this.props.cart, this.props.history);
+      let response = await this.props.createOrder(this.props.cart);
+      this.props.history.push("/");
     }
     this.setState({ isLoading: false });
   }
@@ -46,7 +48,7 @@ export class CheckoutPage extends Component {
     const { cart } = this.props;
     const { errors, isLoading } = this.state;
 
-    let items = cart.items.map((item, index) => (
+    const items = cart.items.map((item, index) => (
       <tr key={index}>
         <th scope="row">{index}</th>
         <td>{item.item.name}</td>
@@ -69,37 +71,46 @@ export class CheckoutPage extends Component {
       : "";
 
     return (
-      <Container className="mt-custom">
-        <Row>
-          <Col>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Price Per Unit</th>
-                </tr>
-              </thead>
-              <tbody>{items}</tbody>
-            </table>
-          </Col>
-        </Row>
+      <Loadable active={isLoading} spinner text="Processing order ... ">
+        <Container className="mt-custom">
+          <Row>
+            <Col>
+              <div className={alertError} role="alert">
+                {printErrors}
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price Per Unit</th>
+                  </tr>
+                </thead>
+                <tbody>{items}</tbody>
+              </table>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col>
-            <hr />
-            <span className="float-left">
-              Total: ${convertCentsToDollars(cart.cost)}
-            </span>
-            <span className="float-right">
-              <Button onClick={e => this.checkout(e)} disabled={isLoading}>
-                Confirm Purchase
-              </Button>
-            </span>
-          </Col>
-        </Row>
-      </Container>
+          <Row>
+            <Col>
+              <hr />
+              <span className="float-left">
+                Total: ${convertCentsToDollars(cart.cost)}
+              </span>
+              <span className="float-right">
+                <Button onClick={e => this.checkout(e)} disabled={isLoading}>
+                  Confirm Purchase
+                </Button>
+              </span>
+            </Col>
+          </Row>
+        </Container>
+      </Loadable>
     );
   }
 }

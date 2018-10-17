@@ -15,18 +15,15 @@ export const fetchOrdersById = id => dispatch => {
     .catch(axiosError => handleError(axiosError, dispatch));
 };
 
-export const createOrder = (cart, history) => dispatch => {
-  Axios.post(ordersURL + "/new", { cart })
+export const createOrder = cart => dispatch => {
+  return Axios.post(ordersURL + "/new", { cart })
     .then(response => {
       if (response.status === 200) {
         dispatch({
           type: NEW_ORDER,
           payload: response.data
         });
-
         dispatch(clearCart());
-
-        history.push("/checkout/complete");
       }
     })
     .catch(axiosError => handleError(axiosError, dispatch));
