@@ -17,6 +17,14 @@ export const clearCart = () => dispatch => {
     type: CART_CLEAR,
     payload: []
   });
+
+  const initialCart = {
+    items: [],
+    cost: 0,
+    itemcount: 0
+  };
+
+  dispatch(saveCart(initialCart));
 };
 
 export const fetchCart = () => dispatch => {
