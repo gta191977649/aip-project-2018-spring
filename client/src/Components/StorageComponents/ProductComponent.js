@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { fetchProducts } from "../../Actions/ProductActions";
-export class FetchProductComponent extends Component {
+export class ProductComponent extends Component {
   static propTypes = {
     products: PropTypes.object.isRequired
   };
@@ -27,4 +27,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FetchProductComponent);
+)(ProductComponent);
