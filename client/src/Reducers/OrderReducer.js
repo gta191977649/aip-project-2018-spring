@@ -1,8 +1,9 @@
 import { NEW_ORDER, FETCH_ORDERS } from "../Actions/Types";
 import isEmpty from "../Utils/isEmpty";
 
+//TODO: Improvement Change from items:[] to orderItems:[]
 const initialState = {
-  items: [],
+  orders: [],
   isEmpty: true
 };
 export default function(state = initialState, action) {
@@ -14,7 +15,7 @@ export default function(state = initialState, action) {
     case FETCH_ORDERS:
       return {
         ...state,
-        items: action.payload,
+        orders: action.payload,
         isEmpty: isEmpty(action.payload)
       };
     default:
