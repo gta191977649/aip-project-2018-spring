@@ -68,7 +68,8 @@ export class NewProductForm extends Component {
     formData.append("qty", qty);
 
     this.props.newProduct(formData).then(result => {
-      console.log(result);
+      toast.success("Created new product");
+      this.props.history.push("/dashboard/newproduct"); // TODO: Change this to product detail page
     });
 
     this.setState({ isLoading: false });
