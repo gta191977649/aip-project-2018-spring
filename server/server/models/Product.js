@@ -35,6 +35,10 @@ let ProductSchema = new Schema({
     type: Number,
     required: true,
   },
+  hasStock: {
+    type: Boolean,
+    default: true, // Possible bug in future
+  },
   date: {
     type: Date,
     default: Date.now,

@@ -12,10 +12,6 @@ let OrderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  qty: {
-    type: Number,
-    required: true,
-  },
   isCompleted: {
     type: Boolean,
     required: true,

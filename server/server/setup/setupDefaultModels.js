@@ -47,6 +47,7 @@ module.exports = () => {
           image: shirt.image,
           description: shirt.description,
           qty: shirt.qty,
+          hasStock: shirt.qty > 0, // Check has
         });
 
         let electronicsProduct = new Product({
@@ -57,7 +58,7 @@ module.exports = () => {
           category: phone.category,
           image: phone.image,
           description: phone.description,
-          qty: phone.qty,
+          hasStock: phone.qty > 0,
         });
 
         let toyProduct = new Product({
@@ -69,6 +70,7 @@ module.exports = () => {
           image: bike.image,
           description: bike.description,
           qty: bike.qty,
+          hasStock: bike.qty > 0,
         });
 
         let softwareProduct = new Product({
@@ -80,6 +82,7 @@ module.exports = () => {
           image: texteditor.image,
           description: texteditor.description,
           qty: texteditor.qty,
+          hasStock: texteditor.qty > 0,
         });
 
         let didClothesSave = await clothesProduct.save();

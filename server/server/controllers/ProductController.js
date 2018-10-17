@@ -103,6 +103,7 @@ module.exports.product_new = async (req, res, next) => {
         image,
         description,
         qty,
+        hasStock: qty > 0,
       });
 
       product.save().then((product) => {
