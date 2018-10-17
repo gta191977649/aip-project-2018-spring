@@ -6,7 +6,7 @@ import { Container, Row, Col, Avatar, toast } from "mdbreact";
 //Components
 import { profileGet } from "../../Actions/AuthActions";
 import isEmpty from "../../Utils/isEmpty";
-import ProductList from "./ProductList";
+import ProductList from "../Products/ProductList";
 
 export class ProfilePage extends Component {
   static propTypes = {
