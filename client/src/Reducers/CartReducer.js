@@ -6,9 +6,6 @@ import {
   CART_FETCH
 } from "../Actions/Types";
 
-//Util Methods
-import isEmpty from "../Utils/isEmpty";
-
 const initialState = {
   items: [],
   cost: 0,
