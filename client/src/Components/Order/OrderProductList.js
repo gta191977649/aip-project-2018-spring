@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import isEmpty from "../../Utils/isEmpty";
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
 
-export default class ProductList extends Component {
+export default class OrderProductList extends Component {
   render() {
-    const { products } = this.props;
+    const { orderitems } = this.props;
     let emptyList = (
       <Row>
         <Col>
@@ -20,26 +20,28 @@ export default class ProductList extends Component {
       </Row>
     );
 
-    let productList = !isEmpty(products)
-      ? products.products.map((item, index) => (
-          <tr>
-            <th scope="row">{index}</th>
-            <td>{item.name}</td>
-            <td>{item.qty}</td>
-            <td>${convertCentsToDollars(item.price)}</td>
-            <td>
-              <Link
-                to={"/product/" + item.link}
-                className="btn btn-primary float-right"
-              >
-                View Product
-              </Link>
-            </td>
-          </tr>
-        ))
-      : "";
+    let productList = !isEmpty(orderitems) ? (
+      orderitems.map((item, index) => (
+        <tr>
+          <th scope="row">{index}</th>
+          <td>{item.product.name}</td>
+          <td>{item.qty}</td>
+          <td>${convertCentsToDollars(item.product.price)}</td>
+          <td>
+            <Link
+              to={"/product/" + item.product.link}
+              className="btn btn-primary float-right"
+            >
+              View Product
+            </Link>
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr />
+    );
 
-    let listBody = !isEmpty(products.length) ? (
+    let listBody = !isEmpty(orderitems.length) ? (
       <table className="table">
         <thead>
           <tr>
