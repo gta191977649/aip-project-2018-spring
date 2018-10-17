@@ -13,9 +13,10 @@ import { ToastContainer } from "mdbreact";
 import Nav from "./Components/Nav";
 import Main from "./Components/Main";
 import FooterComponent from "./Components/FooterComponent";
-import AuthComponent from "./Components/StorageComponents//AuthComponent";
-import FetchProductsComponent from "./Components/StorageComponents/FetchProductComponent";
+import AuthComponent from "./Components/StorageComponents/AuthComponent";
+import ProductsComponent from "./Components/StorageComponents/ProductComponent";
 import CartComponent from "./Components/StorageComponents/StoreCartComponent";
+import OrdersComponent from "./Components/StorageComponents/OrderComponent";
 
 class App extends Component {
   render() {
@@ -24,8 +25,9 @@ class App extends Component {
         <Router>
           <div className="App">
             <AuthComponent />
-            <FetchProductsComponent />
+            <ProductsComponent />
             <CartComponent />
+            <OrdersComponent />
             <ToastContainer newestOnTop={true} autoClose={5000} />
             <Nav />
             <Main />
