@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let OrderSchema = new Schema({
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: 'Product',
-  },
+  items: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'OrderItem',
+    },
+  ],
   customer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
