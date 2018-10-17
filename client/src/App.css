@@ -134,4 +134,9 @@ footer {
   text-transform: capitalize;
 }
 
-/* custom product container */
+.profile-header {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+}

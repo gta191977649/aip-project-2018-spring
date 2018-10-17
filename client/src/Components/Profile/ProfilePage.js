@@ -34,7 +34,6 @@ export class ProfilePage extends Component {
         .profileGet(handle)
         .then(result => {
           this.setState({ ...result.data });
-          console.log(this.state);
         })
         .catch(axiosError => {
           toast.error(
@@ -59,7 +58,7 @@ export class ProfilePage extends Component {
     );
     return (
       <Container className="mt-5" fluid>
-        <Row className="pt-5 br-primary ">
+        <Row className="pt-5 br-primary profile-header">
           <Container>
             <Row>
               <Col md="6" className="py-3">
@@ -90,8 +89,13 @@ export class ProfilePage extends Component {
           </Container>
         </Row>
 
-        <Row>
+        <Row className="profile-body">
           <Container>
+            <Row className="mt-2">
+              <Col className="text-center">
+                <h4>Store Products: </h4>
+              </Col>
+            </Row>
             <Row>
               <Col>
                 <ProductList products={{ products }} />
