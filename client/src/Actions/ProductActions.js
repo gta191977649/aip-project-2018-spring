@@ -4,8 +4,6 @@ import { toast } from "mdbreact";
 import { FETCH_PRODUCTS, NEW_PRODUCT } from "./Types";
 import { handleError } from "./ErrorActions";
 
-//const productRestURI = process.env.API + "Products"; Bug with undefined
-
 const productsURL =
   process.env.REACT_APP_API_URL + "/products" || "/api/products";
 
