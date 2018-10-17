@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 import { USER_SET, FETCH_USER_ID } from "./Types";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
 import isEmpty from "../Utils/isEmpty";
+import slugify from "../Utils/slugify";
+
 import { handleError } from "./ErrorActions";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/api";
@@ -35,7 +37,7 @@ export const userLogin = (auth, history) => dispatch => {
 // TODO: Need to update for later
 export const userRegister = (user, history) => {
   //doRegister
-  let handle = user.username;
+  let handle = slugify(user.username);
   let fname = user.fname; //Name for user
   let lname = user.lname; //Name for user
   let email = user.email; // Email for storage in backend
