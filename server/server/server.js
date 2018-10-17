@@ -51,6 +51,7 @@ mongoose.Promise = Promise;
 require('./models/User');
 require('./models/Feedback');
 require('./models/Order');
+require('./models/OrderItem');
 require('./models/Product');
 require('./models/UserProfile');
 
