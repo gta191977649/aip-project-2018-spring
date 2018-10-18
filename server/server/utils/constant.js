@@ -9,4 +9,5 @@ module.exports = Object.freeze({
   PROFILE_NOT_FIND_ERROR: 'Could not find profile, do you have one?',
   INVAILD_ERROR: 'not valid',
   NO_PROFILE_ERROR: 'Profile not found, contact admin',
+  EMAIL_EXSIT_ERROR: 'Email already exists',
 });

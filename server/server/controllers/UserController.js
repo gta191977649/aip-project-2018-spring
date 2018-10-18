@@ -5,7 +5,7 @@ const Profile = require('../models/UserProfile');
 const validateRegister = require('../validation/validateRegister');
 const validateLogin = require('../validation/validateLogin');
 const mongoNotConnected = require('../utils/checkMongooseConnection');
-
+const Msg = require('../utils/constant');
 // @route POST api/auth/current
 // @desc Gets current user details
 // @access Private
@@ -35,13 +35,13 @@ module.exports.user_register = async (req, res) => {
 
     let user = await User.findOne({email: req.body.email});
     if (user) {
-      errors.email = 'Email already exists';
+      errors.email = Msg.EMAIL_EXSIT_ERROR;
       console.log('ERROR: email exists');
       return res.status(400).json({errors});
     } else {
       let username = await User.findOne({handle: req.body.handle});
       if (username) {
-        errors.username = 'Username already exists';
+        errors.username = Msg.USERNAME_EXSIT_ERROR;
         console.log('ERROR: username/handle exists!');
         return res.status(400).json({errors});
       }
