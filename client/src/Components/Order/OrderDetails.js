@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import {
   Container,
   Row,
-  Col,
   Card,
   CardText,
   CardTitle,
