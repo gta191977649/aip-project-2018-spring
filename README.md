@@ -35,17 +35,18 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 - For windows and other operating systems you may need to have file extensions enabled. (google: `how to enable file extensions`)
 
 ## To Run
-
+### Notice
+- Before you run this project, please make sure you have **Mongo DB installed** on your environment, for the detail intructions to install Mongo DB, please refer to [Mongo's Official Site](https://docs.mongodb.com/manual/installation/).
 ### NPM
 
 ### Server Part:
 
 - Navigate to the `Root Directory` of this project
-- `npm run server:install`
-- After the install is done go into the `Server Directory`
+- open termial and enter `npm run server:install`
+- After the install is done, go into the `server directory` located in your project root
 - Open the file `.env`, Change the value of SECRET to something secret (example: SECRET=S3cr3T ); Change MONGO_URL to match the mongo url of your mongo server. Once changed save the file as .env
 - Navigate back to the `Root Directory`
-- run `npm run server:start`
+- open termial again and enter `npm run server:start`
 - Server will be available from `http://localhost:3000/`
 
 ### Client Part:
