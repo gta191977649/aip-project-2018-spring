@@ -1,13 +1,18 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Container, Row, Col, Button } from "mdbreact";
-
+// @import Project Components
 import isEmpty from "../../Utils/isEmpty";
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
 import { addToCart } from "../../Actions/CartActions";
 
+// @Name ProductInfo
+// @Description Provides display to show information of a product detail
 export class ProductInfo extends Component {
+  // Better than doing ProductInfo.propTypes
+  // has same effect though.
   static propTypes = {
     products: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
@@ -42,7 +47,8 @@ export class ProductInfo extends Component {
       }
     }
   }
-
+  // @Name itemCartClick
+  // @Description Adds item to cart
   async itemCartClick(event) {
     event.preventDefault();
     if (this.state.hasStock) {
@@ -52,6 +58,7 @@ export class ProductInfo extends Component {
 
   render() {
     const { image, name, description, hasStock, qty, price } = this.state;
+    //Returning the component display
     return (
       <Container className="mt-5" fluid>
         <Row className="pt-5 br-primary profile-header">
