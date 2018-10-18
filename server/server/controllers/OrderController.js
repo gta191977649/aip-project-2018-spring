@@ -5,6 +5,7 @@ const OrderItem = require('../models/OrderItem');
 const Product = require('../models/Product');
 
 const isEmpty = require('../utils/isEmpty');
+const Msg = require('../utils/constant');
 
 // TODO: Improve load times
 module.exports.order_list = async (req, res) => {
@@ -36,7 +37,7 @@ module.exports.order_new = async (req, res) => {
   if (isEmpty(req.body.cart)) {
     return res
         .status(400)
-        .json({errors: {message: 'Cart cannot be empty'}});
+        .json({errors: {message: Msg.CART_EMPTY}});
   }
 
   // Buffer for orderItem

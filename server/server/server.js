@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const Msg = require('./utils/constant');
+
 // const path = require('path');
 
 const apiRouter = require('./routes/api');
@@ -59,7 +61,7 @@ require('./models/UserProfile');
 app.use('/api', apiRouter);
 
 app.use(function(req, res) {
-  res.status(404).send('Sorry can\'t find that!');
+  res.status(404).send(Msg.NOT_FOUND);
 });
 
 // Setup and Run listening server
