@@ -4,12 +4,7 @@ import { connect } from "react-redux";
 import {
   Container,
   Col,
-  Row,
-  Card,
-  CardTitle,
-  CardBody,
-  CardText,
-  MDBDataTable
+  Row
 } from "mdbreact";
 
 //Components
@@ -47,7 +42,7 @@ export class OrderPage extends Component {
     let previousOrdersBuffer = [];
 
     if (!isEmpty(orders)) {
-      orders.map((order, index) => {
+      orders.map((order) => { 
         order.isCompleted
           ? previousOrdersBuffer.push(order)
           : currentOrdersBuffer.push(order);
@@ -62,6 +57,7 @@ export class OrderPage extends Component {
 
   render() {
     let { currentOrders, previousOrders } = this.state;
+    /*
     let noorders = (
       <Card className="text-center">
         <CardBody>
@@ -70,6 +66,7 @@ export class OrderPage extends Component {
         </CardBody>
       </Card>
     );
+    */
     return (
       <Container className="mt-custom">
         <Row>
