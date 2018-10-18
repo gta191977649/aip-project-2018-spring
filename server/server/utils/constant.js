@@ -5,4 +5,6 @@ module.exports = Object.freeze({
   UNKNOW_ERROR: 'Unknown error occured; try again later.',
   NO_PRODUCT_LINK: 'Unable to proccess request; No product link provided.',
   DATABASE_DISCONNECT_ERROR: 'Database not connected, contact server administrator',
+  HANDLE_EMPTY_ERROR: 'Handle is empty',
+  PROFILE_NOT_FIND_ERROR: 'Could not find profile, do you have one?',
 });

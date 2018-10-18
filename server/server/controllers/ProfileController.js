@@ -7,6 +7,7 @@ const Product = require('../models/Product');
 const isEmpty = require('../utils/isEmpty');
 const validateProfile = require('../validation/validateProfile');
 const mongoNotConnected = require('../utils/checkMongooseConnection');
+const Msg = require('../utils/constant');
 
 module.exports.profiles_get = async (req, res) => {
   let errors = {};
@@ -14,14 +15,14 @@ module.exports.profiles_get = async (req, res) => {
 
   if (isEmpty(handle)) {
     console.log('handle empty');
-    errors.handle = 'Handle is empty';
+    errors.handle = Msg.HANDLE_EMPTY_ERROR;
     res.status(400).json({errors});
   }
 
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
 
@@ -38,7 +39,7 @@ module.exports.profiles_get = async (req, res) => {
         res.status(200).json({profile, user, products});
       } else {
         // If Profile is not found respond with error
-        errors.handle = 'Could not find profile, do you have one?';
+        errors.handle = Msg.PROFILE_NOT_FIND_ERROR;
         res.status(400).json({errors});
       }
     } else {
