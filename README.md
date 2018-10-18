@@ -59,3 +59,9 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 - Navigate to the project's `Root Directory`
 - run `npm run client:start`
 - The client will now be available from `http://localhost:1337/`
+## Env files
+### Server .env file
+- `NODE_ENV` this refer to the node environment, default is `environment`
+- `PORT` the port of server will be listing to, default is `3000`
+- `MONGO_URL` this refer to the address of where your mongo db server are runing at, please change it according to your enviroment.
+- `SECRET` 
