@@ -11,7 +11,8 @@ export const addToCart = (product, cart) => dispatch => {
   });
   return dispatch(saveCart(cart));
 };
-
+// @Name: clearCart
+// @Dec: clearCart action for further use
 export const clearCart = () => dispatch => {
   toast.info("Cleared your card!");
   dispatch({
