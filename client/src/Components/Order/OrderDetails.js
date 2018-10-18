@@ -31,11 +31,18 @@ export class OrderDetails extends Component {
       isCompleted: false
     };
   }
-
-  // TODO: Improve this to filter better - perhaps orders.find() (Google Find() on array)
-  // On Component Mount fetch id param and then lookup in orders to find relevant ID and then filter out the details
+  // @Name findOrder
+  // @Description filt orders
+  async findOrder(orders, link) {
+    if (!isEmpty(link)) {
+      const order = orders.find(product => order.link === link);
+      if (!isEmpty(order)) {
+        this.setState({ ...order });
+      }
+    }
+  }
   componentDidMount() {
-    let orderid = this.props.match.params.id;
+    /*let orderid = this.props.match.params.id;
     if (!isEmpty(orderid)) {
       if (!isEmpty(this.props.orders)) {
         let orders = this.props.orders;
@@ -47,13 +54,16 @@ export class OrderDetails extends Component {
           }
         });
       }
-    }
+    }*/
+    let link = this.props.match.params.link;
+    const { orders } = this.props.orders;
+    this.findOrder(orders, link);
   }
 
   // TODO: Improve (if you can if not just delete this comment) figure out why sometimes the id does not show
   // Does the exact same thing as the component did mount function
   componentWillReceiveProps(nextProps) {
-    let orderid = nextProps.match.params.id;
+    /*let orderid = nextProps.match.params.id;
     if (!isEmpty(orderid)) {
       if (!isEmpty(nextProps.orders)) {
         let orders = nextProps.orders;
@@ -65,9 +75,13 @@ export class OrderDetails extends Component {
           }
         });
       }
-    }
+    }*/
+    let link = this.props.match.params.link;
+    const { orders } = this.props.orders;
+    this.findOrder(orders, link);
   }
-
+  // @Name render
+  // @Description renders the orderDetail component
   render() {
     let { _id, items, isCompleted } = this.state;
     let completed = (
@@ -81,6 +95,7 @@ export class OrderDetails extends Component {
         <b>Not Completed</b>
       </span>
     );
+    //Returning the component display
     return (
       <Container className="mt-custom" fluid>
         <Row className="profile-body">

@@ -1,9 +1,14 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+// @import Project Components
 import isEmpty from "../../Utils/isEmpty";
 
+// @Name OrderList
+// @Description Provides display list of orders
 export class OrderList extends Component {
+  // @Name render
+  // @Description renders the product component
   render() {
     let { orders } = this.props;
 
@@ -26,6 +31,7 @@ export class OrderList extends Component {
         <td>No Actions</td>
       </tr>
     );
+    //Returning the component display
     return (
       <table className="table">
         <thead>
