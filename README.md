@@ -38,7 +38,7 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 
 ### NPM
 
-First Terminal (Server):
+### Server Part:
 
 - Navigate to the `Root Directory` of this project
 - `npm run server:install`
@@ -48,7 +48,7 @@ First Terminal (Server):
 - run `npm run server:start`
 - Server will be available from `http://localhost:3000/`
 
-Second Terminal (Client):
+### Client Part:
 
 - Navigate to the `Root Director` of this project
 - `npm run client:install`
