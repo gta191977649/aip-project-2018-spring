@@ -80,7 +80,8 @@ export class OrderDetails extends Component {
     const { orders } = this.props.orders;
     this.findOrder(orders, link);
   }
-
+  // @Name render
+  // @Description renders the orderDetail component
   render() {
     let { _id, items, isCompleted } = this.state;
     let completed = (
@@ -94,6 +95,7 @@ export class OrderDetails extends Component {
         <b>Not Completed</b>
       </span>
     );
+    //Returning the component display
     return (
       <Container className="mt-custom" fluid>
         <Row className="profile-body">

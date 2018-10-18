@@ -1,3 +1,4 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -12,11 +13,12 @@ import {
   MDBDataTable
 } from "mdbreact";
 
-//Components
+// @import Project Components
 import { fetchOrdersById } from "../../Actions/OrderActions";
 import isEmpty from "../../Utils/isEmpty";
 import OrderList from "./OrderList";
-
+// @Name OrderPage
+// @Description Provides a little display page to show information for order
 export class OrderPage extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -41,7 +43,8 @@ export class OrderPage extends Component {
   componentWillReceiveProps(nextProps) {
     this.populateOrders(nextProps.orders);
   }
-
+  // @Name populateOrders
+  // @Description generate display for orders
   populateOrders(orders) {
     let currentOrdersBuffer = [];
     let previousOrdersBuffer = [];
@@ -59,7 +62,8 @@ export class OrderPage extends Component {
       previousOrders: previousOrdersBuffer
     });
   }
-
+  // @Name render
+  // @Description renders the product component
   render() {
     let { currentOrders, previousOrders } = this.state;
     let noorders = (
@@ -70,6 +74,7 @@ export class OrderPage extends Component {
         </CardBody>
       </Card>
     );
+    //Returning the component display
     return (
       <Container className="mt-custom">
         <Row>
