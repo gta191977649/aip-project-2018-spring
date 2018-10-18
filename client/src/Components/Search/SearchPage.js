@@ -98,7 +98,7 @@ export class SearchPage extends Component {
               onSubmit={e => this.handleSearch(e)}
               className="text-center"
             >
-              <Col md="10">
+              <Col md="8">
                 <Input
                   name="name"
                   className="form-control w-100"
@@ -106,7 +106,7 @@ export class SearchPage extends Component {
                   onChange={e => this.updateState(e)}
                 />
               </Col>
-              <Col md="2">
+              <Col md="4">
                 <Button type="submit" className="w-100">
                   Search
                 </Button>
