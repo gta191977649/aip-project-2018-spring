@@ -36,10 +36,6 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 
 ## To Run
 
-### Docker? (WIP)
-
-- `Going to add steps for docker soon`
-
 ### NPM
 
 First Terminal (Server):
