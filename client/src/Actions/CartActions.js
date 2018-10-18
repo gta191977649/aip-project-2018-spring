@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 // @import Project Components
 import * as Msg from "../Utils/Constants";
 export const addToCart = (product, cart) => dispatch => {
-  toast.info("Added product to cart!");
+  toast.info(Msg.ADD_ITEM_CART);
   dispatch({
     type: CART_ADD,
     payload: product
