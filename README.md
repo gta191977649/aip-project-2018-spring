@@ -88,4 +88,5 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 * `src` - the source folder for the react.
     * `Actions` where the redux actions are stored. each actions were responsible for the particular rest api request of each functions.
     * `Components` where the react compoments are stored.
-    * `Reducers` where the redux reducers are stored, the reducers will update the state & requested data after each action triggered.
+    * `Reducers` where the redux reducers are stored, the reducers will update the state & requested data after each actions are triggered.
+    * `Utils` - here is where utilities & helper function are.
