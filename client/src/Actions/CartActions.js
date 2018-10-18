@@ -2,7 +2,7 @@
 import { CART_ADD, CART_CLEAR, CART_FETCH } from "./Types";
 import { toast } from "mdbreact";
 import jwt from "jsonwebtoken";
-
+// @import Project Components
 export const addToCart = (product, cart) => dispatch => {
   toast.info("Added product to cart!");
   dispatch({
