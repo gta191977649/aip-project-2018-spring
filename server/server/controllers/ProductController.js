@@ -75,7 +75,7 @@ module.exports.product_new = async (req, res, next) => {
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
 

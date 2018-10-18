@@ -4,4 +4,5 @@ module.exports = Object.freeze({
   NOT_VALID_USER: 'No valid user found.',
   UNKNOW_ERROR: 'Unknown error occured; try again later.',
   NO_PRODUCT_LINK: 'Unable to proccess request; No product link provided.',
+  DATABASE_DISCONNECT_ERROR: 'Database not connected, contact server administrator',
 });
