@@ -1,11 +1,15 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import { Row, Col, Card, CardBody } from "mdbreact";
 import { Link } from "react-router-dom";
-
+// @import Project Components
 import isEmpty from "../../Utils/isEmpty";
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
-
+// @Name OrderProductList
+// @Description Provides display to show product in order
 export default class OrderProductList extends Component {
+  // @Name render
+  // @Description renders the product component in order
   render() {
     const { orderitems } = this.props;
     let emptyList = (
@@ -56,6 +60,7 @@ export default class OrderProductList extends Component {
     ) : (
       emptyList
     );
+    //Returning the component display
     return listBody;
   }
 }
