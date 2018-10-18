@@ -1,13 +1,16 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Container, Row, Col, Avatar, toast } from "mdbreact";
 
-//Components
+// @import Project Components
 import { profileGet } from "../../Actions/AuthActions";
 import isEmpty from "../../Utils/isEmpty";
 import ProductList from "../Products/ProductList";
 
+// @Name ProfilePage
+// @Description Provide a page to display user detail
 export class ProfilePage extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -43,7 +46,8 @@ export class ProfilePage extends Component {
         });
     }
   }
-
+  // @Name render
+  // @Description renders the ProfilePage component
   render() {
     let { profile, user, products } = this.state;
     const { description, feedback } = profile;
@@ -56,6 +60,7 @@ export class ProfilePage extends Component {
     ) : (
       <span>No Feedback yet</span>
     );
+    //Returning the component display
     return (
       <Container className="mt-5" fluid>
         <Row className="pt-5 br-primary profile-header">
