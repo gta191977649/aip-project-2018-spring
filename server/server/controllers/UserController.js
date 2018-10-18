@@ -29,7 +29,7 @@ module.exports.user_register = async (req, res) => {
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
 
@@ -96,7 +96,7 @@ module.exports.user_login = async (req, res) => {
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
     // Find user by email
