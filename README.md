@@ -69,3 +69,17 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 - `PORT` the port which the client will be listing to, default is `1337`
 - `REACT_APP_API_URL` the rest api server address, default is `http://localhost:3000/api` which is runing in your local machine, if you wish to deploy, you may need to change it according to your server domain.
 - `REACT_APP_NAME` the application name, by default is `AIP Auctions`, you may need to change it according to your needs.
+
+## Folder structure
+### Server 
+* `uploads` - the folder stores the image that are uploaded from client.
+* `server`
+    * `authentication` - authentication ralated code
+    * `config` - the application config, e.g. types of  categories, default data migration for the mongo db.
+    * `controllers` - the controllers that handles business logic, e.g. the request & response for the rest api.
+    * `models` - the models of in the application, e.g. the user, product.
+    * `routes` - this define the routes of each rest api endpoint.
+    * `setup` - the initial setup will be runing, e.g. create the db default tables.
+    * `utils` - here is where utilities & helper function are.
+    * `validation` - validation for the rest request, e.g the username, search key words ,etc.
+* `node_modules` - you will have it once you typed `npm install`, you will have this folder, this folder contains all the node js dependency that you need to run this project. **do not create this folder manually.** 
