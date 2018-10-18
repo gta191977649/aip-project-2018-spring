@@ -43,9 +43,11 @@ export class OrderPage extends Component {
 
     if (!isEmpty(orders)) {
       orders.map((order) => { 
-        order.isCompleted
+        return (
+          order.isCompleted
           ? previousOrdersBuffer.push(order)
-          : currentOrdersBuffer.push(order);
+          : currentOrdersBuffer.push(order)
+        );
       });
     }
 
