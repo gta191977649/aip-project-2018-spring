@@ -1,5 +1,9 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import { Fa } from "mdbreact";
+
+// @Name FeedbackItem
+// @Description Provides a little display to show important information of one feedback
 export default class FeedbackItem extends Component {
   constructor(props) {
     super(props);

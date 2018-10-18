@@ -4,7 +4,10 @@ import {
   USER_VERIFY,
   USER_EXISTS,
   USER_SET,
+  USER_ERROR,
+  USER_LOGOUT,
   FETCH_USER_ID,
+  FETCH_USERS_ERROR
 } from "../Actions/Types";
 import isEmpty from "../Utils/isEmpty";
 const initialState = {

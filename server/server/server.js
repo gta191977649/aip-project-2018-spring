@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const path = require('path');
+// const path = require('path');
 
 const apiRouter = require('./routes/api');
 const mongourl = require('./config/keys').mongo;

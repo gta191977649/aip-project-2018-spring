@@ -5,7 +5,12 @@ import { connect } from "react-redux";
 import {
   Container,
   Col,
-  Row
+  Row,
+  Card,
+  CardTitle,
+  CardBody,
+  CardText,
+  MDBDataTable
 } from "mdbreact";
 
 // @import Project Components
@@ -45,12 +50,10 @@ export class OrderPage extends Component {
     let previousOrdersBuffer = [];
 
     if (!isEmpty(orders)) {
-      orders.map((order) => { 
-        return (
-          order.isCompleted
+      orders.map((order, index) => {
+        order.isCompleted
           ? previousOrdersBuffer.push(order)
-          : currentOrdersBuffer.push(order)
-        );
+          : currentOrdersBuffer.push(order);
       });
     }
 
@@ -63,7 +66,6 @@ export class OrderPage extends Component {
   // @Description renders the product component
   render() {
     let { currentOrders, previousOrders } = this.state;
-    /*
     let noorders = (
       <Card className="text-center">
         <CardBody>
@@ -72,8 +74,7 @@ export class OrderPage extends Component {
         </CardBody>
       </Card>
     );
-    */
-
+    //Returning the component display
     return (
       <Container className="mt-custom">
         <Row>

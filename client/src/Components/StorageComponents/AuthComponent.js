@@ -1,9 +1,12 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+// @import Project Components
 import setAuthorizationToken from "../../Utils/AuthorizationToken";
 import { userSet } from "../../Actions/AuthActions";
-
+// @Name AuthComponent
+// @Description Provide auth for application
 export class AuthComponent extends Component {
   static propTypes = {
     userSet: PropTypes.func.isRequired,
@@ -17,7 +20,8 @@ export class AuthComponent extends Component {
       this.props.userSet(localStorage.token);
     }
   }
-
+  // @Name render
+  // @Description renders the auth component
   render() {
     return <div className="d-none" />;
   }

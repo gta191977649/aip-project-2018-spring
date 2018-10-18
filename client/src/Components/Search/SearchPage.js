@@ -1,3 +1,4 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -15,7 +16,7 @@ import {
   CardText
 } from "mdbreact";
 import queryString from "query-string";
-
+// @import Project Components
 import { searchProducts } from "../../Actions/SearchActions";
 import isEmpty from "../../Utils/isEmpty";
 import Product from "../Products/Product";
@@ -36,13 +37,15 @@ export class SearchPage extends Component {
     };
   }
   componentDidMount() {
+    // Filter out the product
     const filter = queryString.parse(this.props.location.search);
     if (!isEmpty(filter)) {
       this.setState({ filter });
       this.searchProduct(filter);
     }
   }
-
+  // @Name handleSearch
+  // @Description Deal with user search
   handleSearch(event) {
     event.preventDefault();
     this.searchProduct(this.state.filter);
@@ -61,7 +64,7 @@ export class SearchPage extends Component {
   render() {
     const { name } = this.state.filter;
     let productItems;
-
+    // Display the filtered product list
     if (this.props.search.isEmpty) {
       productItems = (
         <Col md="10" className="mx-auto">

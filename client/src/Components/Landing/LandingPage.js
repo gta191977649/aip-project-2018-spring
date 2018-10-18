@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-/* import PropTypes from "prop-types"; */
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Row, Col, View, Mask } from "mdbreact";
-/* import jwt from "jsonwebtoken"; */
+import { Container, Row, Col, Fa, View, Mask, Button } from "mdbreact";
+import jwt from "jsonwebtoken";
 
 import LandingSearchForm from "./LandingSearchForm";
 import Category from "../Products/Category";

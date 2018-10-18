@@ -133,7 +133,7 @@ module.exports.product_update = async (req, res) => {
   res.json([]);
 };
 
-const formatMoney = (
+/* const formatMoney = (
     amount,
     decimalCount = 2,
     decimal = '.',
@@ -164,4 +164,4 @@ const formatMoney = (
   } catch (e) {
     console.log(e);
   }
-};
+}; */

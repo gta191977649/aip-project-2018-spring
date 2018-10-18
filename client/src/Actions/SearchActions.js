@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { SEARCH_PRODUCTS } from "./Types";
 import { handleError } from "./ErrorActions";
+import { fetchProducts } from "./ProductActions";
 import isEmpty from "../Utils/isEmpty";
 
 const productsURL =
