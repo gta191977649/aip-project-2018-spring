@@ -19,6 +19,16 @@ export const searchProducts = (filter, history) => dispatch => {
           history.push(`${"/search?name=" + name}`);
         })
         .catch(axiosError => handleError(axiosError, dispatch));
+    } else { /* list all products from server */
+      Axios.get(productsURL + "/", { params: { name: name } })
+        .then(response => {
+          dispatch({
+            type: SEARCH_PRODUCTS,
+            payload: response.data
+          });
+          history.push('/search');
+        })
+        .catch(axiosError => handleError(axiosError, dispatch));
     }
   }
 };
