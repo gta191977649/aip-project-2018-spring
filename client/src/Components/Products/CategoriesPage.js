@@ -1,10 +1,12 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Container, Col, Row } from "mdbreact";
 
 import isEmpty from "../../Utils/isEmpty";
-
+// @Name CategoriesPage
+// @Description Provides to show important information of a categories page display categories
 export class CategoriesPage extends Component {
   render() {
     const { selectedCategory } = this.state;
