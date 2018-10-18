@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Row, Col, Button } from "mdbreact";
+import { Container, Row, Col } from "mdbreact";
 // @import Project Components
 import isEmpty from "../../Utils/isEmpty";
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
