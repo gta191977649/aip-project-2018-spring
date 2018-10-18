@@ -10,4 +10,7 @@ module.exports = Object.freeze({
   INVAILD_ERROR: 'not valid',
   NO_PROFILE_ERROR: 'Profile not found, contact admin',
   EMAIL_EXSIT_ERROR: 'Email already exists',
+  USERNAME_EXSIT_ERROR: 'Username already exists',
+  USERNAME_ERROR: 'User not found',
+  PASSWORD_ERROR: 'Password incorrect',
 });

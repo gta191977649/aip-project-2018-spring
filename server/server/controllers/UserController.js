@@ -103,7 +103,7 @@ module.exports.user_login = async (req, res) => {
     let user = await User.findOne({email});
     console.log('TEST1');
     if (!user) {
-      errors.email = 'User not found';
+      errors.email = Msg.USERNAME_ERROR;
     } else {
       // Check Password
       let matched = await bcrypt
@@ -115,7 +115,7 @@ module.exports.user_login = async (req, res) => {
           token: user.generateJWT(),
         });
       } else {
-        errors.password = 'Password incorrect';
+        errors.password = Msg.PASSWORD_ERROR;
       }
     }
   } catch (err) {
