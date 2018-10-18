@@ -3,6 +3,7 @@ import { CART_ADD, CART_CLEAR, CART_FETCH } from "./Types";
 import { toast } from "mdbreact";
 import jwt from "jsonwebtoken";
 // @import Project Components
+import * as Msg from "../Utils/Constants";
 export const addToCart = (product, cart) => dispatch => {
   toast.info("Added product to cart!");
   dispatch({
@@ -14,7 +15,7 @@ export const addToCart = (product, cart) => dispatch => {
 // @Name: clearCart
 // @Dec: clearCart action for further use
 export const clearCart = () => dispatch => {
-  toast.info("Cleared your card!");
+  toast.info(Msg.CLEAR_CART);
   dispatch({
     type: CART_CLEAR,
     payload: []

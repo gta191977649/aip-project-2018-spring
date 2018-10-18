@@ -102,7 +102,7 @@ export const userLogout = (user, history) => dispatch => {
     payload: {}
   });
 
-  toast.info("Logged out!");
+  toast.info(Msg.LOGOUT_SUCCESS);
   history.push("/login");
 };
 
