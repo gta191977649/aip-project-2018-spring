@@ -8,6 +8,7 @@ import isEmpty from "../Utils/isEmpty";
 import slugify from "../Utils/slugify";
 
 import { handleError } from "./ErrorActions";
+import * as Msg from "../Utils/Constants";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/api";
 
@@ -57,7 +58,7 @@ export const userRegister = (user, history) => {
     })
       .then(res => {
         if (res.data.success) {
-          toast.success("Registration successful! Please login!");
+          toast.success(Msg.REGISTER_SECCUESS);
           history.push("/login");
         }
       })

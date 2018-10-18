@@ -11,3 +11,5 @@ export const CATEGORIES = isEmpty(process.env.REACT_APP_CATEGORIES) // Check if 
 // Example: REACT_APP_API_URL=http://localhost:3000
 // You can then reference said ENV variables here
 // Example const PROD_API_URL = process.env.REACT_APP_API_URL
+
+export const REGISTER_SECCUESS = "Registration successful! Please login!";
