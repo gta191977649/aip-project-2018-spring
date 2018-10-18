@@ -1,3 +1,4 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -10,10 +11,12 @@ import {
   CardTitle,
   CardBody
 } from "mdbreact";
-
+// @import Project Components
 import isEmpty from "../../Utils/isEmpty";
 import OrderProductList from "./OrderProductList";
 
+// @Name OrderDetails
+// @Description Provides display to show one order detail
 export class OrderDetails extends Component {
   static propTypes = {
     orders: PropTypes.array.isRequired
