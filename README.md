@@ -64,4 +64,8 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 - `NODE_ENV` this refer to the node environment, default is `environment`
 - `PORT` the port of server will be listing to, default is `3000`
 - `MONGO_URL` this refer to the address of where your mongo db server are runing at, please change it according to your enviroment.
-- `SECRET` 
+- `SECRET` the secret key which will be used to encrypt for the jwt
+### Client .env file
+- `PORT` the port which the client will be listing to, default is `1337`
+- `REACT_APP_API_URL` the rest api server address, default is `http://localhost:3000/api` which is runing in your local machine, if you wish to deploy, you may need to change it according to your server domain.
+- `REACT_APP_NAME` the application name, by default is `AIP Auctions`, you may need to change it according to your needs.
