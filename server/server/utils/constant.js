@@ -13,4 +13,5 @@ module.exports = Object.freeze({
   USERNAME_EXSIT_ERROR: 'Username already exists',
   USERNAME_ERROR: 'User not found',
   PASSWORD_ERROR: 'Password incorrect',
+  DEFAULT_DESC_USER: 'This is a default subscription, change this in your settings!',
 });
