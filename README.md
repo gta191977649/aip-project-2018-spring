@@ -70,7 +70,7 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 - `REACT_APP_API_URL` the rest api server address, default is `http://localhost:3000/api` which is runing in your local machine, if you wish to deploy, you may need to change it according to your server domain.
 - `REACT_APP_NAME` the application name, by default is `AIP Auctions`, you may need to change it according to your needs.
 
-## Folder structure
+## Folder structures
 ### Server 
 * `uploads` - the folder stores the image that are uploaded from client.
 * `server`
@@ -86,7 +86,7 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
 ### Client
 * `public` - where all the static html and images will be stored.
 * `src` - the source folder for the react.
-    * `Actions` where the redux actions are stored. each actions were responsible for the particular rest api request of each functions.
-    * `Components` where the react compoments are stored.
-    * `Reducers` where the redux reducers are stored, the reducers will update the state & requested data after each actions are triggered.
+    * `Actions` - where the redux actions are stored. each actions were responsible for the particular rest api request of each functions.
+    * `Components` - where the react compoments are stored.
+    * `Reducers` - where the redux reducers are stored, the reducers will update the state & requested data after each actions are triggered.
     * `Utils` - here is where utilities & helper function are.
