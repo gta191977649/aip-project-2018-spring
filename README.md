@@ -83,3 +83,9 @@ You will need a bash client to run npm I recommend [git-bash](https://gitforwind
     * `utils` - here is where utilities & helper function are.
     * `validation` - validation for the rest request, e.g the username, search key words ,etc.
 * `node_modules` - you will have it once you typed `npm install`, you will have this folder, this folder contains all the node js dependency that you need to run this project. **do not create this folder manually.** 
+### Client
+* `public` - where all the static html and images will be stored.
+* `src` - the source folder for the react.
+    * `Actions` where the redux actions are stored. each actions were responsible for the particular rest api request of each functions.
+    * `Components` where the react compoments are stored.
+    * `Reducers` where the redux reducers are stored, the reducers will update the state & requested data after each action triggered.
