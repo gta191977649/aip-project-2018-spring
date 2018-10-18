@@ -1,5 +1,4 @@
 import Axios from "axios";
-import { toast } from "mdbreact";
 
 import { NEW_ORDER, FETCH_ORDERS } from "../Actions/Types";
 import { handleError } from "./ErrorActions";
