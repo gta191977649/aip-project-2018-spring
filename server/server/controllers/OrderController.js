@@ -31,7 +31,7 @@ module.exports.order_new = async (req, res) => {
 
   let token = req.headers.authorization;
   if (!token) {
-    res.status(401).json({errors: {auth: 'No valid user found.'}});
+    res.status(401).json({errors: {auth: Msg.NOT_VALID_USER}});
   }
   let user = jwt.decode(token.split(' ')[1]);
   if (isEmpty(req.body.cart)) {
