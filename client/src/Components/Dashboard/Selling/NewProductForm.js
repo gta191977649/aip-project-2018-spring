@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Row, Col, Input, Button, toast, Fa } from "mdbreact";
-import Axios from "axios";
 
 import { newProduct } from "../../../Actions/ProductActions";
 import { CATEGORIES } from "../../../Utils/Constants";
 import isEmpty from "../../../Utils/isEmpty";
-import formatMoney from "../../../Utils/formatMoney";
-import slugify from "../../../Utils/slugify";
 
 export class NewProductForm extends Component {
   static propTypes = {
