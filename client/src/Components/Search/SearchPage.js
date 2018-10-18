@@ -67,7 +67,7 @@ export class SearchPage extends Component {
     // Display the filtered product list
     if (this.props.search.isEmpty) {
       productItems = (
-        <Col md="10" className="mx-auto">
+        <Col md="4" className="mx-auto">
           <Card>
             <CardBody>
               <CardTitle>Sorry nothing found</CardTitle>
@@ -114,7 +114,9 @@ export class SearchPage extends Component {
             </FormInline>
           </Col>
         </Row>
-        <Row>{productItems}</Row>
+        
+          <Row>{productItems}</Row>
+        
       </Container>
     );
   }
