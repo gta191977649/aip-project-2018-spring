@@ -26,7 +26,7 @@ export default class OrderProductList extends Component {
 
     let productList = !isEmpty(orderitems) ? (
       orderitems.map((item, index) => (
-        <tr>
+        <tr key={index}>
           <th scope="row">{index}</th>
           <td>{item.product.name}</td>
           <td>{item.qty}</td>

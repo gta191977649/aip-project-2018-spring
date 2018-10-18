@@ -40,8 +40,18 @@ export class CheckoutPage extends Component {
       this.setState({ error: "You need to be logged in!" });
       this.setState({ isLoading: false });
     } else {
-      /* let response = await this.props.createOrder(this.props.cart); */
-      this.props.history.push("/");
+
+    await this.props.createOrder(this.props.cart).then(
+      response => {
+        console.log(response);
+        this.props.history.push("/");
+      },
+      error => {
+        toast.error(error);
+      }
+    );
+      
+     
     }
   }
 
