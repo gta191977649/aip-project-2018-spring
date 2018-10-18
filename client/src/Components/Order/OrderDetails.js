@@ -35,7 +35,7 @@ export class OrderDetails extends Component {
   // @Description filt orders
   async findOrder(orders, link) {
     if (!isEmpty(link)) {
-      const order = orders.find(product => order.link === link);
+      const order = await orders.find(product => order.link === link);
       if (!isEmpty(order)) {
         this.setState({ ...order });
       }
