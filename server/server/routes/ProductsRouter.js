@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const multer = require('multer');
-const formData = multer();
+/* const formData = multer(); */
 const imageUpload = require('../config/imageupload')(multer);
 
 const ProductController = require('../controllers/ProductController');
