@@ -1,7 +1,8 @@
+// @import NPM Modules
 import { CART_ADD, CART_CLEAR, CART_FETCH } from "./Types";
 import { toast } from "mdbreact";
 import jwt from "jsonwebtoken";
-
+// @import Project Components
 export const addToCart = (product, cart) => dispatch => {
   toast.info("Added product to cart!");
   dispatch({
@@ -10,7 +11,8 @@ export const addToCart = (product, cart) => dispatch => {
   });
   return dispatch(saveCart(cart));
 };
-
+// @Name: clearCart
+// @Dec: clearCart action for further use
 export const clearCart = () => dispatch => {
   toast.info("Cleared your card!");
   dispatch({
