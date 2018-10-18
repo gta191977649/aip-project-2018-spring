@@ -6,6 +6,7 @@ const mongoNotConnected = require('../utils/checkMongooseConnection');
 const path = require('path');
 const fs = require('fs');
 const slugify = require('../utils/slugify');
+const Msg = require('../utils/constant');
 
 module.exports.products_list = async (req, res) => {
   let items = await Product.find()
@@ -46,10 +47,10 @@ module.exports.product_info = async (req, res) => {
         res.status(200).json({product});
       }
     } catch (error) {
-      errors.message = 'Unknown error occured; try again later.';
+      errors.message = Msg.UNKNOW_ERROR;
     }
   } else {
-    errors.message = 'Unable to proccess request; No product link provided.';
+    errors.message = Msg.NO_PRODUCT_LINK;
     res.status(400).json({errors});
   }
 
@@ -74,7 +75,7 @@ module.exports.product_new = async (req, res, next) => {
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
 

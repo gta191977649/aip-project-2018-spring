@@ -11,3 +11,9 @@ export const CATEGORIES = isEmpty(process.env.REACT_APP_CATEGORIES) // Check if 
 // Example: REACT_APP_API_URL=http://localhost:3000
 // You can then reference said ENV variables here
 // Example const PROD_API_URL = process.env.REACT_APP_API_URL
+
+export const REGISTER_SECCUESS = "Registration successful! Please login!";
+export const LOGOUT_SUCCESS = "Logged out!";
+export const CLEAR_CART = "Cleared your card!";
+export const ADD_ITEM_CART = "Added product to cart!";
+export const SERVER_API_ERROR = "Server Error: No connection to API Server could be made!";

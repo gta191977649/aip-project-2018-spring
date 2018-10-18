@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Msg = require('../utils/constant');
 const ProfileSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -16,7 +17,7 @@ const ProfileSchema = new Schema({
   },
   description: {
     type: String,
-    default: 'This is a default subscription, change this in your settings!',
+    default: Msg.DEFAULT_DESC_USER,
   },
   feedback: [
     {

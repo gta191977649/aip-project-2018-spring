@@ -5,7 +5,7 @@ const Profile = require('../models/UserProfile');
 const validateRegister = require('../validation/validateRegister');
 const validateLogin = require('../validation/validateLogin');
 const mongoNotConnected = require('../utils/checkMongooseConnection');
-
+const Msg = require('../utils/constant');
 // @route POST api/auth/current
 // @desc Gets current user details
 // @access Private
@@ -29,19 +29,19 @@ module.exports.user_register = async (req, res) => {
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
 
     let user = await User.findOne({email: req.body.email});
     if (user) {
-      errors.email = 'Email already exists';
+      errors.email = Msg.EMAIL_EXSIT_ERROR;
       console.log('ERROR: email exists');
       return res.status(400).json({errors});
     } else {
       let username = await User.findOne({handle: req.body.handle});
       if (username) {
-        errors.username = 'Username already exists';
+        errors.username = Msg.USERNAME_EXSIT_ERROR;
         console.log('ERROR: username/handle exists!');
         return res.status(400).json({errors});
       }
@@ -96,14 +96,14 @@ module.exports.user_login = async (req, res) => {
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
     // Find user by email
     let user = await User.findOne({email});
     console.log('TEST1');
     if (!user) {
-      errors.email = 'User not found';
+      errors.email = Msg.USERNAME_ERROR;
     } else {
       // Check Password
       let matched = await bcrypt
@@ -115,7 +115,7 @@ module.exports.user_login = async (req, res) => {
           token: user.generateJWT(),
         });
       } else {
-        errors.password = 'Password incorrect';
+        errors.password = Msg.PASSWORD_ERROR;
       }
     }
   } catch (err) {

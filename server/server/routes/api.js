@@ -1,3 +1,4 @@
+const Msg = require('../utils/constant');
 const express = require('express');
 const router = express.Router();
 
@@ -24,6 +25,6 @@ router.use('/orders', orderRoutes);
 router.use('/feedback', feedbackRoutes);
 
 router.use(function(req, res) {
-  res.status(404).send('Sorry can\'t find that!');
+  res.status(404).send(Msg.NOT_FOUND);
 });
 module.exports = router;
