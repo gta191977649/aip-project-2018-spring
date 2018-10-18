@@ -7,4 +7,6 @@ module.exports = Object.freeze({
   DATABASE_DISCONNECT_ERROR: 'Database not connected, contact server administrator',
   HANDLE_EMPTY_ERROR: 'Handle is empty',
   PROFILE_NOT_FIND_ERROR: 'Could not find profile, do you have one?',
+  INVAILD_ERROR: 'not valid',
+  NO_PROFILE_ERROR: 'Profile not found, contact admin',
 });

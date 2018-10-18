@@ -57,7 +57,7 @@ module.exports.profile_update = async (req, res) => {
 
   let token = req.headers.authorization;
   if (!token) {
-    errors.auth = 'not valid';
+    errors.auth = Msg.INVAILD_ERROR;
     res.status(401).json(errors);
   }
   let user = jwt.decode(token.split(' ')[1]);
@@ -74,13 +74,13 @@ module.exports.profile_update = async (req, res) => {
   try {
     // Check if mongo is connected
     if (mongoNotConnected()) {
-      errors.message = 'Database not connected, contact server administrator';
+      errors.message = Msg.DATABASE_DISCONNECT_ERROR;
       return res.status(400).json({errors});
     }
 
     let profile = await Profile.findOne({_id: id, user: userid});
     if (!profile) {
-      errors.profile = 'Profile not found, contact admin';
+      errors.profile = Msg.NO_PROFILE_ERROR;
       res.status(404).json({errors});
     }
 
