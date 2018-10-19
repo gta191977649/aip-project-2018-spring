@@ -21,7 +21,7 @@ export const USER_SET = "USER_SET";
 export const USER_ERROR = "USER_ERROR";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const FETCH_USER_ID = "FETCH_USER_ID";
-export const FETCH_USERS_ERROR = "FETCH_USERS_ERROR";
+export const FETCH_USER_STATS = "FETCH_USER_STATS";
 
 //CART ACTIONS
 export const CART_ADD = "CART_ADD";
