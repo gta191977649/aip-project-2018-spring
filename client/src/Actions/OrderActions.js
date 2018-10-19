@@ -4,6 +4,7 @@ import { NEW_ORDER, FETCH_ORDERS } from "../Actions/Types";
 import { handleError } from "./ErrorActions";
 import { clearCart } from "./CartActions";
 
+// Order URL
 const ordersURL = process.env.REACT_APP_API_URL + "/orders" || "/api/orders";
 
 export const fetchOrdersById = id => dispatch => {
@@ -14,7 +15,7 @@ export const fetchOrdersById = id => dispatch => {
     .catch(axiosError => handleError(axiosError, dispatch));
 };
 
-export const createOrder = cart => dispatch => {
+export const createOrder = (cart, history) => dispatch => {
   return Axios.post(ordersURL + "/new", { cart })
     .then(response => {
       if (response.status === 200) {
@@ -23,6 +24,7 @@ export const createOrder = cart => dispatch => {
           payload: response.data
         });
         dispatch(clearCart());
+        history.push("/order/"+response.data._id);
       }
     })
     .catch(axiosError => handleError(axiosError, dispatch));
