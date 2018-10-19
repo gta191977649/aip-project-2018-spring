@@ -2,7 +2,7 @@ import { toast } from "mdbreact";
 import Axios from "axios";
 import jwt from "jsonwebtoken";
 
-import { USER_SET, FETCH_USER_ID } from "./Types";
+import { USER_SET, FETCH_USER_ID, FETCH_USER_STATS } from "./Types";
 import setAuthorizationToken from "../Utils/AuthorizationToken";
 import isEmpty from "../Utils/isEmpty";
 import slugify from "../Utils/slugify";
@@ -12,13 +12,16 @@ import * as Msg from "../Utils/Constants";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/api";
 
+const authUrl = API_URL + "/auth";
+const profileURL = API_URL + "/profiles";
+
 //TODO: Need to update for login.
 export const userLogin = (auth, history) => dispatch => {
   //doLogin
   let email = auth.email;
   let password = auth.password;
 
-  return Axios.post(API_URL + "/auth/login", {
+  return Axios.post(authUrl + "/login", {
     email,
     password
   })
@@ -47,7 +50,7 @@ export const userRegister = (user, history) => {
   let passwordConfirm = user.passwordConfirm;
 
   return dispatch => {
-    return Axios.post(API_URL + "/auth/register", {
+    return Axios.post(authUrl + "/register", {
       handle,
       fname,
       lname,
@@ -66,10 +69,6 @@ export const userRegister = (user, history) => {
   };
 };
 
-export const createProfile = profile => {
-  //Setup and post a profile creation;
-};
-
 export const userSet = token => dispatch => {
   //If token is not empty decode token else empty string :)
   let decoded = !isEmpty(token) ? jwt.decode(token) : "";
@@ -81,7 +80,7 @@ export const userSet = token => dispatch => {
 
 export const fetchProfileByUserId = id => dispatch => {
   console.log("fetchProfileByUserId: ", id);
-  Axios.get(API_URL + "/profiles/" + id)
+  Axios.get(profileURL + "/" + id)
     .then(response => {
       dispatch({
         type: FETCH_USER_ID,
@@ -108,7 +107,7 @@ export const userLogout = (user, history) => dispatch => {
 
 export const profileGet = handle => {
   return dispatch => {
-    return Axios.get(API_URL + "/profiles/" + handle);
+    return Axios.get(profileURL + "/" + handle);
   };
 };
 
@@ -119,11 +118,24 @@ export const profileUpdate = formData => {
   let description = formData.description;
 
   return dispatch => {
-    return Axios.put(API_URL + "/profiles", {
+    return Axios.put(profileURL, {
       _id,
       website,
       location,
       description
     }).catch(axiosError => handleError(axiosError, dispatch));
   };
+};
+
+export const fetchUserStats = () => dispatch => {
+  toast.info('Fetching User Stats');
+  
+  return Axios.get(authUrl + "/userstats")
+    .then(response => {
+      return dispatch({
+        type: FETCH_USER_STATS,
+        payload: response.data
+      });
+    })
+    .catch(axiosError => handleError(axiosError, dispatch));
 };
