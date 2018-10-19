@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Row, Col, Input, Button, toast, Fa } from "mdbreact";
 
 import { newProduct } from "../../../Actions/ProductActions";
-import { CATEGORIES } from "../../../Utils/Constants";
+import { CATEGORIES, IMAGE_ERROR } from "../../../Utils/Constants";
 import isEmpty from "../../../Utils/isEmpty";
 
 export class NewProductForm extends Component {
@@ -29,10 +29,6 @@ export class NewProductForm extends Component {
       errors: {},
       isLoading: true
     };
-
-    this.submitHandler = this.submitHandler.bind(this);
-    this.updateDetails = this.updateDetails.bind(this);
-    this.fileHandler = this.fileHandler.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,28 +42,30 @@ export class NewProductForm extends Component {
 
   async submitHandler(event) {
     event.preventDefault();
-
-    console.log("submitted");
     this.setState({ isLoading: true });
 
     //Deconstruct this components state
     const { name, category, price, image, description, qty } = this.state;
 
-    //Create formData object to parse to redux action
-    const formData = new FormData();
+    // Had to implement this because formData was having an issue if image is null
+    if (!isEmpty(image.name)) {
+      //Create formData object to parse to redux action
+      const formData = new FormData();
+      console.log("SUBMITTING");
+      //Append Data from component's form.
+      formData.append("name", name);
+      formData.append("category", category);
+      formData.append("price", price);
+      formData.append("image", image, image.name);
+      formData.append("description", description);
+      formData.append("qty", qty);
 
-    //Append Data from component's form.
-    formData.append("name", name);
-    formData.append("category", category);
-    formData.append("price", price);
-    formData.append("image", image, image.name);
-    formData.append("description", description);
-    formData.append("qty", qty);
+      this.props.newProduct(formData,this.props.history);
 
-    this.props.newProduct(formData).then(result => {
-      toast.success("Created new product");
-      this.props.history.push("/dashboard/newproduct"); // TODO: Change this to product detail page
-    });
+    } else {
+      const imageError = IMAGE_ERROR;
+      this.setState({ errors: { image: imageError } });
+    }
 
     this.setState({ isLoading: false });
   }
@@ -84,13 +82,16 @@ export class NewProductForm extends Component {
       }
     }
 
-    if (event.target.name === "agrees") {
-      this.setState({ isLoading: !event.target.checked });
-    }
-
     this.setState({
       [event.target.name]: event.target.value
     });
+  }
+
+  userAgrees(event) {
+    // Allow for creating new product if they click agree
+    if (event.target.name === "agrees") {
+      this.setState({ isLoading: !event.target.checked });
+    }
   }
 
   fileHandler(event) {
@@ -131,7 +132,7 @@ export class NewProductForm extends Component {
       : "";
 
     let categories = CATEGORIES.map((name, i) => (
-      <option key={i} value={name}>
+      <option key={i} value={name.toLowerCase()}>
         {name}
       </option>
     ));
@@ -139,7 +140,10 @@ export class NewProductForm extends Component {
     return (
       <Row className="">
         <Col md="6" className="mx-auto">
-          <form className="needs-validation" onSubmit={this.submitHandler}>
+          <form
+            className="needs-validation"
+            onSubmit={e => this.submitHandler(e)}
+          >
             <p className="display-4 h5 text-center mb-4">New Product</p>
             <div className={alertError} role="alert">
               {printErrors}
@@ -155,7 +159,7 @@ export class NewProductForm extends Component {
                     type="text"
                     validate
                     value={name}
-                    onChange={this.updateDetails}
+                    onChange={e => this.updateDetails(e)}
                     className={nameErrorClass}
                     required
                   />
@@ -169,7 +173,7 @@ export class NewProductForm extends Component {
                 type="textarea"
                 validate
                 value={description}
-                onChange={this.updateDetails}
+                onChange={e => this.updateDetails(e)}
                 className={descriptionErrorClass}
                 required
               />
@@ -183,7 +187,7 @@ export class NewProductForm extends Component {
                     type="text"
                     validate
                     value={qty}
-                    onChange={this.updateDetails}
+                    onChange={e => this.updateDetails(e)}
                     className={qtyErrorClass}
                     required
                   />
@@ -197,7 +201,7 @@ export class NewProductForm extends Component {
                     type="text"
                     validate
                     value={price}
-                    onChange={this.updateDetails}
+                    onChange={e => this.updateDetails(e)}
                     className={priceErrorClass}
                     required
                   />
@@ -211,8 +215,7 @@ export class NewProductForm extends Component {
                   className="browser-default custom-select"
                   name="category"
                   id="category"
-                  onChange={this.updateDetails}
-                  required
+                  onChange={e => this.updateDetails(e)}
                 >
                   <option>Select a category</option>
                   {categories}
@@ -223,10 +226,9 @@ export class NewProductForm extends Component {
               </div>
               <input
                 name="image"
-                required
                 style={{ display: "none" }}
                 className="form-control validate"
-                onChange={this.fileHandler}
+                onChange={e => this.fileHandler(e)}
                 type="file"
                 ref={imageInput => (this.imageInput = imageInput)}
               />
@@ -239,13 +241,14 @@ export class NewProductForm extends Component {
                     className={imageErrorClass + ""}
                     disabled
                     value={image.name}
+                    required
                   />
                 </Col>
                 <Col className="text-right pr-0">
                   <Button
                     label="Upload photo"
                     className="m-0 ml-auto btn btn-primary btn-sm align-middle"
-                    onClick={() => this.imageInput.click()}
+                    onClick={e => this.imageInput.click(e)}
                   >
                     Upload Image
                   </Button>
@@ -258,7 +261,7 @@ export class NewProductForm extends Component {
                 type="checkbox"
                 id="agrees"
                 name="agrees"
-                onChange={this.updateDetails}
+                onChange={e => this.userAgrees(e)}
               />
               <Button color="primary" type="submit" disabled={isLoading}>
                 Submit

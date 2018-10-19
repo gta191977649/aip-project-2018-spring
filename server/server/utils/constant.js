@@ -1,4 +1,7 @@
-module.exports = Object.freeze({
+'use strict';
+
+
+module.exports.constant = {
   CART_EMPTY: 'Cart cannot be empty',
   NOT_FOUND: 'Sorry can\'t found that',
   NOT_VALID_USER: 'No valid user found.',
@@ -14,4 +17,4 @@ module.exports = Object.freeze({
   USERNAME_ERROR: 'User not found',
   PASSWORD_ERROR: 'Password incorrect',
   DEFAULT_DESC_USER: 'This is a default subscription, change this in your settings!',
-});
+};

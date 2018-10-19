@@ -8,6 +8,10 @@ let OrderSchema = new Schema({
       ref: 'OrderItem',
     },
   ],
+  total: {
+    type: 'Number',
+    required: true,
+  },
   customer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -21,6 +25,12 @@ let OrderSchema = new Schema({
     default: Date.now,
   },
 });
+
+// Setter - Convert decimal dollars to cents
+OrderSchema.path('total').set(function(num) {
+  return num * 100;
+});
+
 
 // eslint-disable-next-line no-undef
 module.exports = Order = mongoose.model('Order', OrderSchema);

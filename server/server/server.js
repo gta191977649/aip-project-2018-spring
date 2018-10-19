@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose').set('debug', true);
 const Promise = require('bluebird');
 const passport = require('passport');
 const bodyParser = require('body-parser');
@@ -13,7 +14,7 @@ const Msg = require('./utils/constant');
 const apiRouter = require('./routes/api');
 const mongourl = require('./config/keys').mongo;
 
-require('dotenv').config();
+
 // Redefine promise to bluebird for performance increase?
 global.Promise = Promise;
 

@@ -17,3 +17,4 @@ export const LOGOUT_SUCCESS = "Logged out!";
 export const CLEAR_CART = "Cleared your card!";
 export const ADD_ITEM_CART = "Added product to cart!";
 export const SERVER_API_ERROR = "Server Error: No connection to API Server could be made!";
+export const IMAGE_ERROR = "You need to add an image!";

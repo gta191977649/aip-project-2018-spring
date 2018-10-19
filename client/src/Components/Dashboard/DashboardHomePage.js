@@ -4,57 +4,70 @@ import { connect } from "react-redux";
 import { Container, Row, Col, Card, CardBody, CardTitle, Fa } from "mdbreact";
 import { Line, Bar, Pie } from "react-chartjs-2";
 
+import { fetchUserStats } from "../../Actions/AuthActions";
+import convertCentsToDollars from "../../Utils/convertCentsToDollars";
+import formatMoney from "../../Utils/formatMoney";
+
 export class DashboardHomePage extends Component {
   static propTypes = {
-    prop: PropTypes
+    auth: PropTypes.object.isRequired,
+    fetchUserStats: PropTypes.func.isRequired
   };
-  fakeData = [
-    {
-      data: {
-        labels: ["Jan", "Feb", "Marh", "May", "Jun", "July"],
-        datasets: [
-          {
-            label: "# of Dollars $",
-            data: [300, 500, 600, 200, 1400, 30],
-            backgroundColor: ["rgba(54, 162, 235, 0.2)"],
-            borderColor: ["rgba(54, 162, 235, 1)"],
-            borderWidth: 1
-          }
-        ]
-      }
-    },
-    {
-      data: {
-        labels: ["Jan", "Feb", "March", "May", "Jun", "July"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: "rgba(153, 102, 255, 0.2)",
-            borderColor: "rgba(153, 102, 255, 1)",
-            borderWidth: 1
-          }
-        ]
-      }
-    },
-    {
-      data: {
-        labels: ["Income $", "Outcome $"],
-        datasets: [
-          {
-            data: [1200, 4150],
-            backgroundColor: [
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(75, 192, 192, 0.2)"
-            ],
-            borderColor: ["rgba(54, 162, 235, 1)", "rgba(75, 192, 192, 1)"],
-            borderWidth: 1
-          }
-        ]
-      }
-    }
-  ];
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      numberOfOrders: 0,
+      numberOfProducts: 0,
+      numberOfSales: 0,
+      amountSpent: 0,
+      totalMade: 0
+    };
+  }
+
+  componentDidMount() {
+    this.fetchStats();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { userstats } = nextProps.auth;
+    this.setState({ ...userstats });
+  }
+
+  async fetchStats() {
+    await this.props.fetchUserStats();
+  }
+
+  handleStats() {}
+
   render() {
+    const {
+      numberOfOrders,
+      numberOfProducts,
+      numberOfSales,
+      totalMade,
+      amountSpent
+    } = this.state;
+
+    const pieData = {
+      labels: ["Income $", "Outcome $"],
+      datasets: [
+        {
+          data: [
+            convertCentsToDollars(totalMade),
+            convertCentsToDollars(amountSpent)
+          ],
+          backgroundColor: [
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(75, 192, 192, 0.2)"
+          ],
+          borderColor: ["rgba(54, 162, 235, 1)", "rgba(75, 192, 192, 1)"],
+          borderWidth: 1
+        }
+      ]
+    };
+
     return (
       <Container>
         <Row>
@@ -71,8 +84,8 @@ export class DashboardHomePage extends Component {
                       className="float-left light-blue-text"
                     />
                     <div className="text-right">
-                      <h4>Visits</h4>
-                      102,400
+                      <h4>Sales</h4>
+                      {numberOfSales}
                     </div>
                   </CardBody>
                 </Card>
@@ -87,7 +100,7 @@ export class DashboardHomePage extends Component {
                     />
                     <div className="text-right">
                       <h4>Purchases</h4>
-                      9,280
+                      {numberOfOrders}
                     </div>
                   </CardBody>
                 </Card>
@@ -101,8 +114,8 @@ export class DashboardHomePage extends Component {
                       className="float-left pink-text"
                     />
                     <div className="text-right">
-                      <h4>Shoppings</h4>
-                      13,600
+                      <h4>Products</h4>
+                      {numberOfProducts}
                     </div>
                   </CardBody>
                 </Card>
@@ -112,17 +125,8 @@ export class DashboardHomePage extends Component {
               <Col md="12">
                 <Card>
                   <CardBody>
-                    <CardTitle>Money Spend</CardTitle>
-                    <Col md="12">
-                      <Line
-                        data={this.fakeData[0].data}
-                        width={100}
-                        height={300}
-                        options={{
-                          maintainAspectRatio: false
-                        }}
-                      />
-                    </Col>
+                    <CardTitle>Money Spent</CardTitle>
+                    <Col md="4">${convertCentsToDollars(amountSpent)}</Col>
                   </CardBody>
                 </Card>
               </Col>
@@ -132,16 +136,7 @@ export class DashboardHomePage extends Component {
                 <Card>
                   <CardBody>
                     <CardTitle>Purchase</CardTitle>
-                    <Col md="12">
-                      <Bar
-                        data={this.fakeData[1].data}
-                        width={100}
-                        height={200}
-                        options={{
-                          maintainAspectRatio: false
-                        }}
-                      />
-                    </Col>
+                    <Col md="4">{numberOfOrders}</Col>
                   </CardBody>
                 </Card>
               </Col>
@@ -151,7 +146,7 @@ export class DashboardHomePage extends Component {
                     <CardTitle>Income vs outcome</CardTitle>
                     <Col md="12">
                       <Pie
-                        data={this.fakeData[2].data}
+                        data={pieData}
                         width={100}
                         height={200}
                         options={{
@@ -170,9 +165,13 @@ export class DashboardHomePage extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  fetchUserStats
+};
 
 export default connect(
   mapStateToProps,

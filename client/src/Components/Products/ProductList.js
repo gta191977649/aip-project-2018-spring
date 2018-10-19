@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import { Row, Col, Card, CardBody } from "mdbreact";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 // @import Project Components
 import isEmpty from "../../Utils/isEmpty";
 import convertCentsToDollars from "../../Utils/convertCentsToDollars";
@@ -9,6 +11,10 @@ import convertCentsToDollars from "../../Utils/convertCentsToDollars";
 // @Name ProductList
 // @Description Provides display to show list of product
 export default class ProductList extends Component {
+  static propTypes = {
+    products: PropTypes.array.isRequired
+  };
+
   render() {
     const { products } = this.props;
     let emptyList = (

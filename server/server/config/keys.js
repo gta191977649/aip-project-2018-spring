@@ -1,6 +1,9 @@
 'use strict';
 const shortid = require('shortid');
 const isEmpty = require('../utils/isEmpty');
+
+console.log(process.env.MONGO_URL);
+console.log(process.env.SECRET);
 module.exports = {
   mongo: !isEmpty(process.env.MONGO_URL)
     ? process.env.MONGO_URL

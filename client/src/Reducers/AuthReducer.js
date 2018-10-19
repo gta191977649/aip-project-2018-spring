@@ -5,12 +5,14 @@ import {
   USER_EXISTS,
   USER_SET,
   FETCH_USER_ID,
+  FETCH_USER_STATS
 } from "../Actions/Types";
 import isEmpty from "../Utils/isEmpty";
 const initialState = {
   user: {},
   isLoggedIn: false,
-  isErrored: false
+  isErrored: false,
+  userstats: {}
 };
 
 export default function(state = initialState, action) {
@@ -48,6 +50,11 @@ export default function(state = initialState, action) {
         ...state,
         isLoggedIn: !isEmpty(action.payload),
         user: action.payload
+      };
+    case FETCH_USER_STATS:
+      return {
+        ...state,
+        userstats: action.payload
       };
     default:
       return state;

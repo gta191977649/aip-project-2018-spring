@@ -12,7 +12,7 @@ import LoginPage from "./Auth/Login/LoginPage";
 import Products from "./Products/Products";
 import ProductInfo from "./Products/ProductInfo";
 import PrivateRoute from "./Auth/PrivateRoute";
-import Dashboard from "./Dashboard/DashboardPage";
+
 import HelpPage from "./Help/HelpPage";
 import SearchPage from "./Search/SearchPage";
 import ErrorCodeComponent from "../Utils/ErrorCodeComponent";
@@ -20,6 +20,9 @@ import ServerErrorComponent from "../Utils/ServerErrorComponent";
 import CategoriesPage from "./Products/CategoriesPage";
 import OrderPage from "./Order/OrderPage";
 import ProfilePage from "./Profile/ProfilePage";
+
+import Dashboard from "./Dashboard/DashboardPage";
+
 import ClothesPage from "./Categories/ClothesPage";
 import ToysPage from "./Categories/ToysPage";
 import SoftwarePage from "./Categories/SoftwarePage";
@@ -61,13 +64,16 @@ export class Main extends Component {
           <Route path="/cart" component={CartPage} />
 
           <PrivateRoute
-            path="/dashboard/:page"
+            path="/dashboard/:handle"
             component={Dashboard}
             isLoggedIn={isLoggedIn}
           />
-          <Route
+
+          <PrivateRoute
+            exact
             path="/dashboard"
-            render={() => <Redirect to="/dashboard/home" />}
+            component={() => <Redirect to="/dashboard/home" />}
+            isLoggedIn={isLoggedIn}
           />
 
           <PrivateRoute

@@ -40,13 +40,14 @@ export class CartPage extends Component {
 
   render() {
     const { cart } = this.props;
-    let { error } = this.state;
-    let items = cart.items.map((item, index) => (
+    const { error } = this.state;
+
+    let items = cart.items.map((orderItem, index) => (
       <tr key={index}>
         <th scope="row">{index}</th>
-        <td>{item.name}</td>
-        <td>{item.qty}</td>
-        <td>${convertCentsToDollars(item.price)}</td>
+        <td>{orderItem.item.name}</td>
+        <td>{orderItem.qty}</td>
+        <td>${convertCentsToDollars(orderItem.item.price)}</td>
       </tr>
     ));
 

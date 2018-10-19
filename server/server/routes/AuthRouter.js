@@ -8,8 +8,15 @@ const authenticateRoute = passport.authenticate('jwt', {
   session: false,
 });
 
-// Auth Routes
+// @route GET api/auth/current
+// @desc Gets the current user information
+// @access Private
 router.get('/current', authenticateRoute, UserController.user_current);
+
+// @route GET api/auth/userstats
+// @desc Gets the current users statistics
+// @access Private
+router.get('/userstats', authenticateRoute, UserController.user_stats);
 
 // @route POST api/auth/login
 // @desc Authenticates the user and returns user

@@ -1,8 +1,9 @@
 const validator = require('validator');
 const isEmpty = require('../utils/isEmpty');
 module.exports = function validateLoginInput(data) {
-  let errors = {};
-  let categories = ['Clothes', 'Electronics', 'Software', 'Toys'];
+  const errors = {};
+  const categories = ['clothes', 'electronics', 'software', 'toys'];
+
   const {body, file} = data;
   body.name = !isEmpty(body.name) ? validator.escape(body.name) : '';
   body.category = !isEmpty(body.category)
@@ -17,14 +18,16 @@ module.exports = function validateLoginInput(data) {
 
   body.qty = !isEmpty(body.qty) ? validator.escape(body.qty) : '';
 
-  let isValidName = validator.isLength(body.name, {min: 4, max: 40});
-  let isValidCategory = validator.isIn(body.category, categories);
-  let isValidPrice = validator.isDecimal(body.price);
-  let isValidDescription = validator.isLength(body.description, {
+  const isValidName = validator.isLength(body.name, {min: 4, max: 40});
+  const isValidCategory = validator.isIn(body.category, categories);
+  const isValidPrice = validator.isDecimal(body.price);
+
+  const isValidDescription = validator.isLength(body.description, {
     min: 20,
     max: 120,
   });
-  let isValidQty = validator.isInt(body.qty, {
+
+  const isValidQty = validator.isInt(body.qty, {
     gt: 0,
     lt: 1001,
   });

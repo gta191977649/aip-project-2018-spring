@@ -1,28 +1,21 @@
+// @import NPM Modules
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, withRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Nav, NavItem, NavLink, Fa } from "mdbreact";
 
-//Components
-import ProfileForm from "../Auth/Profile/ProfileForm";
+// @import Project Components
 import DashboardHomePage from "./DashboardHomePage";
-import OrderList from "../Order/OrderList";
-/* import isEmpty from "../../Utils/isEmpty"; */
+import BuyingList from "./Buying/BuyingList";
 import NewProductForm from "./Selling/NewProductForm";
+import ProfileForm from "../Auth/Profile/ProfileForm";
 import SellingList from "./Selling/SellingList";
 
-export class DashboardPage extends Component {
+export class DashboardMainPage extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: ""
-    };
-  }
 
   render() {
     return (
@@ -71,29 +64,19 @@ export class DashboardPage extends Component {
               <hr />
             </Col>
             <Col md="9">
-              <Switch>
-                <Route
-                  exact
-                  path="/dashboard/home"
-                  component={DashboardHomePage}
-                />
-                <Route exact path="/dashboard/buying" component={OrderList} />
-                <Route
-                  exact
-                  path="/dashboard/newproduct"
-                  component={NewProductForm}
-                />
-                <Route
-                  exact
-                  path="/dashboard/selling"
-                  component={SellingList}
-                />
-                <Route
-                  exact
-                  path="/dashboard/settings"
-                  component={ProfileForm}
-                />
-              </Switch>
+              <Route
+                exact
+                path="/dashboard/home"
+                component={DashboardHomePage}
+              />
+              <Route
+                exact
+                path="/dashboard/newproduct"
+                component={NewProductForm}
+              />
+              <Route exact path="/dashboard/buying" component={BuyingList} />
+              <Route exact path="/dashboard/selling" component={SellingList} />
+              <Route exact path="/dashboard/settings" component={ProfileForm} />
             </Col>
           </Row>
         </Container>
@@ -108,7 +91,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DashboardPage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(DashboardMainPage)
+);

@@ -31,15 +31,6 @@ router.get('/', ProductController.products_list);
 router.post(
     '/new',
     authenticateRoute,
-    // This is to parse to the product controller to upload :D
-    // formData.fields([
-    //   {name: 'name', maxCount: 1},
-    //   {name: 'description', maxCount: 1},
-    //   {name: 'qty', maxCount: 1},
-    //   {name: 'price', maxCount: 1},
-    //   {name: 'category', maxCount: 1},
-    //   {name: 'image', maxCount: 1},
-    // ]),
     imageUpload.single('image'),
     ProductController.product_new
 );
@@ -61,10 +52,5 @@ router.put('/:id', authenticateRoute, ProductController.product_update);
 // @desc Gets the list of products by seller (userid)
 // @access Public
 router.get('/seller/:userid', ProductController.product_list_seller);
-
-// Need to make a custom validator to properly handle multer
-// function newProductValidator(req,res,next){
-//   const {}
-// }
 
 module.exports = router;

@@ -9,25 +9,33 @@ const Msg = require('../utils/constant');
 
 // TODO: Improve load times
 module.exports.order_list = async (req, res) => {
-  let userid = req.body.id;
-  try {
-    let orders = await Order.find({customer: userid}).populate({
-      path: 'items',
-      populate: {
-        path: 'product',
-        select: 'price link name',
-      },
-    });
+  let token = req.headers.authorization;
+  if (token) {
+    let user = jwt.decode(token.split(' ')[1]);
 
-    return res.status(200).json(orders);
-  } catch (err) {
-    console.log(err);
-    return res.status(500);
+    try {
+      let orders = await Order.find({customer: user.id}).populate({
+        path: 'items',
+        populate: {
+          path: 'product',
+          select: 'price link name',
+        },
+      });
+
+      return res.status(200).json(orders);
+    } catch (err) {
+      console.log(err);
+      return res.status(500);
+    }
   }
+
+  return res
+      .status(500)
+      .json({errors: {orders: 'Unabled to find user id'}});
 };
 
 module.exports.order_new = async (req, res) => {
-  const {items} = req.body.cart;
+  const {items, cost} = req.body.cart;
 
   let token = req.headers.authorization;
   if (!token) {
@@ -35,9 +43,7 @@ module.exports.order_new = async (req, res) => {
   }
   let user = jwt.decode(token.split(' ')[1]);
   if (isEmpty(req.body.cart)) {
-    return res
-        .status(400)
-        .json({errors: {message: Msg.CART_EMPTY}});
+    return res.status(400).json({errors: {message: Msg.CART_EMPTY}});
   }
 
   // Buffer for orderItem
@@ -93,13 +99,21 @@ module.exports.order_new = async (req, res) => {
     OrderItem.collection.insertMany(orderItemBuffer);
   }
 
-  const order = new Order();
+  let order = new Order();
   order.items = orderItemBuffer;
   order.isCompleted = false;
   order.customer = user.id; // not underscored because token's user id is not _id
+  order.total = cost; // Cost derived from cart;
 
   await order.save();
-  res.status(200).json({message: 'Success'});
+  order = await Order.findById(order._id).populate({
+    path: 'items',
+    populate: {
+      path: 'product',
+      select: 'price link name',
+    },
+  });
+  res.status(200).json(order);
 };
 
 module.exports.order_update = async (req, res) => {};

@@ -15,6 +15,9 @@ const authenticateRoute = passport.authenticate('jwt', {
 // @access Public
 router.get('/:handle', ProfileController.profiles_get);
 
+// @route PUT api/profiles
+// @desc Updates the users profile
+// @access Private
 router.put('/', authenticateRoute, ProfileController.profile_update);
 
 module.exports = router;

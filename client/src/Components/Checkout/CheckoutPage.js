@@ -37,21 +37,25 @@ export class CheckoutPage extends Component {
     event.preventDefault();
     this.setState({ isLoading: true });
     if (!this.props.auth.isLoggedIn) {
-      this.setState({ error: "You need to be logged in!" });
+      this.setState({ errors: { auth: "You need to be logged in!" } });
       this.setState({ isLoading: false });
     } else {
+      //Check if the user is trying to buy their own products.
+      let isProductsSelling = false;
 
-    await this.props.createOrder(this.props.cart).then(
-      response => {
-        console.log(response);
-        this.props.history.push("/");
-      },
-      error => {
-        toast.error(error);
+      this.props.cart.items.forEach(orderItem => {
+        const seller = orderItem.item.seller;
+        if (seller.handle === this.props.auth.user.handle) {
+          isProductsSelling = true;
+          return;
+        }
+      });
+      if (!isProductsSelling) {
+        await this.props.createOrder(this.props.cart, this.props.history);
+      } else {
+        this.setState({ errors: { auth: "You can't buy your own products!" } });
+        this.setState({ isLoading: false });
       }
-    );
-      
-     
     }
   }
 

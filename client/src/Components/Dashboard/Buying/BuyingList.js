@@ -2,16 +2,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Col, Row } from "mdbreact";
+import { Col, Row } from "mdbreact";
 
 // @import Project Components
-import { fetchOrdersById } from "../../Actions/OrderActions";
-import isEmpty from "../../Utils/isEmpty";
-import OrderList from "./OrderList";
+import { fetchOrdersById } from "../../../Actions/OrderActions";
+import isEmpty from "../../../Utils/isEmpty";
+import OrderList from "../../Order/OrderList";
 
-// @Name OrderPage
-// @Description Provides a little display page to show information for order
-export class OrderPage extends Component {
+export class SellingList extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
@@ -55,13 +53,11 @@ export class OrderPage extends Component {
       previousOrders: previousOrdersBuffer
     });
   }
-  
-  // @Name render
-  // @Description renders the product component
+
   render() {
     let { currentOrders, previousOrders } = this.state;
     return (
-      <Container className="mt-custom">
+      <>
         <Row>
           <Col md="12">
             <h2 className="text-center">Current Orders</h2>
@@ -75,7 +71,7 @@ export class OrderPage extends Component {
             <OrderList orders={previousOrders} />
           </Col>
         </Row>
-      </Container>
+      </>
     );
   }
 }
@@ -93,4 +89,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OrderPage);
+)(SellingList);

@@ -1,6 +1,7 @@
 // @import NPM Modules
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
 // @import Project Components
 import isEmpty from "../../Utils/isEmpty";
 
@@ -13,14 +14,14 @@ export class OrderList extends Component {
     let { orders } = this.props;
 
     let ordersBody = !isEmpty(orders) ? (
-      orders.map((item, index) => (
+      orders.map((order, index) => (
         <tr key={index}>
-          <td>{item._id}</td>
-          <td>{item.items.length}</td>
+          <td>{order._id}</td>
+          <td>{order.items.length}</td>
           <td>
-            <Link to={"/order/" + item._id} className="btn btn-primary btn-sm">
+            <a href={"/order/" + order._id} className="btn btn-primary btn-sm">
               View Details
-            </Link>
+            </a>
           </td>
         </tr>
       ))
@@ -47,4 +48,4 @@ export class OrderList extends Component {
   }
 }
 
-export default OrderList;
+export default withRouter(OrderList);

@@ -28,9 +28,6 @@ export class ProfileForm extends Component {
       foundHandle: true,
       valueChange: false
     };
-
-    this.submitHandler = this.submitHandler.bind(this);
-    this.updateDetails = this.updateDetails.bind(this);
   }
 
   componentDidMount() {
@@ -88,7 +85,10 @@ export class ProfileForm extends Component {
       <Row>
         <Col md="6" className="mx-auto">
           <h5 className="my-2 h5 text-center">Edit Profile Details</h5>
-          <form className="needs-validation" onSubmit={this.submitHandler}>
+          <form
+            className="needs-validation"
+            onSubmit={e => this.submitHandler(e)}
+          >
             <div className={alertError} role="alert">
               {printErrors}
             </div>
@@ -103,7 +103,7 @@ export class ProfileForm extends Component {
                 validate
                 value={validator.unescape(website)}
                 success="right"
-                onChange={this.updateDetails}
+                onChange={e => this.updateDetails(e)}
                 required
                 className={websiteErr}
               />
@@ -117,7 +117,7 @@ export class ProfileForm extends Component {
                 validate
                 value={validator.unescape(location)}
                 success="right"
-                onChange={this.updateDetails}
+                onChange={e => this.updateDetails(e)}
                 required
                 className={locationErr}
               />
@@ -131,7 +131,7 @@ export class ProfileForm extends Component {
                 validate
                 value={validator.unescape(description)}
                 success="right"
-                onChange={this.updateDetails}
+                onChange={e => this.updateDetails(e)}
                 required
                 className={descriptionErr}
               />
