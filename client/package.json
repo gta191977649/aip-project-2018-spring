@@ -22,7 +22,8 @@
     "redux-persist-transform-encrypt": "^2.0.1",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.13",
-    "validator": "^10.8.0"
+    "validator": "^10.8.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "body-parser": "^1.18.3",
@@ -34,7 +35,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "cp -n env.example .env"
+    "postinstall": "cp -n env.example .env",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,5 +47,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }
