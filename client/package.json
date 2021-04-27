@@ -22,7 +22,7 @@
     "redux-persist-transform-encrypt": "^2.0.1",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.13",
-    "validator": "^10.8.0"
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "body-parser": "^1.18.3",
