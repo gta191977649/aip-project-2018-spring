@@ -7,7 +7,9 @@
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "lint": "eslint .",
-    "postinstall": "cp -n .env.example .env"
+    "postinstall": "cp -n .env.example .env",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -35,7 +37,8 @@
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "shortid": "^2.2.13",
-    "validator": "^10.8.0"
+    "validator": "^10.8.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -47,5 +50,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.18.4",
     "prettier-eslint": "^8.8.2"
-  }
+  },
+  "snyk": true
 }
