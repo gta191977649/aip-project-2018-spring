@@ -21,7 +21,7 @@
     "redux-persist": "^5.10.0",
     "redux-persist-transform-encrypt": "^2.0.1",
     "redux-thunk": "^2.3.0",
-    "shortid": "^2.2.13",
+    "shortid": "^2.2.17",
     "validator": "^10.8.0"
   },
   "devDependencies": {
